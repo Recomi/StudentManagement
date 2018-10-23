@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">学生管理</string>
+    <string name="action_search">搜索</string>
+    <string name="action_import">导入</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">设置</string>
+    <!-- Exit -->
+    <string name="exit_save_title">退出将不会保存</string>
+    <string name="exit_save_content">是否还要继续退出？</string>
+    <string name="exit_edit_title">取消编辑</string>
+    <string name="exit_edit_content">要舍弃您所做的更改吗？</string>
+    <string name="exit_yes">确定</string>
+    <string name="exit_cancel">取消</string>
+
+    <!-- Remove -->
+    <string name="remove_title">删除将无法撤回</string>
+    <string name="remove_content">是否继续删除？</string>
+    <string name="remove_successful">删除成功</string>
+    <string name="remove_yes">确定</string>
+    <string name="remove_cancel">取消</string>
+
+    <string name="remove">删除</string>
+    <string name="save">保存</string>
+
+    <!-- Contacts-->
+    <string name="first_name">名字</string>
+    <string name="last_name">姓氏</string>
+    <string name="company">公司</string>
+    <string name="position">职位</string>
+    <string name="email">电子邮件</string>
+    <string name="phone">手机号码</string>
+    <string name="country">国家</string>
+    <string name="zipCode">邮编</string>
+    <string name="address">地址</string>
+    <string name="birthday">生日</string>
+    <string name="webside">网站</string>
+    <string name="chatTools">聊天工具</string>
+    <string name="remark">备注</string>
+</resources>

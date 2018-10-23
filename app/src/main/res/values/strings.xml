@@ -1,9 +1,43 @@
 <resources>
-    <string name="app_name">StudentManagement</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-</resources>
+        <string name="app_name">StudentManagement</string>
+        <string name="action_search">Search</string>
+        <string name="action_import">Import contacts</string>
+        <string name="navigation_drawer_open">Open navigation drawer</string>
+        <string name="navigation_drawer_close">Close navigation drawer</string>
+        <string name="nav_header_title">Android Studio</string>
+        <string name="nav_header_subtitle">android.studio@android.com</string>
+        <string name="nav_header_desc">Navigation header</string>
+        <string name="action_settings">Settings</string>
+        <!-- Exit -->
+        <string name="exit_save_title">Exit will not save</string>
+        <string name="exit_save_content">Continue to exit?</string>
+        <string name="exit_edit_title">Cancel editing</string>
+        <string name="exit_edit_content">Do you want to discard your changes?</string>
+        <string name="exit_yes">Yes</string>
+        <string name="exit_cancel">Cancel</string>
+
+        <!-- Remove -->
+        <string name="remove_title">Remove will couldn\'t undo</string>
+        <string name="remove_content">Continue to Remove?</string>
+        <string name="remove_successful">Remove successful</string>
+        <string name="remove_yes">Yes</string>
+        <string name="remove_cancel">Cancel</string>
+
+        <string name="remove">Remove</string>
+        <string name="save">Save</string>
+
+        <!-- Contacts-->
+        <string name="first_name">First Name</string>
+        <string name="last_name">Last Name</string>
+        <string name="company">Company</string>
+        <string name="position">Position</string>
+        <string name="email">Email</string>
+        <string name="phone">Phone</string>
+        <string name="country">Country</string>
+        <string name="zipCode">Zip Code</string>
+        <string name="address">Address</string>
+        <string name="birthday">Birthday</string>
+        <string name="webside">Webside</string>
+        <string name="chatTools">ChatTools</string>
+        <string name="remark">Remark</string>
+    </resources>
