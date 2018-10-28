@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.GUI.Activities;
+package site.recomi.studentmanagement.gui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

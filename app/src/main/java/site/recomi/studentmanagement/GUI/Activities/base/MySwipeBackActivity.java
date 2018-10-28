@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.GUI.Activities.base;
+package site.recomi.studentmanagement.gui.activities.base;
 
 import android.content.Context;
 import android.os.Build;

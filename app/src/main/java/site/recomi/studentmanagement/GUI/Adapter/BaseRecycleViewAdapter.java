@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.GUI.Adapter;
+package site.recomi.studentmanagement.gui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

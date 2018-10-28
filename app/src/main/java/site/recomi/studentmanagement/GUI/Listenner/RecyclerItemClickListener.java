@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.GUI.Listenner;
+package site.recomi.studentmanagement.gui.listenner;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
