@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.GUI.Activities;
+package site.recomi.studentmanagement.gui.activities;
 
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
@@ -12,7 +12,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-import site.recomi.studentmanagement.GUI.Adapter.MyPagerAdapter;
+import site.recomi.studentmanagement.gui.adapter.MyPagerAdapter;
 import site.recomi.studentmanagement.R;
 
 public class GuideActivity extends AppCompatActivity {

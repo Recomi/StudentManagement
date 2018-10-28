@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.Utils;
+package site.recomi.studentmanagement.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
