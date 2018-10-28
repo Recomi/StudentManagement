@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="#64ffffff"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/input_signup_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:hint="User name"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/input_signup_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:hint="Log in Email"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/input_signup_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:hint="Password"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/input_signup_password_again"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:hint="Password again"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:id="@+id/button_signup_signup"
+        android:textColor="#000794"
+        android:text="Sign up"
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="#00ffffff"
+        android:foreground="?android:attr/selectableItemBackground"/>
+</LinearLayout>
