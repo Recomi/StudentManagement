@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".GUI.Activities.MainActivity"
+            android:name=".gui.activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".GUI.Activities.GuideActivity"
+            android:name=".gui.activities.GuideActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".GUI.Activities.WelcomeActivity"
+        <activity android:name=".gui.activities.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

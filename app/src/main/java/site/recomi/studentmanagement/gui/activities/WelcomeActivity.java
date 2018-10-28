@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.GUI.Activities;
+package site.recomi.studentmanagement.gui.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import site.recomi.studentmanagement.R;
 

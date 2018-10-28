@@ -1,12 +1,10 @@
-package site.recomi.studentmanagement.GUI.Adapter;
+package site.recomi.studentmanagement.gui.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.List;
 
