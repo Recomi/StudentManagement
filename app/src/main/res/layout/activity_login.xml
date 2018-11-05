@@ -1,101 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg10"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".gui.activities.LoginActivity">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView_account_pager"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardBackgroundColor="#64ffffff"
-        app:cardCornerRadius="2dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+    <include layout="@layout/app_bar_base_transparent"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#64ffffff"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".gui.activities.LoginActivity">
+
+
             <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#00ffffff">
-                <Button
-                    android:id="@+id/button_page_login"
-                    android:text="登录"
-                    android:textSize="15dp"
-                    android:textAllCaps="false"
-                    android:background="#00ffffff"
-                    android:padding="2dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"/>
-                <Button
-                    android:id="@+id/button_page_signup"
-                    android:text="注册"
-                    android:textSize="15dp"
-                    android:textAllCaps="false"
-                    android:background="#00ffffff"
-                    android:padding="2dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"/>
-                <Button
-                    android:id="@+id/button_page_password"
-                    android:text="找回密码"
-                    android:lines="2"
-                    android:textSize="15dp"
-                    android:textAllCaps="false"
-                    android:background="#00ffffff"
-                    android:padding="2dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabIndicatorColor="@color/colorAccent"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabSelectedTextColor="@color/colorPrimaryDark">
+                </android.support.design.widget.TabLayout>
+                <!--<android.support.v7.widget.CardView-->
+                    <!--android:id="@+id/cardView_account_pager"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:foreground="?android:attr/selectableItemBackground"-->
+                    <!--android:clickable="true"-->
+                    <!--android:focusable="true"-->
+                    <!--app:cardBackgroundColor="#64ffffff"-->
+                    <!--app:cardCornerRadius="2dp"-->
+                    <!--app:cardPreventCornerOverlap="true"-->
+                    <!--app:cardUseCompatPadding="true"-->
+                    <!--android:layout_height="480dp"-->
+                    <!--android:layout_width="320dp">-->
+                <!--</android.support.v7.widget.CardView>-->
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpage_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </android.support.v4.view.ViewPager>
             </LinearLayout>
-            <ImageView
-                android:id="@+id/img_page_cursor"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:src="@drawable/cursor_color_blue"/>
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpage_account"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </android.support.v4.view.ViewPager>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#64ffffff">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"/>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-</android.support.percent.PercentRelativeLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
