@@ -30,6 +30,8 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         initializationSettings();
+        
+        //如果第一次启动,则进入指南界面
         if (readIsFirstStart()){
             editor.putBoolean("isFirstStart" , false);
             editor.apply();
