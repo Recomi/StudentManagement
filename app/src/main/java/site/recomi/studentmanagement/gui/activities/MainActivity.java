@@ -136,10 +136,10 @@ public class MainActivity extends AppCompatActivity
                         bindingFragment(new HomeFragment());
                         return true;
                     case R.id.action_note:
-                        bindingFragment(new MessageFragment());
+                        bindingFragment(new NoteFragment());
                         return true;
                     case R.id.action_message:
-                        bindingFragment(new NoteFragment());
+                        bindingFragment(new MessageFragment());
                         return true;
                 }
                 return false;
