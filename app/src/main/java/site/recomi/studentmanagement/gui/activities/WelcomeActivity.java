@@ -40,7 +40,7 @@ public class WelcomeActivity extends AppCompatActivity {
             finish();
         }else {
             //如果不是第一次启动,则设置欢迎界面启动主页面的定时任务
-            handler.sendEmptyMessageDelayed(0,1500);
+            handler.sendEmptyMessageDelayed(0,700);
         }
 
     }

@@ -8,6 +8,13 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="login_acount">Login account</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="find_password">Find password</string>
+
+
     <!-- Exit -->
     <string name="exit_save_title">Exit will not save</string>
     <string name="exit_save_content">Continue to exit?</string>

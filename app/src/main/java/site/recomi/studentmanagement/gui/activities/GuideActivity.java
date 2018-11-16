@@ -12,7 +12,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-import site.recomi.studentmanagement.gui.adapter.MyPagerAdapter;
+import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.R;
 
 public class GuideActivity extends AppCompatActivity {
@@ -41,7 +41,7 @@ public class GuideActivity extends AppCompatActivity {
         bitmaps.add(R.drawable.one);
         bitmaps.add(R.drawable.two);
         bitmaps.add(R.drawable.three);
-        vp.setAdapter(new MyPagerAdapter(this ,bitmaps));
+        vp.setAdapter(new PagerViewAdapter(this ,bitmaps));
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

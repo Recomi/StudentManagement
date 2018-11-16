@@ -10,11 +10,11 @@ import java.util.List;
 
 import site.recomi.studentmanagement.R;
 
-public class MyPagerAdapter extends PagerAdapter {
+public class PagerViewAdapter extends android.support.v4.view.PagerAdapter {
     private Context mContext;
     private List<Integer> mData;
 
-    public MyPagerAdapter(Context context ,List<Integer> list) {
+    public PagerViewAdapter(Context context , List<Integer> list) {
         mContext = context;
         mData = list;
     }

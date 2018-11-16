@@ -8,6 +8,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">设置</string>
+    <string name="login_acount">登入账户</string>
+    <string name="login">登入</string>
+    <string name="sign_in">登入</string>
+    <string name="sign_up">注册</string>
+    <string name="find_password">找回密码</string>
+
     <!-- Exit -->
     <string name="exit_save_title">退出将不会保存</string>
     <string name="exit_save_content">是否还要继续退出？</string>

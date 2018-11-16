@@ -1,7 +1,9 @@
 package site.recomi.studentmanagement.gui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.fragments.main.HomeFragment;
@@ -22,6 +26,8 @@ import site.recomi.studentmanagement.gui.fragments.main.NoteFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    int currentFragmentLocation = 1;
+    int notesReturnCode = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -42,6 +47,16 @@ public class MainActivity extends AppCompatActivity
 
         bindingFragment(new HomeFragment());
         initBottomNavigationView();
+
+        // click to start LoginActivity
+        LinearLayout account = navigationView.getHeaderView(0).findViewById(R.id.click_account);
+        account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -57,7 +72,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main_main, menu);
         return true;
     }
 
@@ -66,14 +81,40 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                return true;
+            case R.id.action_add:
+               Intent intent = new Intent(this , WriteNoteActivity.class);
+               startActivityForResult(intent,notesReturnCode);
+               return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //改变菜单文件,由当前碎片决定
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        switch (currentFragmentLocation){
+            case 1:
+                getMenuInflater().inflate(R.menu.main_main, menu);
+                break;
+            case 2:
+                getMenuInflater().inflate(R.menu.main_note, menu);
+                break;
+            case 3:
+                getMenuInflater().inflate(R.menu.main_message, menu);
+                break;
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    //设置当前的碎片位置,并根据位置信息让活动做出相应的改变
+    public void setCurrentFragmentLocation(int currentFragmentLocation) {
+        this.currentFragmentLocation = currentFragmentLocation;
+        supportInvalidateOptionsMenu(); //通知系统更新菜单
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -123,14 +164,27 @@ public class MainActivity extends AppCompatActivity
                         bindingFragment(new HomeFragment());
                         return true;
                     case R.id.action_note:
-                        bindingFragment(new MessageFragment());
+                        bindingFragment(new NoteFragment());
                         return true;
                     case R.id.action_message:
-                        bindingFragment(new NoteFragment());
+                        bindingFragment(new MessageFragment());
                         return true;
                 }
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case 1 :
+                if (resultCode == RESULT_OK){
+                    setCurrentFragmentLocation(2);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
