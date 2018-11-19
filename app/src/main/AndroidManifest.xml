@@ -28,7 +28,8 @@
         <activity android:name=".gui.activities.WriteNoteActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".gui.activities.LoginActivity"
-            android:label="@string/login_acount" />
+            android:label="@string/login_acount"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".gui.activities.AccountActivity"></activity>
     </application>
 
