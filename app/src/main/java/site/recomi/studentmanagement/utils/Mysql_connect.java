@@ -12,6 +12,13 @@ public class Mysql_connect {
     static final String USER = "root";
     static final String PASS = "1281540128";
 
+    Connection conn = null;
+    Statement stmt = null;
+
+    public void getResultSet(String sql){
+
+    }
+
     public static void main(String[] args) {
         Connection conn = null;
         Statement stmt = null;
