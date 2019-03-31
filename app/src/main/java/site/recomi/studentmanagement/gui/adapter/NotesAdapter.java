@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.utils;
+package site.recomi.studentmanagement.gui.adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.entity.Notes;
 import site.recomi.studentmanagement.gui.activities.WriteNoteActivity;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{

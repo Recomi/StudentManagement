@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.utils;
+package site.recomi.studentmanagement.entity;
 
 public class Notes {
     private String title;

@@ -9,10 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +18,8 @@ import java.util.List;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.MainActivity;
 import site.recomi.studentmanagement.utils.MyDatabaseHelper;
-import site.recomi.studentmanagement.utils.Notes;
-import site.recomi.studentmanagement.utils.NotesAdapter;
+import site.recomi.studentmanagement.entity.Notes;
+import site.recomi.studentmanagement.gui.adapter.NotesAdapter;
 
 public class NoteFragment extends Fragment {
     MainActivity mainActivity;
