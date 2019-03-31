@@ -1,25 +1,20 @@
 package site.recomi.studentmanagement.gui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import site.recomi.studentmanagement.R;
-import site.recomi.studentmanagement.gui.activities.BrowserActivity;
 
-public class PagerViewAdapter extends android.support.v4.view.PagerAdapter {
+public class MyPagerAdapter extends PagerAdapter {
     private Context mContext;
-    private List<String> mData;
+    private List<Integer> mData;
 
-    public PagerViewAdapter(Context context , List<String> list) {
+    public MyPagerAdapter(Context context ,List<Integer> list) {
         mContext = context;
         mData = list;
     }
@@ -33,16 +28,7 @@ public class PagerViewAdapter extends android.support.v4.view.PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = View.inflate(mContext, R.layout.pager_item_base,null);
         ImageView iv = view.findViewById(R.id.iv);
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                "http://113.107.212.69:81/hdsbzt/19da/shownews.asp?id=1458"   "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/yixuekaozhaoshengkuaixun/113.html"  "http://www.luodingpoly.cn/"
-                    Intent intent = new Intent(mContext , BrowserActivity.class);
-                    intent.putExtra("site" , "http://113.107.212.69:81/hdsbzt/19da/shownews.asp?id=1458");
-                    mContext.startActivity(intent);
-            }
-        });
-        Picasso.with(mContext).load(mData.get(position)).into(iv);
+        iv.setImageResource(mData.get(position));
         container.addView(view);
         return view;
     }

@@ -14,6 +14,7 @@ import java.util.List;
 
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.gui.adapter.WelcomePagerViewAdapter;
 
 public class GuideActivity extends AppCompatActivity {
     List<Integer> bitmaps = new ArrayList<>();
@@ -41,7 +42,7 @@ public class GuideActivity extends AppCompatActivity {
         bitmaps.add(R.drawable.one);
         bitmaps.add(R.drawable.two);
         bitmaps.add(R.drawable.three);
-        vp.setAdapter(new PagerViewAdapter(this ,bitmaps));
+        vp.setAdapter(new WelcomePagerViewAdapter(this ,bitmaps));
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
