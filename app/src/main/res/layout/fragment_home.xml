@@ -1,86 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FAFAFA">
+
     <android.support.v7.widget.CardView
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="150dp"
         android:foreground="?attr/selectableItemBackground"
-        app:cardCornerRadius="5dp"
-        android:layout_weight="4">
+        app:cardCornerRadius="5dp">
+
         <android.support.v4.view.ViewPager
             android:id="@+id/vp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
         </android.support.v4.view.ViewPager>
     </android.support.v7.widget.CardView>
 
+    <com.sunfusheng.marqueeview.MarqueeView
+        android:id="@+id/marqueeView"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="5dp"
+        app:mvAnimDuration="1000"
+        app:mvDirection="bottom_to_top"
+        app:mvInterval="3000"
+        app:mvTextColor="#C3000000"
+        app:mvTextSize="16sp"
+        app:mvSingleLine="true"
+        />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_marginTop="20dp"
+            android:id="@+id/classChedule"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-            <ImageView
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_class"/>
+                <TextView
+                    android:gravity="center"
+                    android:text="课表"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-            <ImageView
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_association"/>
+                <TextView
+                    android:gravity="center"
+                    android:text="周边"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-            <ImageView
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_chart"/>
+                <TextView
+                    android:gravity="center"
+                    android:text="天气"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_organization"/>
+                <TextView
+                    android:gravity="center"
+                    android:text="交友"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-            <ImageView
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_news"/>
+                <TextView
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-            <ImageView
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_performance"/>
+                <TextView
+                    android:gravity="center"
+                    android:text="时事"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-            <ImageView
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_fs"/>
+                <TextView
+                    android:gravity="center"
+                    android:text="帮帮"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_hbb"/>
+                <TextView
+                    android:gravity="center"
+                    android:text="社团"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"></LinearLayout>
+
+
 </LinearLayout>
