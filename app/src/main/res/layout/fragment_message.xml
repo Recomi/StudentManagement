@@ -3,11 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    android:background="@color/colorWhite">
-=======
     android:background="#FAFAFA">
->>>>>>> 384ba6b508c8c25e6a2dd0c1cbbc40b8cac53f33
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_message"

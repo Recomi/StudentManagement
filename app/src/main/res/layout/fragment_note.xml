@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-<<<<<<< HEAD
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhite">
-=======
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:background="#FAFAFA">
->>>>>>> 384ba6b508c8c25e6a2dd0c1cbbc40b8cac53f33
     <android.support.v7.widget.RecyclerView
         android:id="@+id/notesRL"
         android:fastScrollEnabled="true"
