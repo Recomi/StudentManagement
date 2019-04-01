@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.MainActivity;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
@@ -41,6 +42,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext() , ClassScheduleActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        LinearLayout campusAssociation = view.findViewById(R.id.campusAssociation);
+        campusAssociation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext() , CampusAssociationActivity.class);
                 getActivity().startActivity(intent);
             }
         });
@@ -73,6 +83,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(mainActivity.getApplicationContext(), String.valueOf(position) + ". " + textView.getText(), Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
 

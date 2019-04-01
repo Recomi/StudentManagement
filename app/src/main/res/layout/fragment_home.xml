@@ -39,11 +39,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/classChedule"
+
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/classChedule"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
@@ -162,6 +163,7 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/campusAssociation"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
