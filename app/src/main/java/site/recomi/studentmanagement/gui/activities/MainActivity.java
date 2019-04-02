@@ -8,8 +8,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,20 +21,34 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.gui.activities.base.BaseActivity;
+import site.recomi.studentmanagement.gui.adapter.MainFragmentPagerAdapter;
 import site.recomi.studentmanagement.gui.fragments.main.HomeFragment;
 import site.recomi.studentmanagement.gui.fragments.main.MessageFragment;
 import site.recomi.studentmanagement.gui.fragments.main.NoteFragment;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     int currentFragmentLocation = 1;
     int notesReturnCode = 1;
+
+    @BindView(R.id.vp_main)
+    ViewPager vp_main;
+
+    List<Fragment> fragments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(MainActivity.this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        bindingFragment(new HomeFragment());
+//        bindingFragment(new HomeFragment());
         initBottomNavigationView();
 
         // click to start LoginActivity
@@ -55,6 +71,21 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        fragments.add(new HomeFragment());
+        fragments.add(new NoteFragment());
+        fragments.add(new MessageFragment());
+        vp_main.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public int getCount() {
+                return fragments.size();
+            }
+
+            @Override
+            public Fragment getItem(int i) {
+                return fragments.get(i);
             }
         });
     }
@@ -156,22 +187,19 @@ public class MainActivity extends AppCompatActivity
     //初始化底部导航栏
     private void initBottomNavigationView(){
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.action_main:
-                        bindingFragment(new HomeFragment());
-                        return true;
-                    case R.id.action_note:
-                        bindingFragment(new NoteFragment());
-                        return true;
-                    case R.id.action_message:
-                        bindingFragment(new MessageFragment());
-                        return true;
-                }
-                return false;
+        navigation.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.action_main:
+                    vp_main.setCurrentItem(0);
+                    return true;
+                case R.id.action_note:
+                    vp_main.setCurrentItem(1);
+                    return true;
+                case R.id.action_message:
+                    vp_main.setCurrentItem(2);
+                    return true;
             }
+            return false;
         });
     }
 
