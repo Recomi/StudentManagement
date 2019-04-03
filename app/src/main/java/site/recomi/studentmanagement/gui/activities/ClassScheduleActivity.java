@@ -16,9 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 import site.recomi.studentmanagement.other.UserClasssCheduleInfo;
 
-public class ClassScheduleActivity extends AppCompatActivity {
+public class ClassScheduleActivity extends MySwipeBackActivity {
     SmartTable<UserClasssCheduleInfo> smartTable;
 
     @Override
@@ -45,7 +46,7 @@ public class ClassScheduleActivity extends AppCompatActivity {
         list.add(new UserClasssCheduleInfo("第九节" ,"123" ,"数据结构和算法分析" ,"数据结构和算法分析" ,"数据结构和算法分析" ,"数据结构和算法分析" ,"123" ,"123" ));
         list.add(new UserClasssCheduleInfo("第十节" ,"123" ,"123" ,"123" ,"123" ,"数据结构和算法分析" ,"123" ,"123" ));
 
-        smartTable =  findViewById(R.id.table);
+        smartTable =  (SmartTable<UserClasssCheduleInfo>) findViewById(R.id.table);
         smartTable.getConfig().setShowXSequence(false).setShowYSequence(false);
         smartTable.setData(list);
 
@@ -74,7 +75,7 @@ public class ClassScheduleActivity extends AppCompatActivity {
         PieData pieData = new PieData(dataSet);
         pieData.setDrawValues(true);
 
-        PieChart picChart = findViewById(R.id.pic_chart);
+        PieChart picChart = (PieChart)findViewById(R.id.pic_chart);
         picChart.setData(pieData);
         picChart.invalidate();
     }
