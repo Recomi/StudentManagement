@@ -90,10 +90,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mainActivity= (MainActivity)getActivity();
-        mainActivity.setTitle("首页");
-        mainActivity.setCurrentFragmentLocation(1);
-
         vp = getActivity().findViewById(R.id.vp);
         bitmaps.add("http://img0.imgtn.bdimg.com/it/u=1899561195,3106332361&fm=26&gp=0.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner1.jpg");
@@ -104,6 +100,5 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 }

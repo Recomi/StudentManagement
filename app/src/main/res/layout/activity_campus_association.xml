@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".gui.activities.CampusAssociationActivity">
 
-
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
@@ -58,7 +57,7 @@
                         android:layout_width="120dp"
                         android:layout_height="190dp"
                         android:alpha="0.03"
-                        android:src="@drawable/ic_little_red_riding_hood"
+                        app:srcCompat="@drawable/ic_little_red_riding_hood"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +66,7 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="31dp"
-                        android:src="@drawable/ic_little_red_riding_hood"
+                        app:srcCompat="@drawable/ic_little_red_riding_hood"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.242"
@@ -120,7 +119,7 @@
                         android:layout_width="120dp"
                         android:layout_height="190dp"
                         android:alpha="0.03"
-                        android:src="@drawable/ic_student_union"
+                        app:srcCompat="@drawable/ic_student_union"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +128,7 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="31dp"
-                        android:src="@drawable/ic_student_union"
+                        app:srcCompat="@drawable/ic_student_union"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.242"
@@ -181,7 +180,7 @@
                         android:layout_width="120dp"
                         android:layout_height="190dp"
                         android:alpha="0.03"
-                        android:src="@drawable/ic_little_red_riding_hood"
+                        app:srcCompat="@drawable/ic_little_red_riding_hood"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +189,7 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="31dp"
-                        android:src="@drawable/ic_little_red_riding_hood"
+                        app:srcCompat="@drawable/ic_little_red_riding_hood"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.242"
@@ -242,7 +241,7 @@
                         android:layout_width="120dp"
                         android:layout_height="190dp"
                         android:alpha="0.03"
-                        android:src="@drawable/ic_student_union"
+                        app:srcCompat="@drawable/ic_student_union"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -251,7 +250,7 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="31dp"
-                        android:src="@drawable/ic_student_union"
+                        app:srcCompat="@drawable/ic_student_union"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.242"
@@ -303,7 +302,7 @@
                         android:layout_width="120dp"
                         android:layout_height="190dp"
                         android:alpha="0.03"
-                        android:src="@drawable/ic_little_red_riding_hood"
+                        app:srcCompat="@drawable/ic_little_red_riding_hood"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -312,7 +311,7 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="31dp"
-                        android:src="@drawable/ic_little_red_riding_hood"
+                        app:srcCompat="@drawable/ic_little_red_riding_hood"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.242"
@@ -364,7 +363,7 @@
                         android:layout_width="120dp"
                         android:layout_height="190dp"
                         android:alpha="0.03"
-                        android:src="@drawable/ic_student_union"
+                        app:srcCompat="@drawable/ic_student_union"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -373,7 +372,7 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="31dp"
-                        android:src="@drawable/ic_student_union"
+                        app:srcCompat="@drawable/ic_student_union"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.242"
@@ -419,14 +418,12 @@
 
                 <ImageView
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_plus"
+                    app:srcCompat="@drawable/ic_plus"
                     android:layout_width="40dp"
                     android:layout_height="40dp" />
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
     </HorizontalScrollView>
-
-
 
 </android.support.constraint.ConstraintLayout>

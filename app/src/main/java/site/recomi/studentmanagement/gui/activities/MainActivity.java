@@ -14,7 +14,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,14 +27,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.BaseActivity;
-import site.recomi.studentmanagement.gui.adapter.MainFragmentPagerAdapter;
 import site.recomi.studentmanagement.gui.fragments.main.HomeFragment;
 import site.recomi.studentmanagement.gui.fragments.main.MessageFragment;
 import site.recomi.studentmanagement.gui.fragments.main.NoteFragment;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    int currentFragmentLocation = 1;
+    int currentFragmentLocation = 0;
     int notesReturnCode = 1;
 
     @BindView(R.id.vp_main)
@@ -118,7 +116,20 @@ public class MainActivity extends BaseActivity
             @Override
             public void onPageSelected(int position) {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
-                //写滑动页面后做的事，使每一个fragmen与一个page相对应
+                //修改菜单文件为对应碎片的菜单
+                changeMenuByPosition(position);
+                //设置一些参数
+                switch (position){
+                    case 0:
+                        setTitle("首页");
+                        break;
+                    case 1:
+                        setTitle("笔记");
+                        break;
+                    case 2:
+                        setTitle("消息");
+                        break;
+                }
             }
             @Override
             public void onPageScrollStateChanged(int state) {}
@@ -138,7 +149,7 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_main, menu);
+        getMenuInflater().inflate(R.menu.main_home, menu);
         return true;
     }
 
@@ -164,13 +175,13 @@ public class MainActivity extends BaseActivity
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();
         switch (currentFragmentLocation){
-            case 1:
-                getMenuInflater().inflate(R.menu.main_main, menu);
+            case 0:
+                getMenuInflater().inflate(R.menu.main_home, menu);
                 break;
-            case 2:
+            case 1:
                 getMenuInflater().inflate(R.menu.main_note, menu);
                 break;
-            case 3:
+            case 2:
                 getMenuInflater().inflate(R.menu.main_message, menu);
                 break;
         }
@@ -178,7 +189,7 @@ public class MainActivity extends BaseActivity
     }
 
     //设置当前的碎片位置,并根据位置信息让活动做出相应的改变
-    public void setCurrentFragmentLocation(int currentFragmentLocation) {
+    public void changeMenuByPosition(int currentFragmentLocation) {
         this.currentFragmentLocation = currentFragmentLocation;
         supportInvalidateOptionsMenu(); //通知系统更新菜单
     }
@@ -243,7 +254,7 @@ public class MainActivity extends BaseActivity
         switch (requestCode){
             case 1 :
                 if (resultCode == RESULT_OK){
-                    setCurrentFragmentLocation(2);
+                    changeMenuByPosition(2);
                 }
                 break;
             default:

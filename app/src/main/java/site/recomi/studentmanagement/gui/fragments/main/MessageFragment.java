@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.Message;
+import site.recomi.studentmanagement.gui.activities.MainActivity;
 import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
@@ -89,5 +90,10 @@ public class MessageFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 }

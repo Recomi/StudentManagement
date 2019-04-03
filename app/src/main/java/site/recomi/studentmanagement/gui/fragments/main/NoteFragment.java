@@ -40,15 +40,11 @@ public class NoteFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mainActivity= (MainActivity)getActivity();
-        mainActivity.setTitle("笔记");
-        mainActivity.setCurrentFragmentLocation(2);
 
         myDatabaseHelper = new MyDatabaseHelper(getContext() , "Notes.db" , null ,1);
         db = myDatabaseHelper.getWritableDatabase();
