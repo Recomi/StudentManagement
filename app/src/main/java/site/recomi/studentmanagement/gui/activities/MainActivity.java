@@ -88,6 +88,41 @@ public class MainActivity extends BaseActivity
                 return fragments.get(i);
             }
         });
+
+        BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+                = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_main:
+                        vp_main.setCurrentItem(0);
+                        return true;
+                    case R.id.action_note:
+                        vp_main.setCurrentItem(1);
+                        return true;
+                    case R.id.action_message:
+                        vp_main.setCurrentItem(2);
+                        return true;
+                }
+                return false;
+            }
+        };
+        final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //ViewPager的监听
+        vp_main.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            @Override
+            public void onPageSelected(int position) {
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                //写滑动页面后做的事，使每一个fragmen与一个page相对应
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
     }
 
     @Override
