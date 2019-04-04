@@ -30,5 +30,4 @@ public class MySwipeBackActivity extends SwipeBackActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

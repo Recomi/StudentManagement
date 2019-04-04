@@ -38,10 +38,12 @@ public class MainActivity extends BaseActivity
     int currentFragmentLocation = 0;    //当前ViewPager中的Fragment索引
     int notesReturnCode = 1;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar ;
     @BindView(R.id.vp_main)
     ViewPager vp_main;
     @BindView(R.id.bottom_navigation)
-    BottomNavigationView navigation ;
+    BottomNavigationView bottomNavigationView ;
     List<Fragment> fragments = new ArrayList<>();       //用于保存碎片的实例
 
     @Override
@@ -49,8 +51,6 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //初始化UI控件

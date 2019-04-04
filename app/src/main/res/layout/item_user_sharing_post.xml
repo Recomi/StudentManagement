@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_sharing"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_headicon"
+                android:id="@+id/img_sharing_headicon"
                 android:src="@drawable/headicon1"
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
@@ -54,16 +55,19 @@
             android:orientation="horizontal">
             <Button
                 android:text="111"
+                android:id="@+id/bt_sharing_1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content" />
             <Button
-                android:text="111"
+                android:text="222"
+                android:id="@+id/bt_sharing_2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content" />
             <Button
-                android:text="111"
+                android:text="333"
+                android:id="@+id/bt_sharing_3"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content" />
