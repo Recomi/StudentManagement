@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
@@ -32,10 +35,14 @@ public class HomeFragment extends Fragment {
     List<String> bitmaps = new ArrayList<>();
     ViewPager vp;
 
+    @BindView(R.id.refresh_home)
+    PullRefreshLayout refresh_home;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container , false);
+        ButterKnife.bind(this, view);   //绑定ButterKnife
 
         LinearLayout classShedule = view.findViewById(R.id.classChedule);
         classShedule.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +92,6 @@ public class HomeFragment extends Fragment {
         });
 
     }
-
 
     @Override
     public void onStart() {

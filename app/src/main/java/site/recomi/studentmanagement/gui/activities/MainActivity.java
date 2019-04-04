@@ -20,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.baoyz.widget.PullRefreshLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,13 +35,14 @@ import site.recomi.studentmanagement.gui.fragments.main.NoteFragment;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    int currentFragmentLocation = 0;
+    int currentFragmentLocation = 0;    //当前ViewPager中的Fragment索引
     int notesReturnCode = 1;
 
     @BindView(R.id.vp_main)
     ViewPager vp_main;
-
-    List<Fragment> fragments = new ArrayList<>();
+    @BindView(R.id.bottom_navigation)
+    BottomNavigationView navigation ;
+    List<Fragment> fragments = new ArrayList<>();       //用于保存碎片的实例
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +53,22 @@ public class MainActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //初始化UI控件
+        initUI();
+    }
+
+    //初始化UI控件
+    private void initUI() {
+        //侧滑菜单
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        bindingFragment(new HomeFragment());
+        //初始化底部导航栏
         initBottomNavigationView();
 
         // click to start LoginActivity
@@ -72,6 +81,7 @@ public class MainActivity extends BaseActivity
             }
         });
 
+        //ViewPager的初始化
         fragments.add(new HomeFragment());
         fragments.add(new NoteFragment());
         fragments.add(new MessageFragment());
@@ -86,28 +96,6 @@ public class MainActivity extends BaseActivity
                 return fragments.get(i);
             }
         });
-
-        BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-                = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_main:
-                        vp_main.setCurrentItem(0);
-                        return true;
-                    case R.id.action_note:
-                        vp_main.setCurrentItem(1);
-                        return true;
-                    case R.id.action_message:
-                        vp_main.setCurrentItem(2);
-                        return true;
-                }
-                return false;
-            }
-        };
-        final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //ViewPager的监听
         vp_main.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -134,6 +122,24 @@ public class MainActivity extends BaseActivity
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
+
+        //底部分页按钮的初始化
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        navigation.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.action_main:
+                    vp_main.setCurrentItem(0);
+                    return true;
+                case R.id.action_note:
+                    vp_main.setCurrentItem(1);
+                    return true;
+                case R.id.action_message:
+                    vp_main.setCurrentItem(2);
+                    return true;
+            }
+            return false;
+        });
+
     }
 
     @Override
