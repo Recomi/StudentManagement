@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_sharing"
+    android:layout_marginTop="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="0dp"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_sharing_headicon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/headicon1" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/img_sharing_headicon"
+                android:text="name H"
+                android:textColor="@android:color/primary_text_light" />
+
+            <TextView
+                android:id="@+id/tv_post_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_sharing_headicon"
+                android:text="29分钟前"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_sharing_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="你那里女两男的女家妇女的女女的妇女的妇女节农家女家女家难解难分基尼
+基尼今年的河道和大门口的款面膜可到达酒店"
+            android:textColor="@android:color/primary_text_light" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/bt_sharing_1"
+                app:srcCompat="@drawable/ic_comment"
+                android:background="@android:color/white"
+                android:foreground="?selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                app:srcCompat="@drawable/ic_comment"
+                android:background="@android:color/white"
+                android:foreground="?selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                app:srcCompat="@drawable/ic_comment"
+                android:background="@android:color/white"
+                android:foreground="?selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

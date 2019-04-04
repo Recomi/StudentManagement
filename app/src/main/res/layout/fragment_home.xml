@@ -1,239 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+
+<com.baoyz.widget.PullRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+    android:id="@+id/refresh_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v4.widget.NestedScrollView
         android:layout_height="match_parent"
-        android:background="#FAFAFA">
+        android:layout_width="match_parent">
 
-        <android.support.v7.widget.CardView
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="8dp">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </android.support.v4.view.ViewPager>
-
-        </android.support.v7.widget.CardView>
-
-        <com.sunfusheng.marqueeview.MarqueeView
-            android:id="@+id/marqueeView"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            app:mvAnimDuration="1000"
-            app:mvDirection="bottom_to_top"
-            app:mvInterval="3000"
-            app:mvTextColor="#C3000000"
-            app:mvTextSize="16sp"
-            app:mvSingleLine="true"
-            />
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/classChedule"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_class"/>
-                    <TextView
-                        android:gravity="center"
-                        android:text="课表"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_association"/>
-                    <TextView
-                        android:gravity="center"
-                        android:text="周边"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_chart"/>
-                    <TextView
-                        android:gravity="center"
-                        android:text="天气"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_organization"/>
-                    <TextView
-                        android:gravity="center"
-                        android:text="交友"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
+            android:layout_height="match_parent"
+            android:background="#FAFAFA">
+
+            <android.support.v7.widget.CardView
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="8dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </android.support.v4.view.ViewPager>
+
+            </android.support.v7.widget.CardView>
+
+            <com.sunfusheng.marqueeview.MarqueeView
+                android:id="@+id/marqueeView"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginBottom="5dp"
+                app:mvAnimDuration="1000"
+                app:mvDirection="bottom_to_top"
+                app:mvInterval="3000"
+                app:mvTextColor="#C3000000"
+                app:mvTextSize="16sp"
+                app:mvSingleLine="true"
+                />
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_news"/>
-                    <TextView
-                        android:gravity="center"
-                        android:text="@string/app_name"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/classChedule"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_class"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="课表"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_association"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="周边"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_chart"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="天气"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_organization"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="交友"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_performance"/>
-                    <TextView
-                        android:gravity="center"
-                        android:text="时事"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_fs"/>
-                    <TextView
-                        android:gravity="center"
-                        android:text="帮帮"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/campusAssociation"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_hbb"/>
-                    <TextView
-                        android:gravity="center"
-                        android:text="社团"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_news"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="@string/app_name"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_performance"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="时事"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_fs"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="帮帮"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/campusAssociation"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_hbb"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="社团"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recy_main_newest"
+                android:background="#F5F5F5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="50sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="50sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="50sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
-    </LinearLayout>
-
-</android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.NestedScrollView>
+</com.baoyz.widget.PullRefreshLayout>

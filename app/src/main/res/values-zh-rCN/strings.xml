@@ -13,6 +13,7 @@
     <string name="sign_in">登入</string>
     <string name="sign_up">注册</string>
     <string name="find_password">找回密码</string>
+    <string name="without_login">未登录</string>
 
     <!-- Exit -->
     <string name="exit_save_title">退出将不会保存</string>
