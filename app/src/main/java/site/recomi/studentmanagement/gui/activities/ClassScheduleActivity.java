@@ -1,12 +1,9 @@
 package site.recomi.studentmanagement.gui.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
 import com.bin.david.form.core.SmartTable;
-import com.bin.david.form.data.column.Column;
-import com.bin.david.form.data.table.TableData;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -17,7 +14,7 @@ import java.util.List;
 
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
-import site.recomi.studentmanagement.other.UserClasssCheduleInfo;
+import site.recomi.studentmanagement.other.entitiy.UserClasssCheduleInfo;
 
 public class ClassScheduleActivity extends MySwipeBackActivity {
     SmartTable<UserClasssCheduleInfo> smartTable;

@@ -11,13 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".gui.activities.CampusAssociationAddActivity"></activity>
         <activity
             android:name=".gui.activities.CampusAssociationActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".gui.activities.ClassScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".gui.activities.BrowserActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".gui.activities.ClassScheduleActivity" />
+        <activity android:name=".gui.activities.BrowserActivity" />
         <activity
             android:name=".gui.activities.MainActivity"
             android:label="@string/app_name"
