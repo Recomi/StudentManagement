@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.other;
+package site.recomi.studentmanagement.other.entitiy;
 
 import com.bin.david.form.annotation.SmartColumn;
 import com.bin.david.form.annotation.SmartTable;
