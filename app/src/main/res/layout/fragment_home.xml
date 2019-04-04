@@ -193,52 +193,14 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="50sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="50sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="30sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="30sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="30sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="30sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="30sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="50sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="A∆∂ƒµ˜˜∆∂˜˜∑¥œø≥¥œøæ…≥"
-                android:textSize="30sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recy_main_newest"
+                android:background="#F5F5F5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

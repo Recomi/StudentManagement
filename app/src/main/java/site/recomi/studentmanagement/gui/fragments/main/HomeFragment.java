@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +27,13 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.MainActivity;
+import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
+import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
 public class HomeFragment extends Fragment {
     MainActivity mainActivity;
@@ -37,6 +42,9 @@ public class HomeFragment extends Fragment {
 
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
+    @BindView(R.id.recy_main_newest)
+    RecyclerView recy;
+    BaseRecycleViewAdapter<UserSharingPost> adapter;
 
     @Nullable
     @Override
@@ -62,6 +70,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        initNewestData();
         initMarqueeView(view);
         return view;
     }
@@ -71,6 +80,32 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
+    /**
+     * 初始化最近信息的数据
+     * */
+    private void initNewestData() {
+        List<UserSharingPost> posts = new ArrayList<>();
+        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg"));
+        posts.add(new UserSharingPost("index","12点20分","嗯........","http://recomi.site/license_pic/jpg"));
+        posts.add(new UserSharingPost("are you ok","12点10分","你们很棒哦","http://recomi.site/license_pic/jpg"));
+        posts.add(new UserSharingPost("ddd","11点55分","你们还好么","http://recomi.site/license_pic/jpg"));
+        posts.add(new UserSharingPost("学生会会长","11点40分","救命啊","http://recomi.site/license_pic/jpg"));
+        posts.add(new UserSharingPost("四宫辉夜","11点35分","你还真是可爱呢","http://recomi.site/license_pic/jpg"));
+        adapter = new BaseRecycleViewAdapter<UserSharingPost>(getContext(),posts,R.layout.item_user_sharing_post) {
+            @Override
+            public void convert(ViewHolder holder, UserSharingPost userSharingPost) {
+                holder.setText(R.id.tv_name,userSharingPost.getName());
+                holder.setText(R.id.tv_post_time,userSharingPost.getTime());
+                holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
+//                holder.setText(R.id.tv_name,userSharingPost.getHeadIconUrl());
+            }
+        };
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recy.setLayoutManager(manager);
+        recy.setAdapter(adapter);
+    }
+
 
     //初始化滚动信息栏
     private void initMarqueeView(View view){
