@@ -32,6 +32,7 @@ import site.recomi.studentmanagement.entity.LoadMoreItem;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
+import site.recomi.studentmanagement.gui.activities.GradeActivity;
 import site.recomi.studentmanagement.gui.activities.MainActivity;
 import site.recomi.studentmanagement.gui.adapter.BaseMultiItemTypeRecyclerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
@@ -40,13 +41,14 @@ import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
     @BindView(R.id.recy_main_newest)
     RecyclerView recy;
 
     MainActivity mainActivity;
+    View view;
     List<String> bitmaps = new ArrayList<>();
     ViewPager vp;
     BaseRecycleViewAdapter<UserSharingPost> adapter;
@@ -56,7 +58,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container , false);
+        view = inflater.inflate(R.layout.fragment_home, container , false);
         ButterKnife.bind(this, view);   //绑定ButterKnife
 
         LinearLayout classShedule = view.findViewById(R.id.classChedule);
@@ -140,7 +142,7 @@ public class HomeFragment extends Fragment {
 //        recy.onscrol(new RecyclerView.OnScrollListener(){
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recy.setLayoutManager(manager);
-        recy.setAdapter(adapter2);
+        recy.setAdapter(adapter);
     }
 
 
@@ -168,7 +170,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        vp = getActivity().findViewById(R.id.vp);
+        vp = Objects.requireNonNull(getActivity()).findViewById(R.id.vp);
         bitmaps.add("http://img0.imgtn.bdimg.com/it/u=1899561195,3106332361&fm=26&gp=0.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner1.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner3.jpg");
@@ -178,5 +180,20 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.classChedule:
+                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , ClassScheduleActivity.class));
+                break;
+            case R.id.campusAssociation:
+                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , CampusAssociationActivity.class));
+                break;
+            case R.id.grade:
+                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , GradeActivity.class));
+                break;
+        }
     }
 }
