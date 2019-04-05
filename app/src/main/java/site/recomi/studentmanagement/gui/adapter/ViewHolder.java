@@ -26,21 +26,20 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     /**
      * */
     public ViewHolder(Context context, View itemView
-                        , ViewGroup parent, int position) {
+                        , ViewGroup parent) {
         super(itemView);
         mContext = context;
         mConvertView = itemView;
         mViews = new SparseArray<View>();
-        mPosition = position;
     }
     /**
      * */
     public static ViewHolder get(Context context, ViewGroup parent
-                                    , int layoutId, int position) {
+                                    , int layoutId) {
         View itemView = LayoutInflater
                 .from(context)
                 .inflate(layoutId, parent,false);
-        return new ViewHolder(context,itemView,parent,position);
+        return new ViewHolder(context,itemView,parent);
     }
     /**
      * */
@@ -95,5 +94,9 @@ public class ViewHolder extends RecyclerView.ViewHolder {
      * */
     public void updatePosition(int position){
         this.mPosition = position;
+    }
+
+    public int getMyPosition() {
+        return mPosition;
     }
 }

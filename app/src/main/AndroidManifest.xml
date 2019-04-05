@@ -15,8 +15,10 @@
         <activity
             android:name=".gui.activities.CampusAssociationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".gui.activities.ClassScheduleActivity" />
-        <activity android:name=".gui.activities.BrowserActivity" />
+        <activity android:name=".gui.activities.ClassScheduleActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".gui.activities.BrowserActivity"
+            android:theme="@style/AppTheme.NoActionBar"  />
         <activity
             android:name=".gui.activities.MainActivity"
             android:label="@string/app_name"

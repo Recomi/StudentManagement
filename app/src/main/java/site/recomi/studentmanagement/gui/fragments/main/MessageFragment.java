@@ -70,7 +70,7 @@ public class MessageFragment extends Fragment {
         messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
         BaseRecycleViewAdapter<Message> adapter = new BaseRecycleViewAdapter<Message>(mContext,messages,R.layout.list_message_list) {
             @Override
-            public void convert(ViewHolder holder, Message message) {
+            public void convert(ViewHolder holder, Message message,int position) {
                 Calendar calendar = GregorianCalendar.getInstance();
                 calendar.setTime(message.getReceivingTime());
                 String time = calendar.get(Calendar.HOUR_OF_DAY) + ":"

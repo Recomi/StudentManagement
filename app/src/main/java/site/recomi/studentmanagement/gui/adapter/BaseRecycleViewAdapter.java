@@ -18,17 +18,17 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Vie
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ViewHolder viewHolder = ViewHolder.get(mContext,parent,mlayoutId,-1);
+        ViewHolder viewHolder = ViewHolder.get(mContext,parent,mlayoutId);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.updatePosition(position);
-        convert(holder, mList.get(position));
+        convert(holder, mList.get(position),position);
     }
 
-    public abstract void convert(ViewHolder holder, T t);
+    public abstract void convert(ViewHolder holder, T t, int position);
 
     @Override
     public int getItemCount() {
@@ -43,5 +43,9 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Vie
     }
     public void setList(List<T> objectList){
         this.mList = objectList;
+    }
+
+    public List<T> getList(){
+        return mList;
     }
 }

@@ -41,7 +41,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/img_sharing_headicon"
                     android:text="name H"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textColor="@android:color/primary_text_light" />
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/img_sharing_headicon"
                     android:text="29分钟前"
-                    android:textColor="@android:color/secondary_text_light"
+                    android:textColor="@color/colorLightGreyFont"
                     android:textSize="12sp" />
             </RelativeLayout>
 

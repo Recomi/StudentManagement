@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity
     int currentFragmentLocation = 0;    //当前ViewPager中的Fragment索引
     int notesReturnCode = 1;
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.toolbar_base)
     Toolbar toolbar ;
     @BindView(R.id.vp_main)
     ViewPager vp_main;

@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,24 +28,30 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.entity.LoadMoreItem;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.MainActivity;
+import site.recomi.studentmanagement.gui.adapter.BaseMultiItemTypeRecyclerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
+import site.recomi.studentmanagement.gui.adapter.Delegetes.SharingPostDelegete;
+import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
 public class HomeFragment extends Fragment {
-    MainActivity mainActivity;
-    List<String> bitmaps = new ArrayList<>();
-    ViewPager vp;
-
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
     @BindView(R.id.recy_main_newest)
     RecyclerView recy;
+
+    MainActivity mainActivity;
+    List<String> bitmaps = new ArrayList<>();
+    ViewPager vp;
     BaseRecycleViewAdapter<UserSharingPost> adapter;
+    MultiItemTypeSupport multiItemTypeSupport ;
+    BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter2;
 
     @Nullable
     @Override
@@ -94,16 +101,46 @@ public class HomeFragment extends Fragment {
         posts.add(new UserSharingPost("四宫辉夜","11点35分","你还真是可爱呢","http://recomi.site/license_pic/jpg"));
         adapter = new BaseRecycleViewAdapter<UserSharingPost>(getContext(),posts,R.layout.item_user_sharing_post) {
             @Override
-            public void convert(ViewHolder holder, UserSharingPost userSharingPost) {
+            public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
                 holder.setText(R.id.tv_name,userSharingPost.getName());
                 holder.setText(R.id.tv_post_time,userSharingPost.getTime());
                 holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
 //                holder.setText(R.id.tv_name,userSharingPost.getHeadIconUrl());
+                if (position  == getItemCount() -1) {
+                    Log.e("aaa","ergnirebngkjfnjkg rejngbkj");
+                }
             }
         };
+//        multiItemTypeSupport = new MultiItemTypeSupport<UserSharingPost>() {
+//            @Override
+//            public int getLayoutId(int itemType) {
+//                switch (itemType) {
+//                    case
+//                }
+//            }
+//
+//            @Override
+//            public int getItemViewType(int position, List<UserSharingPost> list) {
+//                return 0;
+//            }
+//        };
+        adapter2 = new BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost>(getContext(), posts, new SharingPostDelegete()) {
+            @Override
+            public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
+                if (position == getItemCount() -1)
+                    holder.setText(R.id.tv_loadmore,"加载中...");
+                else {
+                    holder.setText(R.id.tv_name,userSharingPost.getName());
+                    holder.setText(R.id.tv_post_time,userSharingPost.getTime());
+                    holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
+//                holder.setText(R.id.tv_name,userSharingPost.getHeadIconUrl());
+                }
+            }
+        };
+//        recy.onscrol(new RecyclerView.OnScrollListener(){
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recy.setLayoutManager(manager);
-        recy.setAdapter(adapter);
+        recy.setAdapter(adapter2);
     }
 
 

@@ -36,7 +36,7 @@ public class CampusAssociationAddActivity extends AppCompatActivity {
         lists.add(new CampusAssociationItem("5"));
         adapter = new BaseRecycleViewAdapter<CampusAssociationItem>(this ,lists , R.layout.recycler_view_item_1) {
             @Override
-            public void convert(ViewHolder holder, CampusAssociationItem campusAssociationItem) {
+            public void convert(ViewHolder holder, CampusAssociationItem campusAssociationItem,int position) {
                     holder.setText(R.id.textView2 , campusAssociationItem.getName());
             }
         };
