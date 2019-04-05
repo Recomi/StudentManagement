@@ -49,5 +49,13 @@
     <string name="chatTools">ChatTools</string>
     <string name="remark">Remark</string>
 
-
+    <!--成绩界面-->
+    <string-array name="spingarr">
+        <item>大一上学期</item>
+        <item>大一下学期</item>
+        <item>大二上学期</item>
+        <item>大二下学期</item>
+        <item>大三上学期</item>
+        <item>大三下学期</item>
+    </string-array>
 </resources>

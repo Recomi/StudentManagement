@@ -10,7 +10,7 @@
     app:elevation="0dp">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_base_transparent"
+        android:id="@+id/toolbar_base"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
