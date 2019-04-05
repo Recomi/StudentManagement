@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,16 +31,17 @@ import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
+import site.recomi.studentmanagement.gui.activities.GradeActivity;
 import site.recomi.studentmanagement.gui.activities.MainActivity;
 import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
     MainActivity mainActivity;
     List<String> bitmaps = new ArrayList<>();
     ViewPager vp;
-
+    View view;
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
     @BindView(R.id.recy_main_newest)
@@ -49,29 +51,12 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container , false);
+        view = inflater.inflate(R.layout.fragment_home, container , false);
         ButterKnife.bind(this, view);   //绑定ButterKnife
 
-        LinearLayout classShedule = view.findViewById(R.id.classChedule);
-        classShedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext() , ClassScheduleActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-
-        LinearLayout campusAssociation = view.findViewById(R.id.campusAssociation);
-        campusAssociation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext() , CampusAssociationActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-
-        initNewestData();
-        initMarqueeView(view);
+        initView();                             //初始化控件
+        initNewestData();                  //初始化最近信息列表
+        initMarqueeView(view);          //初始化滚动信息视图
         return view;
     }
 
@@ -80,6 +65,16 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
+    private void initView(){
+        LinearLayout classShedule = view.findViewById(R.id.classChedule);
+        classShedule.setOnClickListener(this);
+        LinearLayout campusAssociation = view.findViewById(R.id.campusAssociation);
+        campusAssociation.setOnClickListener(this);
+        LinearLayout grade = view.findViewById(R.id.grade);
+        grade.setOnClickListener(this);
+    }
+
 
     /**
      * 初始化最近信息的数据
@@ -131,7 +126,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        vp = getActivity().findViewById(R.id.vp);
+        vp = Objects.requireNonNull(getActivity()).findViewById(R.id.vp);
         bitmaps.add("http://img0.imgtn.bdimg.com/it/u=1899561195,3106332361&fm=26&gp=0.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner1.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner3.jpg");
@@ -141,5 +136,20 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.classChedule:
+                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , ClassScheduleActivity.class));
+                break;
+            case R.id.campusAssociation:
+                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , CampusAssociationActivity.class));
+                break;
+            case R.id.grade:
+                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , GradeActivity.class));
+                break;
+        }
     }
 }

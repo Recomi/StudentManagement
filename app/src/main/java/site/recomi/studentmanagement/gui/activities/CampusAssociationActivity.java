@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.gyf.barlibrary.ImmersionBar;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
@@ -63,6 +65,8 @@ public class CampusAssociationActivity extends MySwipeBackActivity implements Vi
         //返回按钮
         ImageButton returnButton = (ImageButton) findViewById(R.id.returnButton);
         returnButton.setOnClickListener(this);
+
+
     }
 
     private void initNewestData() {
