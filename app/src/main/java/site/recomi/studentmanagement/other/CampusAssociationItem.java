@@ -7,7 +7,7 @@ public class CampusAssociationItem {
     private Boolean isSelect = false;      //是否选中,默认为不选中
 
 
-    CampusAssociationItem(int imgSrc , String name ,  String subTitle ,Boolean isSelect){
+    public CampusAssociationItem(int imgSrc , String name ,  String subTitle ,Boolean isSelect){
         this.imgSrc = imgSrc;
         this.name = name;
         this.subTitle = subTitle;

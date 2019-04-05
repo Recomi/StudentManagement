@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,41 +24,66 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.entity.LoadMoreItem;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
 import site.recomi.studentmanagement.gui.activities.MainActivity;
+import site.recomi.studentmanagement.gui.adapter.BaseMultiItemTypeRecyclerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
+import site.recomi.studentmanagement.gui.adapter.Delegetes.SharingPostDelegete;
+import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    MainActivity mainActivity;
-    List<String> bitmaps = new ArrayList<>();
-    ViewPager vp;
-    View view;
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
     @BindView(R.id.recy_main_newest)
     RecyclerView recy;
+
+    MainActivity mainActivity;
+    View mView;
+    Context mContext;
+    List<String> bitmaps = new ArrayList<>();
+    ViewPager vp;
     BaseRecycleViewAdapter<UserSharingPost> adapter;
+    MultiItemTypeSupport multiItemTypeSupport ;
+    BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container , false);
-        ButterKnife.bind(this, view);   //绑定ButterKnife
+        mView = inflater.inflate(R.layout.fragment_home, container , false);
+        mContext = mView.getContext();
+        ButterKnife.bind(this, mView);   //绑定ButterKnife
 
-        initView();                             //初始化控件
-        initNewestData();                  //初始化最近信息列表
-        initMarqueeView(view);          //初始化滚动信息视图
-        return view;
+        LinearLayout classShedule = mView.findViewById(R.id.classChedule);
+        classShedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext() , ClassScheduleActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        LinearLayout campusAssociation = mView.findViewById(R.id.campusAssociation);
+        campusAssociation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext() , CampusAssociationActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        initNewestData();
+        initMarqueeView(mView);
+        return mView;
     }
 
     @Override
@@ -65,16 +91,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
     }
-
-    private void initView(){
-        LinearLayout classShedule = view.findViewById(R.id.classChedule);
-        classShedule.setOnClickListener(this);
-        LinearLayout campusAssociation = view.findViewById(R.id.campusAssociation);
-        campusAssociation.setOnClickListener(this);
-        LinearLayout grade = view.findViewById(R.id.grade);
-        grade.setOnClickListener(this);
-    }
-
 
     /**
      * 初始化最近信息的数据
@@ -89,13 +105,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         posts.add(new UserSharingPost("四宫辉夜","11点35分","你还真是可爱呢","http://recomi.site/license_pic/jpg"));
         adapter = new BaseRecycleViewAdapter<UserSharingPost>(getContext(),posts,R.layout.item_user_sharing_post) {
             @Override
-            public void convert(ViewHolder holder, UserSharingPost userSharingPost) {
+            public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
                 holder.setText(R.id.tv_name,userSharingPost.getName());
                 holder.setText(R.id.tv_post_time,userSharingPost.getTime());
                 holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
 //                holder.setText(R.id.tv_name,userSharingPost.getHeadIconUrl());
+                if (position  == getItemCount() -1) {
+                    Log.e("aaa","ergnirebngkjfnjkg rejngbkj");
+                }
             }
         };
+        adapter2 = new BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost>(getContext(), posts, new SharingPostDelegete()) {
+            @Override
+            public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
+                if (position == getItemCount() -1)
+                    holder.setText(R.id.tv_loadmore,"加载中...");
+                else {
+                    holder.setText(R.id.tv_name,userSharingPost.getName());
+                    holder.setText(R.id.tv_post_time,userSharingPost.getTime());
+                    holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
+//                holder.setText(R.id.tv_name,userSharingPost.getHeadIconUrl());
+                }
+            }
+        };
+//        recy.onscrol(new RecyclerView.OnScrollListener(){
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recy.setLayoutManager(manager);
         recy.setAdapter(adapter);
@@ -126,7 +159,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        vp = Objects.requireNonNull(getActivity()).findViewById(R.id.vp);
+        vp = mView.findViewById(R.id.vp);
         bitmaps.add("http://img0.imgtn.bdimg.com/it/u=1899561195,3106332361&fm=26&gp=0.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner1.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner3.jpg");
@@ -142,13 +175,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.classChedule:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , ClassScheduleActivity.class));
+                startActivity(new Intent(getContext() , ClassScheduleActivity.class));
                 break;
             case R.id.campusAssociation:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , CampusAssociationActivity.class));
+                startActivity(new Intent(getContext() , CampusAssociationActivity.class));
                 break;
             case R.id.grade:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , GradeActivity.class));
+                startActivity(new Intent(getContext() , GradeActivity.class));
                 break;
         }
     }

@@ -65,7 +65,7 @@ public class LoginActivity extends MySwipeBackActivity {
         }
 
         setContentView(R.layout.activity_login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base_transparent);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
         // 左边的小箭头
         toolbar.setNavigationIcon(R.drawable.ic_action_back);
         // 菜单点击事件
