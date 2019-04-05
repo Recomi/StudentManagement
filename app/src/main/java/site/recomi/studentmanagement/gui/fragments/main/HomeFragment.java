@@ -48,7 +48,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     RecyclerView recy;
 
     MainActivity mainActivity;
-    View view;
+    View mView;
+    Context mContext;
     List<String> bitmaps = new ArrayList<>();
     ViewPager vp;
     BaseRecycleViewAdapter<UserSharingPost> adapter;
@@ -58,10 +59,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container , false);
-        ButterKnife.bind(this, view);   //绑定ButterKnife
+        mView = inflater.inflate(R.layout.fragment_home, container , false);
+        mContext = mView.getContext();
+        ButterKnife.bind(this, mView);   //绑定ButterKnife
 
-        LinearLayout classShedule = view.findViewById(R.id.classChedule);
+        LinearLayout classShedule = mView.findViewById(R.id.classChedule);
         classShedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +72,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        LinearLayout campusAssociation = view.findViewById(R.id.campusAssociation);
+        LinearLayout campusAssociation = mView.findViewById(R.id.campusAssociation);
         campusAssociation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,8 +82,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
 
         initNewestData();
-        initMarqueeView(view);
-        return view;
+        initMarqueeView(mView);
+        return mView;
     }
 
     @Override
@@ -113,19 +115,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
             }
         };
-//        multiItemTypeSupport = new MultiItemTypeSupport<UserSharingPost>() {
-//            @Override
-//            public int getLayoutId(int itemType) {
-//                switch (itemType) {
-//                    case
-//                }
-//            }
-//
-//            @Override
-//            public int getItemViewType(int position, List<UserSharingPost> list) {
-//                return 0;
-//            }
-//        };
         adapter2 = new BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost>(getContext(), posts, new SharingPostDelegete()) {
             @Override
             public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
@@ -170,7 +159,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        vp = Objects.requireNonNull(getActivity()).findViewById(R.id.vp);
+        vp = mView.findViewById(R.id.vp);
         bitmaps.add("http://img0.imgtn.bdimg.com/it/u=1899561195,3106332361&fm=26&gp=0.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner1.jpg");
         bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner3.jpg");
@@ -186,13 +175,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.classChedule:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , ClassScheduleActivity.class));
+                startActivity(new Intent(getContext() , ClassScheduleActivity.class));
                 break;
             case R.id.campusAssociation:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , CampusAssociationActivity.class));
+                startActivity(new Intent(getContext() , CampusAssociationActivity.class));
                 break;
             case R.id.grade:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getContext() , GradeActivity.class));
+                startActivity(new Intent(getContext() , GradeActivity.class));
                 break;
         }
     }

@@ -29,17 +29,17 @@ public class CampusAssociationAddActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         List<CampusAssociationItem> lists = new ArrayList<>();
-        lists.add(new CampusAssociationItem("1"));
-        lists.add(new CampusAssociationItem("2"));
-        lists.add(new CampusAssociationItem("3"));
-        lists.add(new CampusAssociationItem("4"));
-        lists.add(new CampusAssociationItem("5"));
+        lists.add(new CampusAssociationItem(1,"","",false));
+        lists.add(new CampusAssociationItem(1,"","",false));
+        lists.add(new CampusAssociationItem(1,"","",false));
+        lists.add(new CampusAssociationItem(1,"","",false));
+        lists.add(new CampusAssociationItem(1,"","",false));
         adapter = new BaseRecycleViewAdapter<CampusAssociationItem>(this ,lists , R.layout.recycler_view_item_1) {
             @Override
             public void convert(ViewHolder holder, CampusAssociationItem campusAssociationItem, int position) {
                     holder.setText(R.id.textView , campusAssociationItem.getName());
                     holder.setText(R.id.textView2 , campusAssociationItem.getSubTitle());
-                    holder.setImageResource(R.id.imageView2 , campusAssociationItem.getImgSrc());
+//                    holder.setImageResource(R.id.imageView2 , campusAssociationItem.getImgSrc());
 
 
 

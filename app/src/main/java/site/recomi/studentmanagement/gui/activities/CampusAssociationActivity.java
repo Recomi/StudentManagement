@@ -79,7 +79,7 @@ public class CampusAssociationActivity extends MySwipeBackActivity implements Vi
         posts.add(new UserSharingPost("四宫辉夜","11点35分","你还真是可爱呢","http://recomi.site/license_pic/jpg"));
         adapter = new BaseRecycleViewAdapter<UserSharingPost>(this,posts,R.layout.item_user_sharing_post) {
             @Override
-            public void convert(ViewHolder holder, UserSharingPost userSharingPost) {
+            public void convert(ViewHolder holder, UserSharingPost userSharingPost, int position) {
                 holder.setText(R.id.tv_name,userSharingPost.getName());
                 holder.setText(R.id.tv_post_time,userSharingPost.getTime());
                 holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
