@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".gui.activities.CampusAssociationAddActivity"></activity>
+        <activity android:name=".gui.activities.CampusAssociationAddActivity" android:label="添加社团"></activity>
         <activity
             android:name=".gui.activities.CampusAssociationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
