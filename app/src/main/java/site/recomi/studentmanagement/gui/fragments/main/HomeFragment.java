@@ -131,7 +131,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //        recy.onscrol(new RecyclerView.OnScrollListener(){
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recy.setLayoutManager(manager);
-        recy.setAdapter(adapter);
+        recy.setAdapter(adapter2);
     }
 
 
