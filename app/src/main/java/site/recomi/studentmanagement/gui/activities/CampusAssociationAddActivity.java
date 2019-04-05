@@ -23,11 +23,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.other.CampusAssociationItem;
 
-public class CampusAssociationAddActivity extends AppCompatActivity {
+public class CampusAssociationAddActivity extends MySwipeBackActivity {
     @BindView(R.id.rv)
     public RecyclerView rv;
     BaseRecycleViewAdapter<CampusAssociationItem> adapter;
@@ -46,12 +47,15 @@ public class CampusAssociationAddActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+
         List<CampusAssociationItem> lists = new ArrayList<>();
-        lists.add(new CampusAssociationItem(1,"","",false));
-        lists.add(new CampusAssociationItem(1,"","",false));
-        lists.add(new CampusAssociationItem(1,"","",false));
-        lists.add(new CampusAssociationItem(1,"","",false));
-        lists.add(new CampusAssociationItem(1,"","",false));
+        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
+        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
+        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
+        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
+        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
+
+
         adapter = new BaseRecycleViewAdapter<CampusAssociationItem>(this ,lists , R.layout.recycler_view_item_1) {
             @Override
             public void convert(ViewHolder holder, CampusAssociationItem campusAssociationItem, int position) {

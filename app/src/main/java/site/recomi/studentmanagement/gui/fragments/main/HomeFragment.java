@@ -63,27 +63,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mContext = mView.getContext();
         ButterKnife.bind(this, mView);   //绑定ButterKnife
 
-        LinearLayout classShedule = mView.findViewById(R.id.classChedule);
-        classShedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext() , ClassScheduleActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
 
-        LinearLayout campusAssociation = mView.findViewById(R.id.campusAssociation);
-        campusAssociation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext() , CampusAssociationActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-
+        initView();
         initNewestData();
         initMarqueeView(mView);
         return mView;
+    }
+
+    private void initView(){
+        LinearLayout classShedule = mView.findViewById(R.id.classChedule);
+        classShedule.setOnClickListener(this);
+
+        LinearLayout campusAssociation = mView.findViewById(R.id.campusAssociation);
+        campusAssociation.setOnClickListener(this);
+
+        LinearLayout grade = mView.findViewById(R.id.grade);
+        grade.setOnClickListener(this);
     }
 
     @Override
@@ -153,7 +148,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(mainActivity.getApplicationContext(), String.valueOf(position) + ". " + textView.getText(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
