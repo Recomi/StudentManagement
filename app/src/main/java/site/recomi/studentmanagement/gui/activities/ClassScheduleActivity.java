@@ -1,6 +1,8 @@
 package site.recomi.studentmanagement.gui.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 
 import com.bin.david.form.core.SmartTable;
@@ -23,6 +25,15 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_schedule);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        toolbar.setTitle("课表查询");
+//        toolbar.setTitleTextColor(Color.parseColor("#000000"));
+//        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
         initChart();
         initTable();
 

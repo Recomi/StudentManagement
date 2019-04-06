@@ -10,10 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
 
@@ -33,7 +36,6 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
     public RecyclerView rv;
     BaseRecycleViewAdapter<CampusAssociationItem> adapter;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
         toolbar.setTitle("编辑");
-        toolbar.setTitleTextColor(Color.parseColor("#000000"));
+//        toolbar.setTitleTextColor(Color.parseColor("#000000"));
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -70,6 +72,26 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
 
         rv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_campus_association_add , menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.finish:
+                Toast.makeText(this , "finish" , Toast.LENGTH_LONG).show();
+                break;
+            case android.R.id.home:// back button
+                this.finish();
+                break;
+        }
+
+        return true;
     }
 
 }

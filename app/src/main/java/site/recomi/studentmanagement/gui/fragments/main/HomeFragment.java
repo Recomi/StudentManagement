@@ -30,6 +30,7 @@ import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.LoadMoreItem;
 import site.recomi.studentmanagement.entity.UserSharingPost;
+import site.recomi.studentmanagement.gui.activities.BookActivity;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
@@ -79,6 +80,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         LinearLayout grade = mView.findViewById(R.id.grade);
         grade.setOnClickListener(this);
+
+        LinearLayout book = mView.findViewById(R.id.book);
+        book.setOnClickListener(this);
     }
 
     @Override
@@ -141,7 +145,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         info.add("55555555555555");
         info.add("66666666666666");
         marqueeView.startWithList(info);
-        marqueeView.startWithList(info, R.anim.anim_bottom_in, R.anim.anim_top_out);    //动画
         marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, TextView textView) {
@@ -177,6 +180,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.grade:
                 startActivity(new Intent(getContext() , GradeActivity.class));
                 break;
+            case R.id.book:
+                startActivity(new Intent(getContext() , BookActivity.class));
+                break;
+
         }
     }
 }

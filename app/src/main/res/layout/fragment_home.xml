@@ -107,6 +107,7 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/book"
                         android:orientation="vertical"
                         android:layout_height="wrap_content"
                         android:layout_width="0dp"
@@ -117,7 +118,7 @@
                             app:srcCompat="@drawable/ic_organization"/>
                         <TextView
                             android:gravity="center"
-                            android:text="交友"
+                            android:text="图书"
                             android:layout_marginTop="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>

@@ -1,6 +1,7 @@
 package site.recomi.studentmanagement.gui.activities;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
@@ -8,6 +9,11 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.bin.david.form.core.SmartTable;
 import com.bin.david.form.core.TableConfig;
@@ -21,10 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 import site.recomi.studentmanagement.other.StudentGrade;
 import site.recomi.studentmanagement.other.entitiy.UserClasssCheduleInfo;
 
-public class GradeActivity extends AppCompatActivity {
+public class GradeActivity extends MySwipeBackActivity {
     SmartTable<StudentGrade> smartTable;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -32,11 +39,32 @@ public class GradeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark2));
 
+
+        initView();
         initTable();        //初始化表格
     }
+    private void initView(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        toolbar.setTitle("成绩查询");
+        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
     public void initTable(){
         //数据，最终需要从云数据库读取
         List<StudentGrade> list = new ArrayList<>();

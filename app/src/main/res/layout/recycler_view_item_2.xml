@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--图书界面中馆荐RecycleView item-->
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground">
+
+  <!--封面-->
+  <ImageView
+      android:id="@+id/cover"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:src="@tools:sample/avatars" />
+
+  <LinearLayout
+      android:layout_width="313dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginBottom="8dp"
+      android:orientation="vertical"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/cover"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <!--书名-->
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="我是你的谁"
+        android:textSize="18dp" />
+
+    <!--作者-->
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="作者：撒娇地方卡掉了"
+        android:textColor="#424242"
+        android:textSize="13dp" />
+
+    <!--出版社-->
+    <TextView
+        android:id="@+id/publishingHouse"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="出版信息：12132"
+        android:textColor="#424242"
+        android:textSize="13dp" />
+
+    <!--索书号-->
+    <TextView
+        android:id="@+id/bookID"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="索书号:GR2015-33"
+        android:textColor="#D67D00"
+        android:textSize="13dp" />
+  </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
