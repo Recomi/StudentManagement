@@ -1,4 +1,4 @@
-package site.recomi.studentmanagement.gui.adapter;
+package site.recomi.studentmanagement.gui.adapter.Base;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
 public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
     protected List<T> mList;

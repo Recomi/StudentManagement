@@ -10,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,8 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.Message;
-import site.recomi.studentmanagement.gui.activities.MainActivity;
-import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
+import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
 public class MessageFragment extends Fragment {
