@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import site.recomi.studentmanagement.R;
-import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
+import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.other.BookEntitiy;
 
