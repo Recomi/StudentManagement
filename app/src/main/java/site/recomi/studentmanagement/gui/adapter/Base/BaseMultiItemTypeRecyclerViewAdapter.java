@@ -1,10 +1,13 @@
-package site.recomi.studentmanagement.gui.adapter;
+package site.recomi.studentmanagement.gui.adapter.Base;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
+import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
 public abstract class BaseMultiItemTypeRecyclerViewAdapter<T> extends BaseRecycleViewAdapter<T> {
     protected MultiItemTypeSupport<T> mMultiItemTypeSupport;

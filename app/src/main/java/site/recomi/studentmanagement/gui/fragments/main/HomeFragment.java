@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,22 +22,18 @@ import com.baoyz.widget.PullRefreshLayout;
 import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
-import site.recomi.studentmanagement.entity.LoadMoreItem;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.BookActivity;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
-import site.recomi.studentmanagement.gui.activities.MainActivity;
-import site.recomi.studentmanagement.gui.adapter.BaseMultiItemTypeRecyclerViewAdapter;
-import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
+import site.recomi.studentmanagement.gui.adapter.Base.BaseMultiItemTypeRecyclerViewAdapter;
+import site.recomi.studentmanagement.gui.adapter.Base.BaseNestedSVOnScrollChangeListener;
 import site.recomi.studentmanagement.gui.adapter.Delegetes.SharingPostDelegete;
 import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
@@ -47,15 +44,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     PullRefreshLayout refresh_home;
     @BindView(R.id.recy_main_newest)
     RecyclerView recy;
+    @BindView(R.id.nestedSV_home)
+    NestedScrollView nestedSV;
 
-    MainActivity mainActivity;
     View mView;
     Context mContext;
-    List<String> bitmaps = new ArrayList<>();
     ViewPager vp;
-    BaseRecycleViewAdapter<UserSharingPost> adapter;
     MultiItemTypeSupport multiItemTypeSupport ;
-    BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter2;
+    BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter;
+    List<String> bitmaps = new ArrayList<>();
+    List<UserSharingPost> posts = new ArrayList<>();
+
+    int testData = 0;
+    int testDataTop = 0;
 
     @Nullable
     @Override
@@ -64,20 +65,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mContext = mView.getContext();
         ButterKnife.bind(this, mView);   //绑定ButterKnife
 
-
-        initView();
-        initNewestData();
-        initMarqueeView(mView);
+        initView();               //初始化视图布局
+        initNewestData();   //初始化最新的数据
+        initMarqueeView(mView); //初始化滚动公告栏数据
         return mView;
     }
 
     private void initView(){
+        //课表按钮事件
         LinearLayout classShedule = mView.findViewById(R.id.classChedule);
         classShedule.setOnClickListener(this);
-
+        //社团按钮事件
         LinearLayout campusAssociation = mView.findViewById(R.id.campusAssociation);
         campusAssociation.setOnClickListener(this);
-
+        //成绩按钮事件
         LinearLayout grade = mView.findViewById(R.id.grade);
         grade.setOnClickListener(this);
 
@@ -88,37 +89,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     /**
      * 初始化最近信息的数据
      * */
     private void initNewestData() {
-        List<UserSharingPost> posts = new ArrayList<>();
         posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg"));
         posts.add(new UserSharingPost("index","12点20分","嗯........","http://recomi.site/license_pic/jpg"));
         posts.add(new UserSharingPost("are you ok","12点10分","你们很棒哦","http://recomi.site/license_pic/jpg"));
         posts.add(new UserSharingPost("ddd","11点55分","你们还好么","http://recomi.site/license_pic/jpg"));
         posts.add(new UserSharingPost("学生会会长","11点40分","救命啊","http://recomi.site/license_pic/jpg"));
         posts.add(new UserSharingPost("四宫辉夜","11点35分","你还真是可爱呢","http://recomi.site/license_pic/jpg"));
-        adapter = new BaseRecycleViewAdapter<UserSharingPost>(getContext(),posts,R.layout.item_user_sharing_post) {
+        posts.add(new UserSharingPost("藤原书记","11点15分","啦啦啦啦","http://recomi.site/license_pic/jpg"));
+        posts.add(new UserSharingPost("白石上","10点35分","嗯" +
+                "呵呵","http://recomi.site/license_pic/jpg"));
+        adapter = new BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost>(getContext(), posts, new SharingPostDelegete()) {
             @Override
             public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
-                holder.setText(R.id.tv_name,userSharingPost.getName());
-                holder.setText(R.id.tv_post_time,userSharingPost.getTime());
-                holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
-//                holder.setText(R.id.tv_name,userSharingPost.getHeadIconUrl());
-                if (position  == getItemCount() -1) {
-                    Log.e("aaa","ergnirebngkjfnjkg rejngbkj");
-                }
-            }
-        };
-        adapter2 = new BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost>(getContext(), posts, new SharingPostDelegete()) {
-            @Override
-            public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
-                if (position == getItemCount() -1)
+                if (position == getItemCount() -1) {
                     holder.setText(R.id.tv_loadmore,"加载中...");
+                }
                 else {
                     holder.setText(R.id.tv_name,userSharingPost.getName());
                     holder.setText(R.id.tv_post_time,userSharingPost.getTime());
@@ -127,12 +118,33 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
             }
         };
-//        recy.onscrol(new RecyclerView.OnScrollListener(){
+        nestedSV.setOnScrollChangeListener(
+                new BaseNestedSVOnScrollChangeListener() {
+                    @Override
+                    public void onScrolledBotton() {
+                        Log.e("到底了", "" + ++testData);
+                    }
+
+                    @Override
+                    public void onScrolledTop() {
+                        Log.e("顶部", "" + ++testDataTop);
+                    }
+                }
+        );
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recy.setLayoutManager(manager);
-        recy.setAdapter(adapter2);
+        recy.setAdapter(adapter);
+        recy.setNestedScrollingEnabled(false);
     }
 
+
+    //模拟加载更多数据
+    private void refreshMoreData() {
+        testData++;
+        adapter.getList().add(new UserSharingPost("白上吹血" + testData,"12点22分","今天天气不错啊" + testData ,"http://recomi.site/license_pic/jpg"));
+        adapter.notifyDataSetChanged();
+        Log.e("Data","Refresh:" + testData);
+    }
 
     //初始化滚动信息栏
     private void initMarqueeView(View view){
@@ -148,7 +160,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, TextView textView) {
-                Toast.makeText(mainActivity.getApplicationContext(), String.valueOf(position) + ". " + textView.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, String.valueOf(position) + ". " + textView.getText(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -184,6 +196,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getContext() , BookActivity.class));
                 break;
 
+        }
+    }
+    class RefreshMoreData extends Thread {
+        @Override
+        public void run() {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    refreshMoreData();
+                }
+            });
         }
     }
 }

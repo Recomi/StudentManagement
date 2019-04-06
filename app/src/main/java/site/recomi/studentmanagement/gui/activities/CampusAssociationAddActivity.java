@@ -36,6 +36,7 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
     public RecyclerView rv;
     BaseRecycleViewAdapter<CampusAssociationItem> adapter;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,7 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
         toolbar.setTitle("编辑");
-//        toolbar.setTitleTextColor(Color.parseColor("#000000"));
+        toolbar.setTitleTextColor(Color.parseColor("#000000"));
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
