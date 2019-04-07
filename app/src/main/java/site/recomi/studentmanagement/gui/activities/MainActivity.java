@@ -63,25 +63,25 @@ public class MainActivity extends BaseActivity
     private void initUI() {
         //侧滑菜单
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //关闭手势滑动
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
         //初始化底部导航栏
         initBottomNavigationView();
 
         // click to start LoginActivity
-        LinearLayout account = navigationView.getHeaderView(0).findViewById(R.id.click_account);
-        account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+//        LinearLayout account = navigationView.getHeaderView(0).findViewById(R.id.click_account);
+//        account.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //ViewPager的初始化
         fragments.add(new HomeFragment());

@@ -102,7 +102,7 @@ public class MineFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 //通过点击的位置快速启动数组内的反射活动
-                startActivityInList(feature_classes,position);
+                startActivityInList(mContext,feature_classes,position);
             }
             @Override
             public void onLongClick(View view, int posotion) {}
