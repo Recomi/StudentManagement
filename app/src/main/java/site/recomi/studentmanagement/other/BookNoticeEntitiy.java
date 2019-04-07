@@ -1,4 +1,7 @@
 package site.recomi.studentmanagement.other;
+
+import android.graphics.drawable.Drawable;
+
 /*
 * Book活动中公告碎片中recyview列表的实体类
 * */

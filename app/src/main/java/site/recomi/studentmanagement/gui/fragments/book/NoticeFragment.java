@@ -14,11 +14,11 @@ import java.util.List;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
-import site.recomi.studentmanagement.other.CampusAssociationItem;
+import site.recomi.studentmanagement.other.BookNoticeEntitiy;
 
 public class NoticeFragment extends Fragment {
     View mview;
-    BaseRecycleViewAdapter adapter;
+    BaseRecycleViewAdapter<BookNoticeEntitiy> adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,20 +36,22 @@ public class NoticeFragment extends Fragment {
 
     private void initRecyView(){
         RecyclerView recyclerView = mview.findViewById(R.id.recyclerView);
-        List<CampusAssociationItem> lists = new ArrayList<>();
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
+        List<BookNoticeEntitiy> lists = new ArrayList<>();
+
+        lists.add(new BookNoticeEntitiy("新进一批图书" ,"2018/8/8罗定市捐赠","2018/8/8",R.drawable.testpic));
+        lists.add(new BookNoticeEntitiy("新进一批图书" ,"2018/8/8罗定市捐赠","2018/8/8",R.drawable.testpic));
+        lists.add(new BookNoticeEntitiy("新进一批图书" ,"2018/8/8罗定市捐赠","2018/8/8",R.drawable.testpic));
+        lists.add(new BookNoticeEntitiy("新进一批图书" ,"2018/8/8罗定市捐赠","2018/8/8",R.drawable.testpic));
+        lists.add(new BookNoticeEntitiy("新进一批图书" ,"2018/8/8罗定市捐赠","2018/8/8",R.drawable.testpic));
 
 
-        adapter = new BaseRecycleViewAdapter<CampusAssociationItem>(getContext() ,lists , R.layout.recycler_view_item) {
+        adapter = new BaseRecycleViewAdapter<BookNoticeEntitiy>(getContext() ,lists , R.layout.recycler_view_item) {
             @Override
-            public void convert(ViewHolder holder, CampusAssociationItem campusAssociationItem, int position) {
-                holder.setText(R.id.textView , campusAssociationItem.getName());
-                holder.setText(R.id.textView2 , campusAssociationItem.getSubTitle());
-//                    holder.setImageResource(R.id.imageView2 , campusAssociationItem.getImgSrc());
+            public void convert(ViewHolder holder, BookNoticeEntitiy bookNoticeEntitiy, int position) {
+                holder.setText(R.id.title , bookNoticeEntitiy.getTitle());
+                holder.setText(R.id.content , bookNoticeEntitiy.getContent());
+                holder.setText(R.id.date , bookNoticeEntitiy.getDate());
+                holder.setImageResource(R.id.imgSrc , bookNoticeEntitiy.getSrcImage());
 
 
 
