@@ -16,6 +16,21 @@
     <string name="without_login">Without Login</string>
 
 
+    <!--Gird Button for home-->
+    <string name="society_associations">Society</string>
+    <string name="associations">Associations</string>
+    <string name="library">Library</string>
+    <string name="curriculum">Curriculum</string>
+    <string name="grade">Grade</string>
+    <string name="announcement">Announcement</string>
+    <string name="circle">Circle</string>
+
+    <!--bottom button-->
+    <string name="home">Home</string>
+    <string name="notes">Notes</string>
+    <string name="message">Message</string>
+
+
     <!-- Exit -->
     <string name="exit_save_title">Exit will not save</string>
     <string name="exit_save_content">Continue to exit?</string>

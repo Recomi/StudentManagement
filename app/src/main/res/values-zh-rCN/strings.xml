@@ -15,6 +15,20 @@
     <string name="find_password">找回密码</string>
     <string name="without_login">未登录</string>
 
+    <!--首页的网格按钮-->
+    <string name="society_associations">社团</string>
+    <string name="associations">协会</string>
+    <string name="library">图书馆</string>
+    <string name="curriculum">课表</string>
+    <string name="grade">成绩</string>
+    <string name="announcement">公告</string>
+    <string name="circle">圈子</string>
+
+    <!--首页底部按钮-->
+    <string name="home">首页</string>
+    <string name="notes">笔记</string>
+    <string name="message">消息</string>
+
     <!-- Exit -->
     <string name="exit_save_title">退出将不会保存</string>
     <string name="exit_save_content">是否还要继续退出？</string>

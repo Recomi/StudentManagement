@@ -9,6 +9,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -85,7 +86,8 @@ public class MainActivity extends BaseActivity
         fragments.add(new HomeFragment());
         fragments.add(new NoteFragment());
         fragments.add(new MessageFragment());
-        vp_main.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        vp_main.setOffscreenPageLimit(4);       //设置缓存碎片个数
+        vp_main.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public int getCount() {
                 return fragments.size();

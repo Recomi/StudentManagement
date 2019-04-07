@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#48afaf</color>
-    <color name="colorPrimaryDark">#FAFAFA</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorWhite">#FAFAFA</color>
+    <color name="colorPrimaryDark">#F5F5F5</color>
+    <color name="colorAccent">#787CC2</color>
+    <color name="colorWhite">#FFFFFF</color>
     <color name="colorBackground">#FAFAFA</color>
+    <color name="colorBackgroundInterval">#F5F5F5</color>
     <color name="colorLightGreyFont">#999999</color>
-    <color name="colorToolbar">#FFFFFF</color>
+    <color name="colorToolbar">#F5F5F5</color>
     <color name="colorPrimaryDark2">#48afaf</color>
     <color name="gray">#D3D3D3</color>
+    <!--<color name="colorToolbarFont">#000000</color>-->
 </resources>

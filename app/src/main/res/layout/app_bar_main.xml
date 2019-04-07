@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".gui.activities.MainActivity">
 
-    <include layout="@layout/app_bar_base_transparent"/>
+    <include layout="@layout/app_bar_base"/>
 
     <!--<android.support.v4.widget.NestedScrollView-->
         <!--android:layout_width="match_parent"-->

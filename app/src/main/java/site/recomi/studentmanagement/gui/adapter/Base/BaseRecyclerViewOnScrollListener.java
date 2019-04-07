@@ -4,21 +4,30 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
 public class BaseRecyclerViewOnScrollListener extends RecyclerView.OnScrollListener {
+
     @Override
     public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
 
+//        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+//            if( ! recyclerView.canScrollVertically(1)){
+//                onScrolledBotton();     //滚动到底部时调用
+//            }
+//            if( ! recyclerView.canScrollVertically(-1)){
+//                onScrolledTop();     //滚动到顶端时调用
+//            }
+//        }
+    }
+
+    @Override
+    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+        super.onScrolled(recyclerView, dx, dy);
         if( ! recyclerView.canScrollVertically(1)){
             onScrolledBotton();     //滚动到底部时调用
         }
         if( ! recyclerView.canScrollVertically(-1)){
             onScrolledTop();     //滚动到顶端时调用
         }
-    }
-
-    @Override
-    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-        super.onScrolled(recyclerView, dx, dy);
     }
 
     /**

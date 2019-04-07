@@ -6,18 +6,19 @@
     android:id="@+id/refresh_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedSV_home"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:background="@color/colorBackgroundInterval">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:background="#FAFAFA">
+            android:focusableInTouchMode="true">
 
             <android.support.v7.widget.CardView
                 android:layout_marginTop="5dp"
@@ -37,171 +38,36 @@
 
             </android.support.v7.widget.CardView>
 
-            <com.sunfusheng.marqueeview.MarqueeView
-                android:id="@+id/marqueeView"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginBottom="5dp"
-                app:mvAnimDuration="1000"
-                app:mvDirection="bottom_to_top"
-                app:mvInterval="3000"
-                app:mvTextColor="#C3000000"
-                app:mvTextSize="16sp"
-                app:mvSingleLine="true"
-                />
-            <LinearLayout
-                android:orientation="vertical"
+            <RelativeLayout
+                android:background="@color/colorWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/classChedule"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            app:srcCompat="@drawable/ic_class"/>
-                        <TextView
-                            android:gravity="center"
-                            android:text="课表"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            app:srcCompat="@drawable/ic_association"/>
-                        <TextView
-                            android:gravity="center"
-                            android:text="周边"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            app:srcCompat="@drawable/ic_chart"/>
-                        <TextView
-                            android:gravity="center"
-                            android:text="天气"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/book"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            app:srcCompat="@drawable/ic_organization"/>
-                        <TextView
-                            android:gravity="center"
-                            android:text="图书"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/grade"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            app:srcCompat="@drawable/ic_news"/>
-                        <TextView
-                            android:gravity="center"
-                            android:text="成绩"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            app:srcCompat="@drawable/ic_performance"/>
-                        <TextView
-                            android:gravity="center"
-                            android:text="时事"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            app:srcCompat="@drawable/ic_fs"/>
-                        <TextView
-                            android:gravity="center"
-                            android:text="帮帮"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/campusAssociation"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            app:srcCompat="@drawable/ic_hbb"/>
-                        <TextView
-                            android:gravity="center"
-                            android:text="社团"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
+                <com.sunfusheng.marqueeview.MarqueeView
+                    android:id="@+id/marqueeView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="5dp"
+                    app:mvAnimDuration="1000"
+                    app:mvDirection="bottom_to_top"
+                    app:mvInterval="3000"
+                    app:mvTextColor="#C3000000"
+                    app:mvTextSize="16sp"
+                    app:mvSingleLine="true" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recy_girdBtn_home"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recy_main_newest"
-                android:background="#F5F5F5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
