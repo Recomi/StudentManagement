@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.library), R.drawable.ic_library));
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.curriculum), R.drawable.ic_curriculum));
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.grade), R.drawable.ic_grade));
-        list_girdButtons.add(new GirdButtonEntity(getString(R.string.associations), R.drawable.ic_associations));
+        list_girdButtons.add(new GirdButtonEntity(getString(R.string.society_associations), R.drawable.ic_associations));
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.circle), R.drawable.ic_cricle));
         adapter_girdBtn = new BaseRecycleViewAdapter<GirdButtonEntity>(getContext(),list_girdButtons,R.layout.item_gird_btn) {
             @Override

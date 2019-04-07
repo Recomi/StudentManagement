@@ -30,6 +30,8 @@
     <string name="notes">Notes</string>
     <string name="message">Message</string>
 
+    <!--“我”-->
+    <string name="mine_small_title">View or edit your information</string>
 
     <!-- Exit -->
     <string name="exit_save_title">Exit will not save</string>

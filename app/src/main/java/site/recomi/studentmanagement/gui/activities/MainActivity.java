@@ -32,6 +32,7 @@ import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.BaseActivity;
 import site.recomi.studentmanagement.gui.fragments.main.HomeFragment;
 import site.recomi.studentmanagement.gui.fragments.main.MessageFragment;
+import site.recomi.studentmanagement.gui.fragments.main.MineFragment;
 import site.recomi.studentmanagement.gui.fragments.main.NoteFragment;
 
 public class MainActivity extends BaseActivity
@@ -86,6 +87,7 @@ public class MainActivity extends BaseActivity
         fragments.add(new HomeFragment());
         fragments.add(new NoteFragment());
         fragments.add(new MessageFragment());
+        fragments.add(new MineFragment());
         vp_main.setOffscreenPageLimit(4);       //设置缓存碎片个数
         vp_main.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -119,6 +121,9 @@ public class MainActivity extends BaseActivity
                     case 2:
                         setTitle("消息");
                         break;
+                    case 3:
+                        setTitle("我");
+                        break;
                 }
             }
             @Override
@@ -137,6 +142,9 @@ public class MainActivity extends BaseActivity
                     return true;
                 case R.id.action_message:
                     vp_main.setCurrentItem(2);
+                    return true;
+                case R.id.action_mine:
+                    vp_main.setCurrentItem(3);
                     return true;
             }
             return false;
@@ -190,6 +198,9 @@ public class MainActivity extends BaseActivity
                 getMenuInflater().inflate(R.menu.main_note, menu);
                 break;
             case 2:
+                getMenuInflater().inflate(R.menu.main_message, menu);
+                break;
+            case 3:
                 getMenuInflater().inflate(R.menu.main_message, menu);
                 break;
         }
@@ -251,6 +262,9 @@ public class MainActivity extends BaseActivity
                     return true;
                 case R.id.action_message:
                     vp_main.setCurrentItem(2);
+                    return true;
+                case R.id.action_mine:
+                    vp_main.setCurrentItem(3);
                     return true;
             }
             return false;

@@ -10,5 +10,6 @@
     <color name="colorToolbar">#F5F5F5</color>
     <color name="colorPrimaryDark2">#48afaf</color>
     <color name="gray">#D3D3D3</color>
+    <color name="colorUIFont">#000000</color>
     <!--<color name="colorToolbarFont">#000000</color>-->
 </resources>
