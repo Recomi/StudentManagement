@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.entity.GirdButtonEntity;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.BookActivity;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
@@ -34,16 +36,20 @@ import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseMultiItemTypeRecyclerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseNestedSVOnScrollChangeListener;
+import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.Delegetes.SharingPostDelegete;
 import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
+import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
     @BindView(R.id.recy_main_newest)
     RecyclerView recy;
+    @BindView(R.id.recy_girdBtn_home)
+    RecyclerView recy_girdBtn;
     @BindView(R.id.nestedSV_home)
     NestedScrollView nestedSV;
 
@@ -52,8 +58,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ViewPager vp;
     MultiItemTypeSupport multiItemTypeSupport ;
     BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter;
+    BaseRecycleViewAdapter<GirdButtonEntity> adapter_girdBtn;
     List<String> bitmaps = new ArrayList<>();
     List<UserSharingPost> posts = new ArrayList<>();
+    List<GirdButtonEntity> list_girdButtons ;
 
     int testData = 0;
     int testDataTop = 0;
@@ -65,25 +73,60 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mContext = mView.getContext();
         ButterKnife.bind(this, mView);   //绑定ButterKnife
 
-        initView();               //初始化视图布局
-        initNewestData();   //初始化最新的数据
+//        initView();                 //加载视图布局
+        initGirdButtons();     //加载网格按钮布局
+        initNewestData();     //初始化最新的数据
         initMarqueeView(mView); //初始化滚动公告栏数据
         return mView;
     }
 
-    private void initView(){
-        //课表按钮事件
-        LinearLayout classShedule = mView.findViewById(R.id.classChedule);
-        classShedule.setOnClickListener(this);
-        //社团按钮事件
-        LinearLayout campusAssociation = mView.findViewById(R.id.campusAssociation);
-        campusAssociation.setOnClickListener(this);
-        //成绩按钮事件
-        LinearLayout grade = mView.findViewById(R.id.grade);
-        grade.setOnClickListener(this);
+    //加载网格按钮布局
+    private void initGirdButtons() {
+        list_girdButtons = new ArrayList<GirdButtonEntity>();
+        list_girdButtons.add(new GirdButtonEntity(getString(R.string.library), R.drawable.ic_library));
+        list_girdButtons.add(new GirdButtonEntity(getString(R.string.curriculum), R.drawable.ic_curriculum));
+        list_girdButtons.add(new GirdButtonEntity(getString(R.string.grade), R.drawable.ic_grade));
+        list_girdButtons.add(new GirdButtonEntity(getString(R.string.associations), R.drawable.ic_associations));
+        list_girdButtons.add(new GirdButtonEntity(getString(R.string.circle), R.drawable.ic_cricle));
+        adapter_girdBtn = new BaseRecycleViewAdapter<GirdButtonEntity>(getContext(),list_girdButtons,R.layout.item_gird_btn) {
+            @Override
+            public void convert(ViewHolder holder, GirdButtonEntity girdButtonEntity, int position) {
+                holder.setText(R.id.tv_gird_btn,girdButtonEntity.getName());
+                holder.setImageResource(R.id.img_gird_btn,girdButtonEntity.getResId());
+            }
+        };
+        recy_girdBtn.addOnItemTouchListener(new BaseRecyclerItemTouchListener(getContext(),new BaseRecyclerItemTouchListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                switch (position){
+                    case 0:
+                        startActivity(new Intent(getContext() , BookActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(getContext() , ClassScheduleActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getContext() , GradeActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getContext() , CampusAssociationActivity.class));
+                        break;
+                    case 4:
+//                        startActivity(new Intent(getContext() , BookActivity.class));
+                        Toast.makeText(getContext(),"444",Toast.LENGTH_SHORT).show();
+                        break;
 
-        LinearLayout book = mView.findViewById(R.id.book);
-        book.setOnClickListener(this);
+                }
+            }
+
+            @Override
+            public void onLongClick(View view, int posotion) {
+
+            }
+        }));
+        recy_girdBtn.setAdapter(adapter_girdBtn);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),5,GridLayoutManager.VERTICAL,false);
+        recy_girdBtn.setLayoutManager(gridLayoutManager);
     }
 
     @Override
@@ -182,21 +225,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.classChedule:
-                startActivity(new Intent(getContext() , ClassScheduleActivity.class));
-                break;
-            case R.id.campusAssociation:
-                startActivity(new Intent(getContext() , CampusAssociationActivity.class));
-                break;
-            case R.id.grade:
-                startActivity(new Intent(getContext() , GradeActivity.class));
-                break;
-            case R.id.book:
-                startActivity(new Intent(getContext() , BookActivity.class));
-                break;
 
-        }
     }
     class RefreshMoreData extends Thread {
         @Override

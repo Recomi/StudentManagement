@@ -35,20 +35,12 @@ public class BaseActivity extends AppCompatActivity {
         normalDialog.setTitle(title);
         normalDialog.setMessage(message);
         normalDialog.setPositiveButton(R.string.exit_yes,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ifExit = true;
-                        finish();
-                    }
+                (dialog, which) -> {
+                    ifExit = true;
+                    finish();
                 });
         normalDialog.setNegativeButton(R.string.exit_cancel,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ifExit = false;
-                    }
-                });
+                (dialog, which) -> ifExit = false);
         // 显示
         normalDialog.show();
         return ifExit;
