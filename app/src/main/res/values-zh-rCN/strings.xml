@@ -29,6 +29,9 @@
     <string name="notes">笔记</string>
     <string name="message">消息</string>
 
+    <!--“我”-->
+    <string name="mine_small_title">查看或编辑个人资料</string>
+
     <!-- Exit -->
     <string name="exit_save_title">退出将不会保存</string>
     <string name="exit_save_content">是否还要继续退出？</string>
