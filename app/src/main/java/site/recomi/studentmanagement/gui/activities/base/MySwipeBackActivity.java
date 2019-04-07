@@ -1,6 +1,7 @@
 package site.recomi.studentmanagement.gui.activities.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -60,5 +61,13 @@ public class MySwipeBackActivity extends SwipeBackActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 快速启动活动
+     * */
+    private void startActivityOnly(Class c) {
+        Intent intent = new Intent(mContext, c);
+        startActivity(intent);
     }
 }

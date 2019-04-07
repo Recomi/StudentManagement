@@ -34,6 +34,7 @@ import site.recomi.studentmanagement.gui.activities.BookActivity;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
+import site.recomi.studentmanagement.gui.activities.MainActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseMultiItemTypeRecyclerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseNestedSVOnScrollChangeListener;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
@@ -41,16 +42,16 @@ import site.recomi.studentmanagement.gui.adapter.Delegetes.SharingPostDelegete;
 import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
+import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 
-public class MineFragment extends Fragment implements View.OnClickListener {
+public class MineFragment extends BaseFragment {
     @BindView(R.id.recy_mine_features)
     RecyclerView recy_features;
 
     View mView;
     Context mContext;
     ViewPager vp;
-    MultiItemTypeSupport multiItemTypeSupport;
     BaseRecycleViewAdapter<TitleAndIconEntity> adapter;
     List<TitleAndIconEntity> moreFeaturesList;
 
@@ -77,15 +78,19 @@ public class MineFragment extends Fragment implements View.OnClickListener {
      * 加载视图布局
      */
     private void initView() {
+        //功能列表的活动反射数组
+        Class[] feature_classes  = new Class[]{
+                BookActivity.class, BookActivity.class, BookActivity.class, BookActivity.class,
+                BookActivity.class, BookActivity.class, BookActivity.class
+        };
         moreFeaturesList = new ArrayList<>();
-        moreFeaturesList.add(new TitleAndIconEntity("我的班级", R.drawable.ic_action_bookmark));
-        moreFeaturesList.add(new TitleAndIconEntity("小组", R.drawable.ic_action_bookmark));
-        moreFeaturesList.add(new TitleAndIconEntity("笔记", R.drawable.ic_action_bookmark));
-        moreFeaturesList.add(new TitleAndIconEntity("成绩", R.drawable.ic_action_bookmark));
-        moreFeaturesList.add(new TitleAndIconEntity("浏览历史", R.drawable.ic_action_bookmark));
-        moreFeaturesList.add(new TitleAndIconEntity("我的收藏", R.drawable.ic_action_bookmark));
-        moreFeaturesList.add(new TitleAndIconEntity("更多", R.drawable.ic_action_bookmark));
-        moreFeaturesList.add(new TitleAndIconEntity("设置", R.drawable.ic_action_bookmark));
+        moreFeaturesList.add(new TitleAndIconEntity("我的班级", R.drawable.ic_cricle));
+        moreFeaturesList.add(new TitleAndIconEntity("小组", R.drawable.ic_associations));
+        moreFeaturesList.add(new TitleAndIconEntity("笔记", R.drawable.ic_library));
+        moreFeaturesList.add(new TitleAndIconEntity("成绩", R.drawable.ic_grade));
+        moreFeaturesList.add(new TitleAndIconEntity("浏览历史", R.drawable.ic_cricle));
+        moreFeaturesList.add(new TitleAndIconEntity("我的收藏", R.drawable.ic_cricle));
+        moreFeaturesList.add(new TitleAndIconEntity("设置", R.drawable.ic_cricle));
         adapter = new BaseRecycleViewAdapter<TitleAndIconEntity>(getContext(), moreFeaturesList, R.layout.item_features_list) {
             @Override
             public void convert(ViewHolder holder, TitleAndIconEntity titleAndIconEntity, int position) {
@@ -93,12 +98,20 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 holder.setImageResource(R.id.img_feature_icon,titleAndIconEntity.getResId());
             }
         };
+        recy_features.addOnItemTouchListener(new BaseRecyclerItemTouchListener(getContext(), new BaseRecyclerItemTouchListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //通过点击的位置快速启动数组内的反射活动
+                startActivityInList(feature_classes,position);
+            }
+            @Override
+            public void onLongClick(View view, int posotion) {}
+        }));
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recy_features.setLayoutManager(manager);
         recy_features.setAdapter(adapter);
         recy_features.setNestedScrollingEnabled(false);
     }
-
 
     @Override
     public void onStart() {
@@ -110,8 +123,4 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         super.onAttach(context);
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 }
