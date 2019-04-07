@@ -1,5 +1,7 @@
 package site.recomi.studentmanagement.other;
-
+/*
+* Book活动中SearchFragment碎片中recyclerView列表数据的实体类，
+* */
 public class BookEntitiy {
     private int bookID;
     private String name;

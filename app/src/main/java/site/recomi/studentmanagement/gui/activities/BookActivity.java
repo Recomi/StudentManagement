@@ -1,5 +1,7 @@
 package site.recomi.studentmanagement.gui.activities;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -50,6 +52,7 @@ public class BookActivity extends MySwipeBackActivity {
         tabLayout.addTab(tabLayout.newTab().setText("馆荐"));
         tabLayout.addTab(tabLayout.newTab().setText("公告"));
         tabLayout.addTab(tabLayout.newTab().setText("个人中心"));
+        tabLayout.setTabRippleColor(ColorStateList.valueOf(Color.parseColor("#00000000")));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

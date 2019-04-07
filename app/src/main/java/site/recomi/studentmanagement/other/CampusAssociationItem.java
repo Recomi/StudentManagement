@@ -1,5 +1,7 @@
 package site.recomi.studentmanagement.other;
-
+/*
+* 社团活动中添加按钮中recyclerView列表的实体类
+* */
 public class CampusAssociationItem {
     private int imgSrc;             //头像地址
     private String name;            //社团名

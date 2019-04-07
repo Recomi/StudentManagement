@@ -2,7 +2,9 @@ package site.recomi.studentmanagement.other.entitiy;
 
 import com.bin.david.form.annotation.SmartColumn;
 import com.bin.david.form.annotation.SmartTable;
-
+/*
+* 课表活动中表格数据实体类
+* */
 @SmartTable(name="用户课程列表")
 public class UserClasssCheduleInfo {
     @SmartColumn(id =1,name="第五周" , fixed = true)

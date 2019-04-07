@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
-import site.recomi.studentmanagement.gui.adapter.BaseRecycleViewAdapter;
+import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.other.CampusAssociationItem;
 

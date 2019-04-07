@@ -1,12 +1,469 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".gui.fragments.book.NoticeFragment">
 
+    <LinearLayout
+        android:id="@+id/royalRobbinsBlock"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <!--大标题-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="13dp"
+            android:layout_marginLeft="13dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/xxxxx"
+                android:layout_width="337dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="力推图书"
+                android:textColor="#000000"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="28dp"
+                android:background="@drawable/btn_circle"
+                android:text="全部"
+                android:textColor="#B5000000"
+                android:textSize="13.5dp" />
+        </LinearLayout>
+       <!--内容-->
+        <LinearLayout
+            android:id="@+id/royalRobbinsItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--one-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--two-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--three-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/royalRobbinsBlock"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <!--大标题-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="13dp"
+            android:layout_marginLeft="13dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/royalRobbins"
+                android:layout_width="337dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="文学"
+                android:textColor="#000000"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="28dp"
+                android:background="@drawable/btn_circle"
+                android:text="全部"
+                android:textColor="#B5000000"
+                android:textSize="13.5dp" />
+        </LinearLayout>
+        <!--内容-->
+        <LinearLayout
+            android:id="@+id/royalRobbinsItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--one-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--two-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--three-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/royalRobbinsBlock"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <!--大标题-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="13dp"
+            android:layout_marginLeft="13dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/royalRobbins"
+                android:layout_width="337dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="历史"
+                android:textColor="#000000"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="28dp"
+                android:background="@drawable/btn_circle"
+                android:text="全部"
+                android:textColor="#B5000000"
+                android:textSize="13.5dp" />
+        </LinearLayout>
+        <!--内容-->
+        <LinearLayout
+            android:id="@+id/royalRobbinsItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--one-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--two-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--three-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/royalRobbinsBlock"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <!--大标题-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="13dp"
+            android:layout_marginLeft="13dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/royalRobbins"
+                android:layout_width="337dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="计算机"
+                android:textColor="#000000"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="28dp"
+                android:background="@drawable/btn_circle"
+                android:text="全部"
+                android:textColor="#B5000000"
+                android:textSize="13.5dp" />
+        </LinearLayout>
+        <!--内容-->
+        <LinearLayout
+            android:id="@+id/royalRobbinsItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--one-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--two-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <!--three-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--图-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+                    <ImageView
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                </android.support.v7.widget.CardView>
+                <!--名-->
+                <TextView
+                    android:text="3124344231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 
 
-
-</FrameLayout>
+</LinearLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gui.activities.BookDetailActivity">
+    <include layout="@layout/app_bar_base"/>
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="未来简史"
+                android:textColor="#222222"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/collect"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#00000000"
+                android:src="@drawable/ic_collect_small"
+                android:layout_marginRight="10dp"/>
+
+            <ImageButton
+                android:id="@+id/appointment"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#00000000"
+                android:src="@drawable/ic_appointment_small" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/author"
+            android:text="作者：尤瓦尔"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/theme"
+            android:text="主题词：未来学"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/publishingHouse"
+            android:text="出版发行：北京-东山出版集团"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/isbn"
+            android:text="ISBN：4564465465-4545456-44545-44"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorColor="@color/colorPrimary">
+
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
