@@ -1,26 +1,20 @@
 package site.recomi.studentmanagement.gui.fragments.book;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import site.recomi.studentmanagement.R;
-import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
-import site.recomi.studentmanagement.gui.adapter.ViewHolder;
-import site.recomi.studentmanagement.other.CampusAssociationItem;
+import site.recomi.studentmanagement.gui.activities.BookAppointmentActivity;
+import site.recomi.studentmanagement.gui.activities.BookCollectActivity;
+import site.recomi.studentmanagement.gui.activities.BookHistoryActivity;
 
-public class PersonalFragment extends Fragment {
+public class PersonalFragment extends Fragment implements View.OnClickListener {
     View mview;
-    BaseRecycleViewAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,34 +26,29 @@ public class PersonalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mview = inflater.inflate(R.layout.fragment_personal, container, false);
-        initRecyView();
+        CardView collect = mview.findViewById(R.id.collect);
+        collect.setOnClickListener(this);
+        CardView history = mview.findViewById(R.id.history);
+        history.setOnClickListener(this);
+        CardView appointment = mview.findViewById(R.id.appointment);
+        appointment.setOnClickListener(this);
+
         return mview;
     }
 
-    private void initRecyView(){
-        RecyclerView recyclerView = mview.findViewById(R.id.recyclerView);
-        List<CampusAssociationItem> lists = new ArrayList<>();
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
 
-
-        adapter = new BaseRecycleViewAdapter<CampusAssociationItem>(getContext() ,lists , R.layout.recycler_view_item_1) {
-            @Override
-            public void convert(ViewHolder holder, CampusAssociationItem campusAssociationItem, int position) {
-                holder.setText(R.id.textView , campusAssociationItem.getName());
-                holder.setText(R.id.textView2 , campusAssociationItem.getSubTitle());
-//                    holder.setImageResource(R.id.imageView2 , campusAssociationItem.getImgSrc());
-
-
-
-            }
-        };
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.collect:
+                getActivity().startActivity(new Intent(getContext() , BookCollectActivity.class));
+                break;
+            case R.id.history:
+                getActivity().startActivity(new Intent(getContext() , BookHistoryActivity.class));
+                break;
+            case R.id.appointment:
+                getActivity().startActivity(new Intent(getContext() , BookAppointmentActivity.class));
+                break;
+        }
     }
-
 }

@@ -4,9 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
@@ -16,9 +14,9 @@ import java.util.List;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 import site.recomi.studentmanagement.gui.adapter.BookDetailViewPage;
+import site.recomi.studentmanagement.gui.fragments.book.RecommendFragment;
 import site.recomi.studentmanagement.gui.fragments.book.NoticeFragment;
 import site.recomi.studentmanagement.gui.fragments.book.PersonalFragment;
-import site.recomi.studentmanagement.gui.fragments.book.RecommendFragment;
 
 public class BookDetailActivity extends MySwipeBackActivity {
 
@@ -66,9 +64,9 @@ public class BookDetailActivity extends MySwipeBackActivity {
 
         //ViewPage
         final List<Fragment> listFragment = new ArrayList<>();
+        listFragment.add(new RecommendFragment());
         listFragment.add(new NoticeFragment());
         listFragment.add(new PersonalFragment());
-        listFragment.add(new RecommendFragment());
         ViewPager vp = (ViewPager) findViewById(R.id.viewPage);
         List<Integer> integers  = new ArrayList<>();
         integers.add(R.layout.book_detail_message);

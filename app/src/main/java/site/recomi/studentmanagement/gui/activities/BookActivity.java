@@ -18,10 +18,9 @@ import java.util.List;
 
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
-import site.recomi.studentmanagement.gui.fragments.book.NoticeFragment;
-import site.recomi.studentmanagement.gui.fragments.book.SearchFragment;
-import site.recomi.studentmanagement.gui.fragments.book.PersonalFragment;
 import site.recomi.studentmanagement.gui.fragments.book.RecommendFragment;
+import site.recomi.studentmanagement.gui.fragments.book.NoticeFragment;
+import site.recomi.studentmanagement.gui.fragments.book.PersonalFragment;
 
 public class BookActivity extends MySwipeBackActivity {
     SearchView.SearchAutoComplete mSearchAutoComplete;
@@ -72,9 +71,9 @@ public class BookActivity extends MySwipeBackActivity {
 
         //ViewPage
         final List<Fragment> listFragment = new ArrayList<>();
+        listFragment.add(new RecommendFragment());
         listFragment.add(new NoticeFragment());
         listFragment.add(new PersonalFragment());
-        listFragment.add(new RecommendFragment());
         ViewPager vp = (ViewPager) findViewById(R.id.vp);
         vp.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             String[] tabNames = {"馆荐" , "公告" , "个人中心"};
