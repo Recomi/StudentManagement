@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class ViewHolder extends RecyclerView.ViewHolder {
     private Context mContext;
     private View mConvertView;
@@ -60,6 +62,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public ViewHolder setImageResource(int viewId,int resId){
         ImageView imageView = getView(viewId);
         imageView.setImageResource(resId);
+        return this;
+    }
+    /**
+     * */
+    public ViewHolder setImageOnlineResource(int viewId,String url){
+        ImageView imageView = getView(viewId);
+        Picasso.with(mContext).load(url).into(imageView);
         return this;
     }
     /**

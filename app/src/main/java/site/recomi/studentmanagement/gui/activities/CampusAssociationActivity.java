@@ -2,6 +2,7 @@ package site.recomi.studentmanagement.gui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,14 +10,27 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.gyf.barlibrary.ImmersionBar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
@@ -26,12 +40,16 @@ import site.recomi.studentmanagement.gui.adapter.Base.BaseRecyclerViewOnScrollLi
 import site.recomi.studentmanagement.gui.adapter.Delegetes.SharingPostDelegete;
 import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
+import site.recomi.studentmanagement.other.BookNoticeEntitiy;
+import site.recomi.studentmanagement.other.CampusAssociationItem;
 
 public class CampusAssociationActivity extends MySwipeBackActivity implements View.OnClickListener {
     @BindView(R.id.rv)
     public RecyclerView rv;
     BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter;
     MultiItemTypeSupport multiItemTypeSupport;
+    List<UserSharingPost> posts;              //待显示的数据列表
+    SwipeRefreshLayout layout;           //刷新按钮
 
     int testData = 0;
     int testDataTop = 0;
@@ -48,9 +66,89 @@ public class CampusAssociationActivity extends MySwipeBackActivity implements Vi
 
 //        SharedPreferences sharedPreferences = getSharedPreferences("card", MODE_PRIVATE);
 
+
         initView();
+        initPullRefreshLayout();
         initNewestData();
 
+    }
+
+    /*
+     * 初始化刷新按钮
+     * */
+    private void initPullRefreshLayout(){
+        layout = (SwipeRefreshLayout)findViewById(R.id.pull_campus);
+
+        //首次进入时自动刷新数据
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                getOnlineData();
+                layout.setRefreshing(false);
+            }
+        });
+
+        //监听
+        layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                layout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getOnlineData();
+                        layout.setRefreshing(false);
+                    }
+                } , 3000);
+            }
+        });
+    }
+
+    /*
+     * 发起网络请求,获取服务器数据
+     * */
+    private void getOnlineData(){
+        OkHttpClient client = new OkHttpClient();
+        RequestBody requestBody = new FormBody.Builder()
+                .add("type" , "campusAssociation")
+                .build();
+        Request request = new Request.Builder()
+                .url("http://192.168.1.18/er.php")
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //针对异常情况处理
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String responseData = response.body().string();
+                posts.clear();
+                try {
+                    JSONArray jsonObject = new JSONArray(responseData);
+
+                    for (int i = 0; i < jsonObject.length(); i++){
+                        String name = jsonObject.getJSONObject(i).getString("name");
+                        String time = jsonObject.getJSONObject(i).getString("time");
+                        String content = jsonObject.getJSONObject(i).getString("content");
+                        String headIconUrl = jsonObject.getJSONObject(i).getString("headIconUrl");
+                        int like = jsonObject.getJSONObject(i).getInt("like");
+                        int collect = jsonObject.getJSONObject(i).getInt("collect");
+                        int share = jsonObject.getJSONObject(i).getInt("share");
+                        posts.add(new UserSharingPost(name, time, content, headIconUrl, like, collect, share));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                Log.d("data", "服务器返回的数据: " + responseData);
+            }
+        });
     }
 
     private void initView(){
@@ -69,13 +167,7 @@ public class CampusAssociationActivity extends MySwipeBackActivity implements Vi
      * 初始化最近信息的数据
      * */
     private void initNewestData() {
-        List<UserSharingPost> posts = new ArrayList<>();
-        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("index","12点20分","嗯........","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("are you ok","12点10分","你们很棒哦","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("ddd","11点55分","你们还好么","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("学生会会长","11点40分","救命啊","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("四宫辉夜","11点35分","你还真是可爱呢","http://recomi.site/license_pic/jpg"));
+        posts = new ArrayList<>();
         adapter = new BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost>(this,posts,new SharingPostDelegete()) {
             @Override
             public void convert(ViewHolder holder, UserSharingPost userSharingPost, int position) {
@@ -86,6 +178,7 @@ public class CampusAssociationActivity extends MySwipeBackActivity implements Vi
                     holder.setText(R.id.tv_name,userSharingPost.getName());
                     holder.setText(R.id.tv_post_time,userSharingPost.getTime());
                     holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
+                    holder.setImageOnlineResource(R.id.img_sharing_headicon, userSharingPost.getHeadIconUrl());
 //                holder.setText(R.id.tv_name,userSharingPost.getHeadIconUrl());
                 }
             }

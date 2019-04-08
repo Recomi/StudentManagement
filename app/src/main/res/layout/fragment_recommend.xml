@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".gui.fragments.book.RecommendFragment">
+    tools:context=".gui.fragments.book.RecommendFragment"
+    android:background="@color/colorBackgroundInterval">
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,10 +16,13 @@
             android:layout_height="match_parent">
             <LinearLayout
                 android:id="@+id/royalRobbinsBlock"
+                android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
                 <!--大标题-->
                 <LinearLayout
                     android:orientation="horizontal"
@@ -64,20 +68,24 @@
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--two-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -88,20 +96,24 @@
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--three-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -112,27 +124,37 @@
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
+
+
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/royalRobbinsBlock"
+                android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
                 <!--大标题-->
                 <LinearLayout
                     android:orientation="horizontal"
@@ -177,21 +199,24 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--two-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -201,21 +226,24 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--three-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -225,28 +253,37 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
+
+
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/royalRobbinsBlock"
+                android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
                 <!--大标题-->
                 <LinearLayout
                     android:orientation="horizontal"
@@ -291,21 +328,24 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--two-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -315,21 +355,24 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--three-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -339,28 +382,37 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
+
+
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/royalRobbinsBlock"
+                android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
                 <!--大标题-->
                 <LinearLayout
                     android:orientation="horizontal"
@@ -405,21 +457,24 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--two-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -429,21 +484,24 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--three-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -453,28 +511,37 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
+
+
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/royalRobbinsBlock"
+                android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
                 <!--大标题-->
                 <LinearLayout
                     android:orientation="horizontal"
@@ -519,21 +586,24 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--two-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -543,21 +613,24 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                    <!--three-->
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
@@ -567,24 +640,30 @@
                         <!--图-->
                         <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="3dp">
-                            <ImageView
-                                app:srcCompat="@drawable/testpic2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp" />
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:srcCompat="@drawable/testpic2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp" />
+                                <TextView
+                                    android:text="3124344231"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"/>
+                            </LinearLayout>
+
                         </android.support.v7.widget.CardView>
-                        <!--名-->
-                        <TextView
-                            android:text="3124344231"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
+
+
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
 
 

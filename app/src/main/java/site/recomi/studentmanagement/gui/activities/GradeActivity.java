@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -23,27 +24,44 @@ import com.bin.david.form.data.format.bg.BaseCellBackgroundFormat;
 import com.bin.david.form.data.style.FontStyle;
 import com.bin.david.form.data.style.LineStyle;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 import site.recomi.studentmanagement.other.StudentGrade;
 import site.recomi.studentmanagement.other.entitiy.UserClasssCheduleInfo;
 
 public class GradeActivity extends MySwipeBackActivity {
     SmartTable<StudentGrade> smartTable;
-
+    List<JSONObject> finalData;         //包含全部学期的数据(课程名/成绩)
+    List<StudentGrade> show = new ArrayList<>();        //要显示的数据
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade);
-
+        getOnlineData();
 
         initView();
-        initTable();        //初始化表格
+        initTable();
+
     }
+
     private void initView(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
         toolbar.setTitle("成绩查询");
@@ -56,6 +74,21 @@ public class GradeActivity extends MySwipeBackActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                if (finalData != null){
+                    JSONObject data = finalData.get(position);
+                    Iterator<String> it = data.keys();
+                    while(it.hasNext()){
+                        try {
+                            String key = it.next();
+                            int value = Integer.parseInt(data.getString(key));
+                            show.add(new StudentGrade(key, value));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    smartTable.setData(show);
+                    show.clear();
+                }
             }
 
             @Override
@@ -67,20 +100,11 @@ public class GradeActivity extends MySwipeBackActivity {
     }
     public void initTable(){
         //数据，最终需要从云数据库读取
-        List<StudentGrade> list = new ArrayList<>();
-        list.add(new StudentGrade("lksdajf" , 55));
-        list.add(new StudentGrade("lksdnjnbfgajf" , 88));
-        list.add(new StudentGrade("lksdajf" , 75));
-        list.add(new StudentGrade("lksfgdajf" , 44));
-        list.add(new StudentGrade("lksfdgdajf" , 99));
-        list.add(new StudentGrade("lksfdgdajf" , 100));
-        list.add(new StudentGrade("lksdajf" , 24));
-        list.add(new StudentGrade("lkfdgsdajf" , 87));
 
 
         smartTable =  (SmartTable<StudentGrade>) findViewById(R.id.table);
         smartTable.getConfig().setShowXSequence(false).setShowYSequence(false);
-        smartTable.setData(list);
+        smartTable.setData(show);
 
         TableConfig tc = smartTable.getConfig();
 
@@ -94,6 +118,43 @@ public class GradeActivity extends MySwipeBackActivity {
                     return ContextCompat.getColor(GradeActivity.this, R.color.gray);      //需要在 app/res/values 中添加 <color name="tableBackground">#d4d4d4</color>
                 }else{
                     return TableConfig.INVALID_COLOR;
+                }
+            }
+        });
+    }
+
+    /*
+     * 发起网络请求,获取服务器数据
+     * */
+    private void getOnlineData(){
+        OkHttpClient client = new OkHttpClient();
+        RequestBody requestBody = new FormBody.Builder()
+                .add("type" , "grade")
+                .add("studentID" , "17304590114")
+                .build();
+        Request request = new Request.Builder()
+                .url("http://192.168.1.18/er.php")
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //针对异常情况处理
+                Log.d("xxxxx", "onFailure: "+ "error");
+        }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    finalData = new ArrayList<>();
+                    String data = response.body().string();
+                    Log.d("xxxxxx", "服务器返回的数据: " + data);
+                    String x = "[{\"职业规划\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"数据库基础\":\"89\",\"计算机与科学\":\"85\",\"毛概\":\"68\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA中级设计\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"48\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA高级设计\":\"25\",\"计算机原理\":\"80\",\"毛概\":\"88\",\"安卓实训\":\"25\",\"计算机与设计\":\"85\"},{\"高数\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"高英\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"微信小程序实训\":\"75\",\"计算机与设计\":\"85\"}]";
+                    JSONArray dataArray = new JSONArray(x);
+                    for (int i=0;i <= dataArray.length(); i++){
+                        finalData.add(dataArray.getJSONObject(i));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         });
