@@ -108,7 +108,7 @@ public class MineFragment extends BaseFragment {
         moreFeaturesList.add(new TitleAndIconEntity("小组", R.drawable.ic_my_group));
         moreFeaturesList.add(new TitleAndIconEntity("生活记录", R.drawable.ic_note));
         moreFeaturesList.add(new TitleAndIconEntity("成绩", R.drawable.ic_grade));
-        moreFeaturesList.add(new TitleAndIconEntity("浏览历史", R.drawable.ic_history));
+        moreFeaturesList.add(new TitleAndIconEntity("浏览历史", R.drawable.ic_view_history));
         moreFeaturesList.add(new TitleAndIconEntity("我的收藏", R.drawable.ic_collection));
         moreFeaturesList.add(new TitleAndIconEntity("设置", R.drawable.ic_setting));
         adapter = new BaseRecycleViewAdapter<TitleAndIconEntity>(getContext(), moreFeaturesList, R.layout.item_features_list) {
