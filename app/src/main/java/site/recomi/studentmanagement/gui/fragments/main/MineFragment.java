@@ -1,6 +1,9 @@
 package site.recomi.studentmanagement.gui.fragments.main;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +14,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.baoyz.widget.PullRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +25,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.TitleAndIconEntity;
+import site.recomi.studentmanagement.gui.activities.AccountActivity;
 import site.recomi.studentmanagement.gui.activities.BookActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
+import site.recomi.studentmanagement.gui.activities.LoginActivity;
 import site.recomi.studentmanagement.gui.activities.mineFeatures.MyClassActivity;
 import site.recomi.studentmanagement.gui.activities.mineFeatures.MyCollectionsActivity;
 import site.recomi.studentmanagement.gui.activities.mineFeatures.MyGroupActivity;
@@ -32,10 +40,14 @@ import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 
 public class MineFragment extends BaseFragment {
+    @BindView(R.id.pullRF_mine)
+    PullRefreshLayout pull_refresh;
     @BindView(R.id.card_mine_user)
     CardView card_mine;
     @BindView(R.id.recy_mine_features)
     RecyclerView recy_features;
+    @BindView(R.id.tv_mine_name)
+    TextView tv_mine_name;
 
     View mView;
     Context mContext;
@@ -45,6 +57,8 @@ public class MineFragment extends BaseFragment {
 
     int testData = 0;
     int testDataTop = 0;
+    String userName;
+    boolean is_loggedIn = false;
 
     @Nullable
     @Override
@@ -54,6 +68,7 @@ public class MineFragment extends BaseFragment {
         ButterKnife.bind(this, mView);   //绑定ButterKnife
 
         initView();                 //加载视图布局
+        tv_mine_name.setText(userName);
         return mView;
     }
 
@@ -66,12 +81,21 @@ public class MineFragment extends BaseFragment {
      * 加载视图布局
      */
     private void initView() {
-        //用户卡片的点击事件
-        card_mine.setOnClickListener(new View.OnClickListener() {
+        pull_refresh.setRefreshStyle(PullRefreshLayout.STYLE_SMARTISAN);
+        pull_refresh.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onRefresh() {
+                checkIsLoggedIn(mContext);
+                tv_mine_name.setText(userName);
+                pull_refresh.setRefreshing(false);
             }
+        });
+        //用户卡片的点击事件
+        card_mine.setOnClickListener(v -> {
+            if (is_loggedIn)
+                startActivityOnly(mContext, AccountActivity.class);
+            else
+                startActivityOnly(mContext, LoginActivity.class);
         });
 
         //功能列表的活动反射数组
@@ -80,13 +104,13 @@ public class MineFragment extends BaseFragment {
                 ViewHistoryActivity.class, MyCollectionsActivity.class, SettingsActivity.class
         };
         moreFeaturesList = new ArrayList<>();
-        moreFeaturesList.add(new TitleAndIconEntity("我的班级", R.drawable.ic_cricle));
-        moreFeaturesList.add(new TitleAndIconEntity("小组", R.drawable.ic_associations));
-        moreFeaturesList.add(new TitleAndIconEntity("生活记录", R.drawable.ic_library));
+        moreFeaturesList.add(new TitleAndIconEntity("我的班级", R.drawable.ic_my_class));
+        moreFeaturesList.add(new TitleAndIconEntity("小组", R.drawable.ic_my_group));
+        moreFeaturesList.add(new TitleAndIconEntity("生活记录", R.drawable.ic_note));
         moreFeaturesList.add(new TitleAndIconEntity("成绩", R.drawable.ic_grade));
-        moreFeaturesList.add(new TitleAndIconEntity("浏览历史", R.drawable.ic_cricle));
-        moreFeaturesList.add(new TitleAndIconEntity("我的收藏", R.drawable.ic_cricle));
-        moreFeaturesList.add(new TitleAndIconEntity("设置", R.drawable.ic_cricle));
+        moreFeaturesList.add(new TitleAndIconEntity("浏览历史", R.drawable.ic_history));
+        moreFeaturesList.add(new TitleAndIconEntity("我的收藏", R.drawable.ic_collection));
+        moreFeaturesList.add(new TitleAndIconEntity("设置", R.drawable.ic_setting));
         adapter = new BaseRecycleViewAdapter<TitleAndIconEntity>(getContext(), moreFeaturesList, R.layout.item_features_list) {
             @Override
             public void convert(ViewHolder holder, TitleAndIconEntity titleAndIconEntity, int position) {
@@ -117,6 +141,30 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        checkIsLoggedIn(context);
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            checkIsLoggedIn(activity);
+        }
+    }
+
+    /**
+     * 检查本地是否已经登录了帐号
+     * */
+    private void checkIsLoggedIn(Context context) {
+        //获取当前登录的账户名，未登录则显示未登录
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserBaseInfo",Context.MODE_PRIVATE);
+        String getUserName = sharedPreferences.getString("name","");
+        if (getUserName != null && ! getUserName.equals("")) {
+            userName = getUserName;
+            is_loggedIn = true;
+        }else {
+            userName = "未登录";
+            is_loggedIn = false;
+        }
+    }
 }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="20dp"
     android:background="#64ffffff"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true">
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/tvinput_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <AutoCompleteTextView
@@ -19,13 +19,15 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:hint="Account/Phone"
+            android:hint="学号"
             android:singleLine="true"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:maxLines="1"
             android:textSize="18sp"/>
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
+        android:layout_below="@id/tvinput_id"
+        android:id="@+id/tvinput_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <AutoCompleteTextView
@@ -34,16 +36,37 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10sp"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:hint="Password"
+            android:hint="密码"
             android:singleLine="true"
             android:maxLines="1"
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
-    android:id="@+id/button_login_login"
+        android:id="@+id/button_login_login"
+        android:layout_below="@+id/tvinput_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_alignParentRight="true"
+        android:background="#00ffffff"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="10dp"
+        android:text="确认登录"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#000794"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+
+    <Button
+    android:id="@+id/btn_signin_face"
+    android:layout_below="@+id/tvinput_pass"
+    android:layout_alignParentLeft="true"
     android:textColor="#000794"
-    android:text="Log in"
+    android:text="使用人脸登录"
     android:textAlignment="center"
     android:textStyle="normal"
     android:textAllCaps="false"
@@ -56,4 +79,4 @@
     android:focusable="true"
     android:background="#00ffffff"
     android:foreground="?android:attr/selectableItemBackground"/>
-</LinearLayout>
+</RelativeLayout>

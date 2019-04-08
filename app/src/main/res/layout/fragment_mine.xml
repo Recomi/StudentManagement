@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.SwipeRefreshLayout
+<com.baoyz.widget.PullRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/refresh_mine"
+    android:id="@+id/pullRF_mine"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -95,4 +95,4 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
-</android.support.v4.widget.SwipeRefreshLayout>
+</com.baoyz.widget.PullRefreshLayout>
