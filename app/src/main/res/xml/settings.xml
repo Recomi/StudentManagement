@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:preference="http://schemas.android.com/apk/res-auto"
+    android:title="设置" >
+
+    <Preference android:title="意见反馈" >
+    </Preference>
+
+    <!--<com.test.mytest.PreferenceWithTip-->
+        <!--preference:tipstring=">"-->
+        <!--preference:titlestring="自定义测试" >-->
+        <!--<intent-->
+            <!--android:action="android.intent.action.VIEW"-->
+            <!--android:data="http://www.baidu.com" />-->
+    <!--</com.test.mytest.PreferenceWithTip>-->
+
+    <Preference android:title="常见问题" >
+    </Preference>
+    <Preference android:title="版权声明" >
+    </Preference>
+    <Preference android:title="检查更新" >
+    </Preference>
+    <Preference android:title="关于" >
+    </Preference>
+
+    <SwitchPreference
+        android:key="setting_nightMode"
+        android:title="夜间模式" />
+    <Preference android:title="退出登录" >
+    </Preference>
+
+</PreferenceScreen>

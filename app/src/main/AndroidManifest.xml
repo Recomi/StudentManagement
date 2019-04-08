@@ -11,9 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".gui.activities.BookCollectActivity" android:theme="@style/AppTheme.NoActionBar" ></activity>
-        <activity android:name=".gui.activities.BookAppointmentActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".gui.activities.BookHistoryActivity"  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".gui.activities.BookCollectActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".gui.activities.BookAppointmentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".gui.activities.BookHistoryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".gui.activities.BookDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -60,7 +66,10 @@
             android:name=".gui.activities.LoginActivity"
             android:label="@string/login_acount"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".gui.activities.AccountActivity" />
+        <activity android:name=".gui.activities.AccountActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".gui.activities.mineFeatures.SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 
 </manifest>

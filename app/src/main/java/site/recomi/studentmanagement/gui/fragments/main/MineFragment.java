@@ -1,25 +1,15 @@
 package site.recomi.studentmanagement.gui.fragments.main;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.baoyz.widget.PullRefreshLayout;
-import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,20 +17,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
-import site.recomi.studentmanagement.entity.GirdButtonEntity;
 import site.recomi.studentmanagement.entity.TitleAndIconEntity;
-import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.BookActivity;
-import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
-import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
-import site.recomi.studentmanagement.gui.activities.GradeActivity;
-import site.recomi.studentmanagement.gui.activities.MainActivity;
-import site.recomi.studentmanagement.gui.adapter.Base.BaseMultiItemTypeRecyclerViewAdapter;
-import site.recomi.studentmanagement.gui.adapter.Base.BaseNestedSVOnScrollChangeListener;
+import site.recomi.studentmanagement.gui.activities.mineFeatures.SettingsActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
-import site.recomi.studentmanagement.gui.adapter.Delegetes.SharingPostDelegete;
-import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
-import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
@@ -81,7 +61,7 @@ public class MineFragment extends BaseFragment {
         //功能列表的活动反射数组
         Class[] feature_classes  = new Class[]{
                 BookActivity.class, BookActivity.class, BookActivity.class, BookActivity.class,
-                BookActivity.class, BookActivity.class, BookActivity.class
+                BookActivity.class, BookActivity.class, SettingsActivity.class
         };
         moreFeaturesList = new ArrayList<>();
         moreFeaturesList.add(new TitleAndIconEntity("我的班级", R.drawable.ic_cricle));

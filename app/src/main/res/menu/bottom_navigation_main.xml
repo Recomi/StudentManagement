@@ -22,7 +22,7 @@
     <item
         android:id="@+id/action_mine"
         android:enabled="true"
-        android:icon="@drawable/ic_message"
+        android:icon="@drawable/ic_mine"
         android:title="我"
         app:showAsAction="always" />
 </menu>
