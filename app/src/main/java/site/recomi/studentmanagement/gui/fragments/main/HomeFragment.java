@@ -138,15 +138,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      * 初始化最近信息的数据
      * */
     private void initNewestData() {
-        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("index","12点20分","嗯........","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("are you ok","12点10分","你们很棒哦","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("ddd","11点55分","你们还好么","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("学生会会长","11点40分","救命啊","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("四宫辉夜","11点35分","你还真是可爱呢","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("藤原书记","11点15分","啦啦啦啦","http://recomi.site/license_pic/jpg"));
-        posts.add(new UserSharingPost("白石上","10点35分","嗯" +
-                "呵呵","http://recomi.site/license_pic/jpg"));
+        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg" , 1 , 1 ,1 ));
+        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg" , 1 , 1 ,1 ));
+        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg" , 1 , 1 ,1 ));
         adapter = new BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost>(getContext(), posts, new SharingPostDelegete()) {
             @Override
             public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
@@ -184,7 +178,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     //模拟加载更多数据
     private void refreshMoreData() {
         testData++;
-        adapter.getList().add(new UserSharingPost("白上吹血" + testData,"12点22分","今天天气不错啊" + testData ,"http://recomi.site/license_pic/jpg"));
+        adapter.getList().add(new UserSharingPost("白上吹血" + testData,"12点22分","今天天气不错啊" + testData ,"http://recomi.site/license_pic/jpg",1,1,1));
         adapter.notifyDataSetChanged();
         Log.e("Data","Refresh:" + testData);
     }

@@ -74,6 +74,7 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:tooltipText="132"
                 android:id="@+id/bt_sharing_1"
                 app:srcCompat="@drawable/ic_comment"
                 android:background="@android:color/white"

@@ -9,9 +9,9 @@ public class BookNoticeEntitiy {
     private String title;
     private String content;
     private String date;
-    private int srcImage;
+    private String srcImage;
 
-    public BookNoticeEntitiy(String title, String content, String date, int srcImage) {
+    public BookNoticeEntitiy(String title, String content, String date, String srcImage) {
         this.title = title;
         this.content = content;
         this.date = date;
@@ -42,11 +42,11 @@ public class BookNoticeEntitiy {
         this.date = date;
     }
 
-    public int getSrcImage() {
+    public String getSrcImage() {
         return srcImage;
     }
 
-    public void setSrcImage(int srcImage) {
+    public void setSrcImage(String srcImage) {
         this.srcImage = srcImage;
     }
 }
