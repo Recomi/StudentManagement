@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Immersive status bar-->
+    <dimen name="toolbar_padding_top">25dp</dimen>
+    <dimen name="content_padding_top">55dp</dimen>
+</resources>

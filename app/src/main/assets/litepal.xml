@@ -5,4 +5,10 @@
     <list>
         <!--<mapping class="io.github.kerminull.kermicontacts.model.Contact"></mapping>-->
     </list>
+
+    <dbname value="Diaries"></dbname>
+    <version value="1"></version>
+    <list>
+        <mapping class="site.recomi.studentmanagement.entity.Diary"></mapping>
+    </list>
 </litepal>

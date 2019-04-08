@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,13 +20,20 @@ import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.TitleAndIconEntity;
 import site.recomi.studentmanagement.gui.activities.BookActivity;
+import site.recomi.studentmanagement.gui.activities.GradeActivity;
+import site.recomi.studentmanagement.gui.activities.mineFeatures.MyClassActivity;
+import site.recomi.studentmanagement.gui.activities.mineFeatures.MyCollectionsActivity;
+import site.recomi.studentmanagement.gui.activities.mineFeatures.MyGroupActivity;
 import site.recomi.studentmanagement.gui.activities.mineFeatures.SettingsActivity;
+import site.recomi.studentmanagement.gui.activities.mineFeatures.ViewHistoryActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 
 public class MineFragment extends BaseFragment {
+    @BindView(R.id.card_mine_user)
+    CardView card_mine;
     @BindView(R.id.recy_mine_features)
     RecyclerView recy_features;
 
@@ -58,15 +66,23 @@ public class MineFragment extends BaseFragment {
      * 加载视图布局
      */
     private void initView() {
+        //用户卡片的点击事件
+        card_mine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         //功能列表的活动反射数组
         Class[] feature_classes  = new Class[]{
-                BookActivity.class, BookActivity.class, BookActivity.class, BookActivity.class,
-                BookActivity.class, BookActivity.class, SettingsActivity.class
+                MyClassActivity.class, MyGroupActivity.class, BookActivity.class, GradeActivity.class,
+                ViewHistoryActivity.class, MyCollectionsActivity.class, SettingsActivity.class
         };
         moreFeaturesList = new ArrayList<>();
         moreFeaturesList.add(new TitleAndIconEntity("我的班级", R.drawable.ic_cricle));
         moreFeaturesList.add(new TitleAndIconEntity("小组", R.drawable.ic_associations));
-        moreFeaturesList.add(new TitleAndIconEntity("笔记", R.drawable.ic_library));
+        moreFeaturesList.add(new TitleAndIconEntity("生活记录", R.drawable.ic_library));
         moreFeaturesList.add(new TitleAndIconEntity("成绩", R.drawable.ic_grade));
         moreFeaturesList.add(new TitleAndIconEntity("浏览历史", R.drawable.ic_cricle));
         moreFeaturesList.add(new TitleAndIconEntity("我的收藏", R.drawable.ic_cricle));

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,6 +35,7 @@ import site.recomi.studentmanagement.gui.fragments.main.HomeFragment;
 import site.recomi.studentmanagement.gui.fragments.main.MessageFragment;
 import site.recomi.studentmanagement.gui.fragments.main.MineFragment;
 import site.recomi.studentmanagement.gui.fragments.main.NoteFragment;
+import site.recomi.studentmanagement.gui.fragments.main.NotesFragment;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,7 +87,7 @@ public class MainActivity extends BaseActivity
 
         //ViewPager的初始化
         fragments.add(new HomeFragment());
-        fragments.add(new NoteFragment());
+        fragments.add(new NotesFragment());
         fragments.add(new MessageFragment());
         fragments.add(new MineFragment());
         vp_main.setOffscreenPageLimit(4);       //设置缓存碎片个数
@@ -177,10 +179,6 @@ public class MainActivity extends BaseActivity
         switch (item.getItemId()){
             case R.id.action_settings:
                 return true;
-            case R.id.action_add:
-               Intent intent = new Intent(this , WriteNoteActivity.class);
-               startActivityForResult(intent,notesReturnCode);
-               return true;
         }
 
         return super.onOptionsItemSelected(item);

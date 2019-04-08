@@ -1,6 +1,8 @@
 package site.recomi.studentmanagement.entity;
 
-public class Notes {
+import org.litepal.crud.LitePalSupport;
+
+public class Notes extends LitePalSupport {
     private String title;
     private String content;
     private String month;

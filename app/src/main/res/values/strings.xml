@@ -78,4 +78,50 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Week-->
+    <string name="mon">Mon.</string>
+    <string name="tues">Tues.</string>
+    <string name="wed">Wed.</string>
+    <string name="thur">Thur.</string>
+    <string name="fri">Fri.</string>
+    <string name="sat">Sat.</string>
+    <string name="sun">Sun.</string>
+    <!--Month-->
+    <string name="jan">Jan.</string>
+    <string name="feb">Feb.</string>
+    <string name="mar">Mar.</string>
+    <string name="apr">Apr.</string>
+    <string name="may">May</string>
+    <string name="jun">June</string>
+    <string name="jul">July</string>
+    <string name="aug">Aug.</string>
+    <string name="sept">Sept.</string>
+    <string name="oct">Oct.</string>
+    <string name="nov">Nov.</string>
+    <string name="dec">Dec.</string>
+
+    <!--ViewDiaryActivity-->
+    <string name="view_diary_appname">View/Edit</string>
+    <string name="update_successful">Update successful</string>
+
+    <!--New Diary-->
+    <string name="count">Count Words</string>
+    <string name="new_title">Title</string>
+    <string name="new_content">Take down something</string>
+    <string name="new_weather">Input Weather</string>
+    <string name="new_address">Input location</string>
+    <string name="exit_title">Exit will not save</string>
+    <string name="exit_content">Continue to exit?</string>
+    <string name="not_null_title">Not  allow to save null words</string>
+    <string name="not_null_content">Please check the title or content if is null</string>
+
+
+    <string name="copy">copy</string>
+    <string name="back">back</string>
+    <string name="title_count">Title words:</string>
+    <string name="content_count">Content Words:</string>
+    <string name="all_count">All words:</string>
+    <string name="copy_successful">Copy successful</string>
+
 </resources>

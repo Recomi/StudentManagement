@@ -5,12 +5,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".gui.activities.mineFeatures.ViewHistoryActivity"></activity>
+        <activity android:name=".gui.activities.mineFeatures.MyGroupActivity" />
+        <activity android:name=".gui.activities.mineFeatures.MyCollectionsActivity" />
+        <activity android:name=".gui.activities.mineFeatures.MyClassActivity" />
         <activity
             android:name=".gui.activities.BookCollectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -66,10 +71,21 @@
             android:name=".gui.activities.LoginActivity"
             android:label="@string/login_acount"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".gui.activities.AccountActivity"
+        <activity
+            android:name=".gui.activities.AccountActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".gui.activities.mineFeatures.SettingsActivity"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity
+            android:name=".gui.activities.mineFeatures.SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".gui.activities.notes.NewDiaryActivity"
+            android:label="新建笔记"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".gui.activities.notes.ViewDiaryActivity"
+            android:label="@string/view_diary_appname"
+            android:windowSoftInputMode="adjustNothing|stateHidden"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
