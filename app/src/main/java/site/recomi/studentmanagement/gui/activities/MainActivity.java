@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,6 +35,7 @@ import site.recomi.studentmanagement.gui.fragments.main.HomeFragment;
 import site.recomi.studentmanagement.gui.fragments.main.MessageFragment;
 import site.recomi.studentmanagement.gui.fragments.main.MineFragment;
 import site.recomi.studentmanagement.gui.fragments.main.NoteFragment;
+import site.recomi.studentmanagement.gui.fragments.main.NotesFragment;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -63,29 +65,29 @@ public class MainActivity extends BaseActivity
     private void initUI() {
         //侧滑菜单
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //关闭手势滑动
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
         //初始化底部导航栏
         initBottomNavigationView();
 
         // click to start LoginActivity
-        LinearLayout account = navigationView.getHeaderView(0).findViewById(R.id.click_account);
-        account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+//        LinearLayout account = navigationView.getHeaderView(0).findViewById(R.id.click_account);
+//        account.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //ViewPager的初始化
         fragments.add(new HomeFragment());
-        fragments.add(new NoteFragment());
+        fragments.add(new NotesFragment());
         fragments.add(new MessageFragment());
         fragments.add(new MineFragment());
         vp_main.setOffscreenPageLimit(4);       //设置缓存碎片个数
@@ -177,10 +179,6 @@ public class MainActivity extends BaseActivity
         switch (item.getItemId()){
             case R.id.action_settings:
                 return true;
-            case R.id.action_add:
-               Intent intent = new Intent(this , WriteNoteActivity.class);
-               startActivityForResult(intent,notesReturnCode);
-               return true;
         }
 
         return super.onOptionsItemSelected(item);

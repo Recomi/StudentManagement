@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.Activity.NewDiaryActivity">
+
+    <item
+        android:id="@+id/action_view_save"
+        android:icon="@drawable/ic_check_dark"
+        android:orderInCategory="100"
+        android:title="@string/save"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_view_remove"
+        android:icon="@drawable/ic_remove_dark"
+        android:orderInCategory="100"
+        android:title="@string/remove"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_view_count"
+        android:orderInCategory="90"
+        android:title="@string/count"
+        app:showAsAction="never"/>
+
+
+</menu>

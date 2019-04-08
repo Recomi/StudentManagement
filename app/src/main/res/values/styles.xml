@@ -24,4 +24,7 @@
         <item name="android:radius">25dp</item>
     </style>
 
+    <!--Not support Immersive status bar in api less than 19-->
+    <dimen name="toolbar_padding_top">0dp</dimen>
+    <dimen name="content_padding_top">0dp</dimen>
 </resources>
