@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.bin.david.form.core.SmartTable;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -20,7 +21,7 @@ import site.recomi.studentmanagement.other.entitiy.UserClasssCheduleInfo;
 
 public class ClassScheduleActivity extends MySwipeBackActivity {
     SmartTable<UserClasssCheduleInfo> smartTable;
-
+    PieChart picChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +44,16 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
 
     public void initTable(){
         List<UserClasssCheduleInfo> list = new ArrayList<>();
-        list.add(new UserClasssCheduleInfo("第一节" ,"数据结构和算法分析" ,"123" ,"123" ,"123" ,"123" ,"123" ,"数据结构和算法分析" ));
-        list.add(new UserClasssCheduleInfo("第二节" ,"123" ,"数据结构和算法分析" ,"123" ,"123" ,"123" ,"123" ,"123" ));
-        list.add(new UserClasssCheduleInfo("第三节" ,"123" ,"数据结构和算法分析" ,"123" ,"123" ,"数据结构和算法分析" ,"数据结构和算法分析" ,"123" ));
-        list.add(new UserClasssCheduleInfo("第四节" ,"123" ,"123" ,"数据结构和算法分析" ,"123" ,"123" ,"123" ,"123" ));
-        list.add(new UserClasssCheduleInfo("第五节" ,"数据结构和算法分析" ,"123" ,"123" ,"123" ,"123" ,"123" ,"123" ));
-        list.add(new UserClasssCheduleInfo("第六节" ,"123" ,"123" ,"123" ,"123" ,"123" ,"123" ,"数据结构和算法分析" ));
-        list.add(new UserClasssCheduleInfo("第七节" ,"123" ,"123" ,"123" ,"123" ,"数据结构和算法分析" ,"数据结构和算法分析" ,"123" ));
-        list.add(new UserClasssCheduleInfo("第八节" ,"123" ,"123" ,"123" ,"123" ,"123" ,"123" ,"123" ));
-        list.add(new UserClasssCheduleInfo("第九节" ,"123" ,"数据结构和算法分析" ,"数据结构和算法分析" ,"数据结构和算法分析" ,"数据结构和算法分析" ,"123" ,"123" ));
-        list.add(new UserClasssCheduleInfo("第十节" ,"123" ,"123" ,"123" ,"123" ,"数据结构和算法分析" ,"123" ,"123" ));
+        list.add(new UserClasssCheduleInfo("1" ,"数据结构和算法分析" ,"" ,"高等数学" ,"" ,"数据结构和算法分析" ,"" ,"" ));
+        list.add(new UserClasssCheduleInfo("2" ,"数据结构和算法分析" ,"" ,"高等数学" ,"" ,"数据结构和算法分析" ,"" ,"" ));
+        list.add(new UserClasssCheduleInfo("3" ,"" ,"数据结构和算法分析" ,"" ,"计算机英语" ,"" ,"" ,"" ));
+        list.add(new UserClasssCheduleInfo("4" ,"" ,"数据结构和算法分析" ,"" ,"计算机英语" ,"" ,"" ,"" ));
+        list.add(new UserClasssCheduleInfo("5" ,"高等数学" ,"" ,"JAVA高级设计" ,"" ,"JAVA高级设计" ,"" ,"JAVA高级设计" ));
+        list.add(new UserClasssCheduleInfo("6" ,"高等数学" ,"" ,"JAVA高级设计" ,"" ,"JAVA高级设计" ,"" ,"JAVA高级设计" ));
+        list.add(new UserClasssCheduleInfo("7" ,"计算机英语" ,"体育和运动" ,"" ,"体育和运动" ,"数据结构和算法分析" ,"" ,"" ));
+        list.add(new UserClasssCheduleInfo("8" ,"计算机英语" ,"体育和运动" ,"" ,"体育和运动" ,"数据结构和算法分析" ,"" ,"" ));
+        list.add(new UserClasssCheduleInfo("9" ,"" ,"晚修" ,"数据结构和算法分析" ,"" ,"晚修" ,"" ,"" ));
+        list.add(new UserClasssCheduleInfo("10" ,"" ,"晚修" ,"数据结构和算法分析" ,"" ,"晚修" ,"" ,"" ));
 
         smartTable =  (SmartTable<UserClasssCheduleInfo>) findViewById(R.id.table);
         smartTable.getConfig().setShowXSequence(false).setShowYSequence(false);
@@ -69,21 +70,39 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
     }
 
     public void initChart(){
+        picChart = (PieChart)findViewById(R.id.pic_chart);
         List<PieEntry> strings = new ArrayList<>();
-        strings.add(new PieEntry(30f,"aaa"));
-        strings.add(new PieEntry(70f,"bbb"));
+        strings.add(new PieEntry(30f,"数据结构和算法分析"));
+        strings.add(new PieEntry(20f,"JAVA高级设计"));
+        strings.add(new PieEntry(10f,"计算机英语"));
+        strings.add(new PieEntry(10f,"高等数学"));
+        strings.add(new PieEntry(20f,"体育和运动"));
+        strings.add(new PieEntry(10f,"晚修"));
 
-        PieDataSet dataSet = new PieDataSet(strings,"Label");
+        PieDataSet dataSet = new PieDataSet(strings,"");
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
-        colors.add(getResources().getColor(R.color.colorPrimary));
-        colors.add(getResources().getColor(R.color.colorAccent));
-        dataSet.setColors(colors);
+        colors.add(Color.parseColor("#00ff00"));
+        colors.add(Color.parseColor("#22cc00"));
+        colors.add(Color.parseColor("#cc2200"));
+        colors.add(Color.parseColor("#aa33aa"));
+        colors.add(Color.parseColor("#33aa33"));
+        colors.add(Color.parseColor("#ccaa22"));
 
+        dataSet.setColors(colors);
+        dataSet.setValueLinePart1OffsetPercentage(80f);
+        dataSet.setValueLineColor(Color.LTGRAY);
+        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        dataSet.setValueLinePart1OffsetPercentage(80f);
+        dataSet.setValueLinePart1Length(0.3f);
+        dataSet.setValueLinePart2Length(0.4f);
+        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        Legend legend = picChart.getLegend();
+        legend.setEnabled(false);
         PieData pieData = new PieData(dataSet);
         pieData.setDrawValues(true);
 
-        PieChart picChart = (PieChart)findViewById(R.id.pic_chart);
+
         picChart.setData(pieData);
         picChart.invalidate();
     }

@@ -31,6 +31,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
@@ -56,15 +57,15 @@ public class NoticeFragment extends Fragment {
     * */
     private void initPullRefreshLayout(){
         layout = (PullRefreshLayout)mview.findViewById(R.id.pullRefreshLayout);
-
-        //首次进入时自动刷新数据
-        layout.post(new Runnable() {
+        layout.setRefreshing(true);
+        layout.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getOnlineData();
+                // 刷新3秒完成
                 layout.setRefreshing(false);
             }
-        });
+        }, 3000);
 
         //监听
         layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
@@ -110,7 +111,7 @@ public class NoticeFragment extends Fragment {
                 .add("type" , "bookNotice")
                 .build();
         Request request = new Request.Builder()
-                .url("http://192.168.1.18/er.php")
+                .url(Constant.MAIN_PHP)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {

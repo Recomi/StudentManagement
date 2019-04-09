@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -26,7 +27,7 @@ public class RecommendFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mview = inflater.inflate(R.layout.fragment_recommend, container, false);
-        TextView view = mview.findViewById(R.id.xxxxx);
+        LinearLayout view = mview.findViewById(R.id.testbook);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

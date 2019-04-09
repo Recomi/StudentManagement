@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,21 @@ public class BookDetailActivity extends MySwipeBackActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        ImageView collect = (ImageView) findViewById(R.id.collect);
+        collect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BookDetailActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ImageView appointment = (ImageView) findViewById(R.id.appointment);
+        appointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BookDetailActivity.this, "已预约", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         //TabLayout

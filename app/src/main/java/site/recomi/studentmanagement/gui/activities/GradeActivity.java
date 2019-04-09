@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bin.david.form.core.SmartTable;
 import com.bin.david.form.core.TableConfig;
@@ -23,6 +24,7 @@ import com.bin.david.form.data.format.bg.BaseBackgroundFormat;
 import com.bin.david.form.data.format.bg.BaseCellBackgroundFormat;
 import com.bin.david.form.data.style.FontStyle;
 import com.bin.david.form.data.style.LineStyle;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +42,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
@@ -130,32 +133,64 @@ public class GradeActivity extends MySwipeBackActivity {
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()
                 .add("type" , "grade")
-                .add("studentID" , "17304590114")
+                .add("studentid" , "17304590114")
                 .build();
         Request request = new Request.Builder()
-                .url("http://192.168.1.18/er.php")
+                .url(Constant.MAIN_PHP)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 //针对异常情况处理
-                Log.d("xxxxx", "onFailure: "+ "error");
-        }
+                Log.d("xxxxx", "onFailure: "+ e);
+            }
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     finalData = new ArrayList<>();
-                    String data = response.body().string();
+                    String data =  new String(response.body().bytes(),"UTF-8");
+
+                    if (data != null && data.startsWith("\ufeff")) {
+                        data = data.substring(1);
+                        Log.d("xxxxxx", "onResponse: " + "123");
+                    }
                     Log.d("xxxxxx", "服务器返回的数据: " + data);
+                    String xx = "[{\"职业规划\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"数据库基础\":\"89\",\"计算机与科学\":\"85\",\"毛概\":\"68\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA中级设计\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"48\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA高级设计\":\"25\",\"计算机原理\":\"80\",\"毛概\":\"88\",\"安卓实训\":\"25\",\"计算机与设计\":\"85\"},{\"高数\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"高英\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"微信小程序实训\":\"75\",\"计算机与设计\":\"85\"}]";
                     String x = "[{\"职业规划\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"数据库基础\":\"89\",\"计算机与科学\":\"85\",\"毛概\":\"68\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA中级设计\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"48\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA高级设计\":\"25\",\"计算机原理\":\"80\",\"毛概\":\"88\",\"安卓实训\":\"25\",\"计算机与设计\":\"85\"},{\"高数\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"高英\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"微信小程序实训\":\"75\",\"计算机与设计\":\"85\"}]";
-                    JSONArray dataArray = new JSONArray(x);
+                    if (data.equals(x)){
+                        Log.d("xxxx", "onResponse:ok ");
+                    }
+                    JSONArray dataArray = new JSONArray(xx);
                     for (int i=0;i <= dataArray.length(); i++){
                         finalData.add(dataArray.getJSONObject(i));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (finalData != null) {
+                            JSONObject data = finalData.get(0);
+                            Iterator<String> it = data.keys();
+                            while (it.hasNext()) {
+                                try {
+                                    String key = it.next();
+                                    int value = Integer.parseInt(data.getString(key));
+                                    show.add(new StudentGrade(key, value));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            smartTable.setData(show);
+                            show.clear();
+                        }
+
+                    }
+                });
             }
         });
     }

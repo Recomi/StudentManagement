@@ -15,652 +15,706 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
-                android:id="@+id/royalRobbinsBlock"
-                android:background="#ffffff"
-                android:orientation="vertical"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+            <!--大标题-->
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp">
-                <!--大标题-->
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginLeft="13dp"
-                    android:paddingBottom="20dp">
+                android:layout_marginRight="13dp"
+                android:layout_marginLeft="13dp"
+                android:paddingBottom="20dp">
 
-                    <TextView
-                        android:layout_marginTop="4dp"
-                        android:id="@+id/xxxxx"
-                        android:layout_width="337dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="力推图书"
-                        android:textColor="#000000"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="28dp"
-                        android:background="@drawable/btn_circle"
-                        android:text="全部"
-                        android:textColor="#B5000000"
-                        android:textSize="13.5dp" />
-                </LinearLayout>
-                <!--内容-->
-                <LinearLayout
-                    android:id="@+id/royalRobbinsItem"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="337dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <!--one-->
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="精品推荐"
+                    android:textColor="#000000"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/btn_circle"
+                    android:text="全部"
+                    android:textColor="#B5000000"
+                    android:textSize="13.5dp" />
+            </LinearLayout>
+            <!--内容-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!--one-->
+                <LinearLayout
+                    android:id="@+id/testbook"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <!--图-->
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
+                        app:cardElevation="0dp">
+                        <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                app:srcCompat="@drawable/testpic2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="未来简史" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <!--图-->
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="0dp">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                app:srcCompat="@drawable/test3" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="沉思录" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <!--图-->
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="0dp">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                app:srcCompat="@drawable/test4" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="给大忙人看的佛法" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:background="#ffffff"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+                    <!--大标题-->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginLeft="13dp"
+                        android:paddingBottom="20dp">
+
+                        <TextView
+                            android:layout_width="337dp"
                             android:layout_height="wrap_content"
-                            app:cardElevation="0dp">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:text="文学"
+                            android:textColor="#000000"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
 
-                        </android.support.v7.widget.CardView>
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/btn_circle"
+                            android:text="全部"
+                            android:textColor="#B5000000"
+                            android:textSize="13.5dp" />
                     </LinearLayout>
+                    <!--内容-->
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <!--one-->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            app:cardElevation="0dp">
-                            <LinearLayout
-                                android:orientation="vertical"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
+                                    android:layout_height="wrap_content">
 
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test5" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="鲨权力" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            app:cardElevation="0dp">
-                            <LinearLayout
-                                android:orientation="vertical"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
+                                    android:layout_height="wrap_content">
 
-                        </android.support.v7.widget.CardView>
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test6" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="甄嬛著稿" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test7" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="超级催眠术" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+
+
                     </LinearLayout>
-
-
                 </LinearLayout>
+
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/royalRobbinsBlock"
-                android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp">
-                <!--大标题-->
+                android:layout_height="match_parent">
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:background="#ffffff"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginLeft="13dp"
-                    android:paddingBottom="20dp">
-
-                    <TextView
-                        android:layout_marginTop="4dp"
-                        android:id="@+id/xxxxx"
-                        android:layout_width="337dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+                    <!--大标题-->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="力推图书"
-                        android:textColor="#000000"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
+                        android:layout_marginRight="13dp"
+                        android:layout_marginLeft="13dp"
+                        android:paddingBottom="20dp">
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="28dp"
-                        android:background="@drawable/btn_circle"
-                        android:text="全部"
-                        android:textColor="#B5000000"
-                        android:textSize="13.5dp" />
+                        <TextView
+                            android:layout_width="337dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:text="历史"
+                            android:textColor="#000000"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/btn_circle"
+                            android:text="全部"
+                            android:textColor="#B5000000"
+                            android:textSize="13.5dp" />
+                    </LinearLayout>
+                    <!--内容-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <!--one-->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test8" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text="把最好的自己给孩子" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test9" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="遥远的村歌" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test10" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="朝花夕拾" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
                 </LinearLayout>
-                <!--内容-->
-                <LinearLayout
-                    android:id="@+id/royalRobbinsItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <!--one-->
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
 
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-
-
-                </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/royalRobbinsBlock"
-                android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp">
-                <!--大标题-->
+                android:layout_height="match_parent">
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:background="#ffffff"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginLeft="13dp"
-                    android:paddingBottom="20dp">
-
-                    <TextView
-                        android:layout_marginTop="4dp"
-                        android:id="@+id/xxxxx"
-                        android:layout_width="337dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+                    <!--大标题-->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="力推图书"
-                        android:textColor="#000000"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
+                        android:layout_marginRight="13dp"
+                        android:layout_marginLeft="13dp"
+                        android:paddingBottom="20dp">
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="28dp"
-                        android:background="@drawable/btn_circle"
-                        android:text="全部"
-                        android:textColor="#B5000000"
-                        android:textSize="13.5dp" />
+                        <TextView
+                            android:layout_width="337dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:text="名著"
+                            android:textColor="#000000"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/btn_circle"
+                            android:text="全部"
+                            android:textColor="#B5000000"
+                            android:textSize="13.5dp" />
+                    </LinearLayout>
+                    <!--内容-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <!--one-->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test11" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="水浒传" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test12" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="明朝那些事儿" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test13" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="七年花开" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
                 </LinearLayout>
-                <!--内容-->
-                <LinearLayout
-                    android:id="@+id/royalRobbinsItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <!--one-->
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
 
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-
-
-                </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/royalRobbinsBlock"
-                android:background="#ffffff"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp">
-                <!--大标题-->
+                android:layout_height="match_parent">
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:background="#ffffff"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginLeft="13dp"
-                    android:paddingBottom="20dp">
-
-                    <TextView
-                        android:layout_marginTop="4dp"
-                        android:id="@+id/xxxxx"
-                        android:layout_width="337dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+                    <!--大标题-->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="力推图书"
-                        android:textColor="#000000"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
+                        android:layout_marginRight="13dp"
+                        android:layout_marginLeft="13dp"
+                        android:paddingBottom="20dp">
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="28dp"
-                        android:background="@drawable/btn_circle"
-                        android:text="全部"
-                        android:textColor="#B5000000"
-                        android:textSize="13.5dp" />
+                        <TextView
+                            android:layout_width="337dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:text="其他"
+                            android:textColor="#000000"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/btn_circle"
+                            android:text="全部"
+                            android:textColor="#B5000000"
+                            android:textSize="13.5dp" />
+                    </LinearLayout>
+                    <!--内容-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <!--one-->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test14" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="闺蜜" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test15" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="廬相之书" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <!--图-->
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:srcCompat="@drawable/test16" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="艾青选集" />
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
                 </LinearLayout>
-                <!--内容-->
-                <LinearLayout
-                    android:id="@+id/royalRobbinsItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <!--one-->
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
 
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-
-
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/royalRobbinsBlock"
-                android:background="#ffffff"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp">
-                <!--大标题-->
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginLeft="13dp"
-                    android:paddingBottom="20dp">
-
-                    <TextView
-                        android:layout_marginTop="4dp"
-                        android:id="@+id/xxxxx"
-                        android:layout_width="337dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="力推图书"
-                        android:textColor="#000000"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="28dp"
-                        android:background="@drawable/btn_circle"
-                        android:text="全部"
-                        android:textColor="#B5000000"
-                        android:textSize="13.5dp" />
-                </LinearLayout>
-                <!--内容-->
-                <LinearLayout
-                    android:id="@+id/royalRobbinsItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <!--one-->
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <!--图-->
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:srcCompat="@drawable/testpic2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp" />
-                                <TextView
-                                    android:text="3124344231"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"/>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
-
-
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
