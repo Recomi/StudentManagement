@@ -12,8 +12,9 @@ import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.BookAppointmentActivity;
 import site.recomi.studentmanagement.gui.activities.BookCollectActivity;
 import site.recomi.studentmanagement.gui.activities.BookHistoryActivity;
+import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 
-public class PersonalFragment extends Fragment implements View.OnClickListener {
+public class PersonalFragment extends BaseFragment implements View.OnClickListener {
     View mview;
 
     @Override
@@ -26,6 +27,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mview = inflater.inflate(R.layout.fragment_personal, container, false);
+        mContext = mview.getContext();
         CardView collect = mview.findViewById(R.id.collect);
         collect.setOnClickListener(this);
         CardView history = mview.findViewById(R.id.history);
@@ -41,13 +43,13 @@ public class PersonalFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.collect:
-                getActivity().startActivity(new Intent(getContext() , BookCollectActivity.class));
+                mContext.startActivity(new Intent(getContext() , BookCollectActivity.class));
                 break;
             case R.id.history:
-                getActivity().startActivity(new Intent(getContext() , BookHistoryActivity.class));
+                mContext.startActivity(new Intent(getContext() , BookHistoryActivity.class));
                 break;
             case R.id.appointment:
-                getActivity().startActivity(new Intent(getContext() , BookAppointmentActivity.class));
+                mContext.startActivity(new Intent(getContext() , BookAppointmentActivity.class));
                 break;
         }
     }
