@@ -14,8 +14,8 @@ import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 
 public class BaseFragment extends Fragment {
-    View mView;
-    Context mContext;
+    public View mView;
+    public Context mContext;
 
     /**
      * 通过活动数组列表和点击的位置，代替switch-case启动反射的活动
@@ -30,7 +30,7 @@ public class BaseFragment extends Fragment {
      * 只启动活动，不进行其他操作
      * 传入：活动的class
      * */
-    private void startActivityOnly(Context context, Class c) {
+    public void startActivityOnly(Context context, Class c) {
         Intent intent = new Intent(context, c);
         startActivity(intent);
     }

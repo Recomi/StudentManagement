@@ -13,11 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <AutoCompleteTextView
-            android:id="@+id/input_signup_name"
+            android:id="@+id/input_signup_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:hint="User name"
+            android:hint="学号"
+            android:inputType="number"
             android:maxLines="1"
             android:textSize="18sp"
             android:singleLine="true"/>
@@ -26,11 +27,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <AutoCompleteTextView
-            android:id="@+id/input_signup_account"
+            android:id="@+id/input_signup_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:hint="Log in Email"
+            android:hint="姓名"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <AutoCompleteTextView
+            android:id="@+id/input_signup_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:hint="手机号码"
+            android:inputType="number"
             android:maxLines="1"
             android:textSize="18sp"
             android:singleLine="true"/>
@@ -43,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:hint="Password"
+            android:hint="输入密码"
             android:maxLines="1"
             android:textSize="18sp"
             android:singleLine="true"/>
@@ -56,15 +72,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:hint="Password again"
+            android:hint="再次输入密码"
             android:maxLines="1"
             android:textSize="18sp"
             android:singleLine="true"/>
     </android.support.design.widget.TextInputLayout>
     <Button
-        android:id="@+id/button_signup_signup"
+        android:id="@+id/btn_signup"
         android:textColor="#000794"
-        android:text="Sign up"
+        android:text="确认注册"
         android:textAlignment="center"
         android:textStyle="normal"
         android:textAllCaps="false"
