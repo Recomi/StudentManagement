@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".gui.activities.mineFeatures.ViewHistoryActivity"></activity>
+        <activity android:name=".gui.activities.library.CountAllBookLikeActivity" ></activity>
+        <activity android:name=".gui.activities.mineFeatures.ViewHistoryActivity" />
         <activity android:name=".gui.activities.mineFeatures.MyGroupActivity" />
         <activity android:name=".gui.activities.mineFeatures.MyCollectionsActivity" />
         <activity android:name=".gui.activities.mineFeatures.MyClassActivity" />
@@ -77,15 +78,15 @@
         <activity
             android:name=".gui.activities.mineFeatures.SettingsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".gui.activities.notes.NewDiaryActivity"
+        <activity
+            android:name=".gui.activities.notes.NewDiaryActivity"
             android:label="新建笔记"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".gui.activities.notes.ViewDiaryActivity"
             android:label="@string/view_diary_appname"
-            android:windowSoftInputMode="adjustNothing|stateHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustNothing|stateHidden" />
     </application>
 
 </manifest>
