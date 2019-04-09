@@ -3,24 +3,24 @@ package site.recomi.studentmanagement.other;
 * 社团活动中添加按钮中recyclerView列表的实体类
 * */
 public class CampusAssociationItem {
-    private int imgSrc;             //头像地址
+    private String imgSrc;             //头像地址
     private String name;            //社团名
     private String subTitle;        //子标题
     private Boolean isSelect = false;      //是否选中,默认为不选中
 
 
-    public CampusAssociationItem(int imgSrc , String name ,  String subTitle ,Boolean isSelect){
+    public CampusAssociationItem(String imgSrc , String name ,  String subTitle ,Boolean isSelect){
         this.imgSrc = imgSrc;
         this.name = name;
         this.subTitle = subTitle;
         this.isSelect = isSelect;
     }
 
-    public int getImgSrc() {
+    public String getImgSrc() {
         return imgSrc;
     }
 
-    public void setImgSrc(int imgSrc) {
+    public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
     }
 
@@ -32,7 +32,7 @@ public class CampusAssociationItem {
         this.subTitle = subTitle;
     }
 
-    public CampusAssociationItem(int imgSrc , String name , String subTitle){
+    public CampusAssociationItem(String imgSrc , String name , String subTitle){
         this.imgSrc = imgSrc;
         this.name = name;
         this.subTitle = subTitle;

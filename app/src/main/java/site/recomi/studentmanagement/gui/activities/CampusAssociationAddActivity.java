@@ -52,11 +52,10 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
 
 
         List<CampusAssociationItem> lists = new ArrayList<>();
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
-        lists.add(new CampusAssociationItem(1,"45654654","45654",false));
+        lists.add(new CampusAssociationItem("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2585479940,133847490&fm=26&gp=0.jpg","吉他协会","让音乐代替人生!",false));
+        lists.add(new CampusAssociationItem("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1801822150,3015823651&fm=26&gp=0.jpg","学生会","校园核心社团!",false));
+        lists.add(new CampusAssociationItem("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1855551208,1635420690&fm=26&gp=0.jpg","羽毛协会","羽毛之巅!",false));
+        lists.add(new CampusAssociationItem("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2028409111,3687555525&fm=26&gp=0.jpg","乒乓球协会","快乐运动!",false));
 
 
         adapter = new BaseRecycleViewAdapter<CampusAssociationItem>(this ,lists , R.layout.recycler_view_item_1) {
@@ -64,7 +63,7 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
             public void convert(ViewHolder holder, CampusAssociationItem campusAssociationItem, int position) {
                     holder.setText(R.id.textView , campusAssociationItem.getName());
                     holder.setText(R.id.textView2 , campusAssociationItem.getSubTitle());
-//                    holder.setImageResource(R.id.imageView2 , campusAssociationItem.getImgSrc());
+                    holder.setImageOnlineResource(R.id.imageView2 , campusAssociationItem.getImgSrc());
 
 
 

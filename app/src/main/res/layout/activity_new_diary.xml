@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/app_bar_base"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <EditText
+            android:id="@+id/text_new_title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:hint="@string/new_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp">
-            <EditText
-                android:id="@+id/text_new_title"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:hint="@string/new_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:background="#00000000"/>
-            <EditText
+            android:singleLine="true"
+            android:background="#00000000"/>
+        <EditText
                 android:id="@+id/text_new_content"
                 android:textSize="20sp"
                 android:hint="@string/new_content"
@@ -35,16 +32,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00000000"/>
-            <EditText
-                android:id="@+id/text_new_weather"
-                android:hint="@string/new_weather"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <EditText
-                android:id="@+id/text_new_address"
-                android:hint="@string/new_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
-</android.support.design.widget.CoordinatorLayout>
+        <EditText
+            android:id="@+id/text_new_weather"
+            android:hint="@string/new_weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/text_new_address"
+            android:hint="@string/new_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

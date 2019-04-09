@@ -31,6 +31,7 @@ import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.GirdButtonEntity;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.BookActivity;
+import site.recomi.studentmanagement.gui.activities.BrowserActivity;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
@@ -46,8 +47,8 @@ import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener
 public class HomeFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
-    @BindView(R.id.recy_main_newest)
-    RecyclerView recy;
+    /*@BindView(R.id.recy_main_newest)
+    RecyclerView recy;*/
     @BindView(R.id.recy_girdBtn_home)
     RecyclerView recy_girdBtn;
     @BindView(R.id.nestedSV_home)
@@ -75,7 +76,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 //        initView();                 //加载视图布局
         initGirdButtons();     //加载网格按钮布局
-        initNewestData();     //初始化最新的数据
+//        initNewestData();     //初始化最新的数据
         initMarqueeView(mView); //初始化滚动公告栏数据
         return mView;
     }
@@ -169,9 +170,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
         );
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recy.setLayoutManager(manager);
+        /*recy.setLayoutManager(manager);
         recy.setAdapter(adapter);
-        recy.setNestedScrollingEnabled(false);
+        recy.setNestedScrollingEnabled(false);*/
     }
 
 
@@ -187,17 +188,40 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void initMarqueeView(View view){
         MarqueeView marqueeView = view.findViewById(R.id.marqueeView);
         List<String> info = new ArrayList<>();
-        info.add("11111111111111");
-        info.add("22222222222222");
-        info.add("33333333333333");
-        info.add("44444444444444");
-        info.add("55555555555555");
-        info.add("66666666666666");
+        info.add("2019年五年一贯制大专招生简章");
+        info.add("电类职业技能鉴定报考通知");
+        info.add("2019自主招生简章");
+        info.add("计算机水平考试报名通知");
+
         marqueeView.startWithList(info);
         marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, TextView textView) {
-                Toast.makeText(mContext, String.valueOf(position) + ". " + textView.getText(), Toast.LENGTH_SHORT).show();
+                Intent intent;
+                switch (position){
+                    case 0:
+                            intent = new Intent(getActivity() , BrowserActivity.class);
+                            intent.putExtra("site", "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/wunianyiguanzhizhaoshengkuaixun/118.html");
+                            getActivity().startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(getActivity() , BrowserActivity.class);
+                        intent.putExtra("site", "http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1771");
+                        getActivity().startActivity(intent);
+
+                        break;
+                    case 2:
+                        intent = new Intent(getActivity() , BrowserActivity.class);
+                        intent.putExtra("site", "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/zizhuzhaoshengkuaixun/112.html");
+                        getActivity().startActivity(intent);
+
+                        break;
+                    case 3:
+                        intent = new Intent(getActivity() , BrowserActivity.class);
+                        intent.putExtra("site", "                        http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1768\n");
+                        getActivity().startActivity(intent);
+                        break;
+                }
             }
         });
     }
