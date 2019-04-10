@@ -1,6 +1,7 @@
 package site.recomi.studentmanagement.gui.activities;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -78,7 +79,7 @@ import site.recomi.studentmanagement.util.face.RequestFeatureStatus;
 import site.recomi.studentmanagement.widget.FaceRectView;
 import site.recomi.studentmanagement.widget.ShowFaceInfoAdapter;
 
-public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObserver.OnGlobalLayoutListener {
+public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeObserver.OnGlobalLayoutListener {
     String id;
     public static final int SHOW_INFO = 0;
     boolean is_loaded = true;
@@ -168,7 +169,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_and_recognize);
+        setContentView(R.layout.activity_register_face);
         //保持亮屏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -299,7 +300,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(FaceLoginActivity.this, "fr成功", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterFaceActivity.this, "fr成功", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -309,7 +310,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(FaceLoginActivity.this, "直接搜索", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterFaceActivity.this, "直接搜索", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -318,7 +319,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(FaceLoginActivity.this, "活体检测通过", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterFaceActivity.this, "活体检测通过", Toast.LENGTH_SHORT).show();
                             }
                         });
                         searchFace(faceFeature, requestId);
@@ -328,7 +329,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(FaceLoginActivity.this, "活体检测未出结果", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterFaceActivity.this, "活体检测未出结果", Toast.LENGTH_SHORT).show();
                             }
                         });
                         getFeatureDelayedDisposables.add(Observable.timer(WAIT_LIVENESS_INTERVAL, TimeUnit.MILLISECONDS)
@@ -365,7 +366,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                         .frThreadNum(MAX_DETECT_NUM)
                         .previewSize(previewSize)
                         .faceListener(faceListener)
-                        .currentTrackId(ConfigUtil.getTrackId(FaceLoginActivity.this.getApplicationContext()))
+                        .currentTrackId(ConfigUtil.getTrackId(RegisterFaceActivity.this.getApplicationContext()))
                         .build();
             }
 
@@ -397,7 +398,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                         @Override
                         public void subscribe(ObservableEmitter<Boolean> emitter) {
                             boolean success = FaceServer.getInstance()
-                                    .register(FaceLoginActivity.this, nv21.clone(), previewSize.width, previewSize.height, "已注册 " + faceHelper.getCurrentTrackId());
+                                    .register(RegisterFaceActivity.this, nv21.clone(), previewSize.width, previewSize.height, "已注册 " + faceHelper.getCurrentTrackId());
                             emitter.onNext(success);
 
                             TextView tv_show_info = findViewById(R.id.tv_show_info);
@@ -414,14 +415,24 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
 
                                 @Override
                                 public void onNext(Boolean success) {
-                                    String result = success ? "注册成功!" : "注册失败！";
-                                    Toast.makeText(FaceLoginActivity.this, result, Toast.LENGTH_SHORT).show();
+                                    String result = success ? "注册成功！" : "注册失败！";
+                                    Toast.makeText(RegisterFaceActivity.this, result, Toast.LENGTH_SHORT).show();
+
+                                    //保存faceid
+                                    if (success) {
+                                        String faceid = faceHelper.getCurrentTrackId() + "";
+                                        SharedPreferences.Editor editor = getSharedPreferences("faceid",MODE_PRIVATE).edit();
+                                        editor.putString("faceid", faceid);
+                                        editor.apply();
+                                        Log.e("faceid", faceid);
+                                        onBackPressed();
+                                    }
                                     registerStatus = REGISTER_STATUS_DONE;
                                 }
 
                                 @Override
                                 public void onError(Throwable e) {
-                                    Toast.makeText(FaceLoginActivity.this, "注册失败！", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterFaceActivity.this, "register failed!", Toast.LENGTH_SHORT).show();
                                     registerStatus = REGISTER_STATUS_DONE;
                                 }
 

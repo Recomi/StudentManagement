@@ -97,6 +97,10 @@
             android:name=".gui.activities.FaceLoginActivity"
             android:label="人脸登录"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".gui.activities.RegisterFaceActivity"
+            android:label="人脸录入"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

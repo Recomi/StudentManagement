@@ -15,9 +15,12 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.gui.activities.RegisterFaceActivity;
 import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 
 public class SignUpFragment extends BaseFragment {
+    @BindView(R.id.btn_register_facePic)
+    Button btn_register_facePic;
     @BindView(R.id.btn_signup)
     Button btn_signup;
     @BindView(R.id.input_signup_id)
@@ -47,6 +50,12 @@ public class SignUpFragment extends BaseFragment {
 
     //初始化视图布局监听
     private void initView() {
+        btn_register_facePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityOnly(mContext, RegisterFaceActivity.class);
+            }
+        });
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

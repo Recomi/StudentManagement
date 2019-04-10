@@ -245,5 +245,4 @@ public class SignInFragment extends BaseFragment {
             toast.show();
         }
     }
-
 }
