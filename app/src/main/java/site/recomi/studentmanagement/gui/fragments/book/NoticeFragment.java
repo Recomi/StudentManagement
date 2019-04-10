@@ -35,10 +35,10 @@ import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
+import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.other.BookNoticeEntitiy;
 
-public class NoticeFragment extends Fragment {
-    View mview;
+public class NoticeFragment extends BaseFragment {
     BaseRecycleViewAdapter<BookNoticeEntitiy> adapter;
     List<BookNoticeEntitiy> lists;              //待显示的数据列表
     PullRefreshLayout layout;           //刷新按钮
@@ -46,17 +46,18 @@ public class NoticeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mview = inflater.inflate(R.layout.fragment_notice, container, false);
+        mView = inflater.inflate(R.layout.fragment_notice, container, false);
+        mContext = mView.getContext();
         initRecyView();
         initPullRefreshLayout();
-        return mview;
+        return mView;
     }
 
     /*
     * 初始化刷新按钮
     * */
     private void initPullRefreshLayout(){
-        layout = (PullRefreshLayout)mview.findViewById(R.id.pullRefreshLayout);
+        layout = (PullRefreshLayout)mView.findViewById(R.id.pullRefreshLayout);
         layout.setRefreshing(true);
         layout.postDelayed(new Runnable() {
             @Override
@@ -87,7 +88,7 @@ public class NoticeFragment extends Fragment {
     * 初始化列表
     * */
     private void initRecyView(){
-        RecyclerView recyclerView = mview.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = mView.findViewById(R.id.recyclerView);
         lists = new ArrayList<>();
         adapter = new BaseRecycleViewAdapter<BookNoticeEntitiy>(getContext() ,lists , R.layout.recycler_view_item) {
             @Override
@@ -135,15 +136,8 @@ public class NoticeFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                if (getActivity() != null){
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-                }
-
+                if (getActivity() != null)
+                    getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
                 Log.d("data", "服务器返回的数据: " + responseData);
             }
         });
