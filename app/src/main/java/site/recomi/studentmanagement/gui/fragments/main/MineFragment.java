@@ -11,18 +11,26 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baoyz.widget.PullRefreshLayout;
+import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.TitleAndIconEntity;
 import site.recomi.studentmanagement.gui.activities.AccountActivity;
@@ -38,6 +46,7 @@ import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
+import site.recomi.studentmanagement.other.LoginEvent;
 
 public class MineFragment extends BaseFragment {
     @BindView(R.id.pullRF_mine)
@@ -46,14 +55,18 @@ public class MineFragment extends BaseFragment {
     CardView card_mine;
     @BindView(R.id.recy_mine_features)
     RecyclerView recy_features;
-    @BindView(R.id.tv_mine_name)
+    @BindView(R.id.tv_mine_name)        //用户名
     TextView tv_mine_name;
+    @BindView(R.id.circleImageView)         //用户头像
+    CircleImageView circleImageView;
+
 
     View mView;
     Context mContext;
     ViewPager vp;
     BaseRecycleViewAdapter<TitleAndIconEntity> adapter;
     List<TitleAndIconEntity> moreFeaturesList;
+
 
     int testData = 0;
     int testDataTop = 0;
@@ -66,10 +79,27 @@ public class MineFragment extends BaseFragment {
         mView = inflater.inflate(R.layout.fragment_mine, container, false);
         mContext = mView.getContext();
         ButterKnife.bind(this, mView);   //绑定ButterKnife
-
+        EventBus.getDefault().register(this);
         initView();                 //加载视图布局
         tv_mine_name.setText(userName);
         return mView;
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    //处理login活动传过来的事件(登陆成功才传)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getUserInfo(LoginEvent loginEvent) {
+        //更新个人主页信息
+        tv_mine_name.setText(loginEvent.getName());
+        Picasso.with(mContext).load(loginEvent.getHeadphoto()).into(circleImageView);
+        //持久化数据，以便下回再次进入时使用
+
     }
 
     @Override
@@ -136,6 +166,7 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
+
     }
 
     @Override

@@ -17,7 +17,5 @@ public class StudentGrade {
         this.name = name;
         this.grade = grade;
     }
-
-
 }
 
