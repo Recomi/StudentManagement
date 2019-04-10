@@ -48,6 +48,8 @@ import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 import site.recomi.studentmanagement.other.LoginEvent;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class MineFragment extends BaseFragment {
     @BindView(R.id.pullRF_mine)
     PullRefreshLayout pull_refresh;
@@ -98,6 +100,14 @@ public class MineFragment extends BaseFragment {
         //更新个人主页信息
         tv_mine_name.setText(loginEvent.getName());
         Picasso.with(mContext).load(loginEvent.getHeadphoto()).into(circleImageView);
+
+        if (getContext() != null){
+
+            SharedPreferences.Editor editor = getContext().getSharedPreferences("account",MODE_PRIVATE).edit();
+            editor.putString("name",loginEvent.getName());
+            editor.putString("headphoto",loginEvent.getHeadphoto());
+            editor.apply();
+        }
         //持久化数据，以便下回再次进入时使用
 
     }
@@ -166,7 +176,11 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account",MODE_PRIVATE);
+        String name = sharedPreferences.getString("name","未登录");
+        String headphoto = sharedPreferences.getString("headphoto","未登录");
+        tv_mine_name.setText(name);
+        Picasso.with(mContext).load(headphoto).into(circleImageView);
     }
 
     @Override
@@ -188,7 +202,7 @@ public class MineFragment extends BaseFragment {
      * */
     private void checkIsLoggedIn(Context context) {
         //获取当前登录的账户名，未登录则显示未登录
-        SharedPreferences sharedPreferences = context.getSharedPreferences("UserBaseInfo",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserBaseInfo", MODE_PRIVATE);
         String getUserName = sharedPreferences.getString("name","");
         if (getUserName != null && ! getUserName.equals("")) {
             userName = getUserName;

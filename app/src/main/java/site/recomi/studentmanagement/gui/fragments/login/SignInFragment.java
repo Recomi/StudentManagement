@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -67,6 +68,10 @@ public class SignInFragment extends BaseFragment {
     Button btn_signin_face;
     @BindView(R.id.btn_load_face)
     Button btn_load_face;
+    @BindView(R.id.input_account)
+    AutoCompleteTextView input_account;
+    @BindView(R.id.input_password)
+    AutoCompleteTextView input_password;
 
     @Nullable
     @Override
