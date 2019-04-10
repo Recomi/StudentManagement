@@ -36,10 +36,26 @@ public class PagerViewAdapter extends android.support.v4.view.PagerAdapter {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent;
+                switch (position){
+                    case 0:
+                        intent = new Intent(mContext , BrowserActivity.class);
+                        intent.putExtra("site" , "http://113.107.212.69:81/hdsbzt/19da/shownews.asp?id=1458");
+                        mContext.startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(mContext , BrowserActivity.class);
+                        intent.putExtra("site" , "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/yixuekaozhaoshengkuaixun/113.html");
+                        mContext.startActivity(intent);
+                        break;
+                    case 2:
+                        intent = new Intent(mContext , BrowserActivity.class);
+                        intent.putExtra("site" , "http://www.luodingpoly.cn/");
+                        mContext.startActivity(intent);
+                        break;
+                }
 //                "http://113.107.212.69:81/hdsbzt/19da/shownews.asp?id=1458"   "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/yixuekaozhaoshengkuaixun/113.html"  "http://www.luodingpoly.cn/"
-                    Intent intent = new Intent(mContext , BrowserActivity.class);
-                    intent.putExtra("site" , "http://113.107.212.69:81/hdsbzt/19da/shownews.asp?id=1458");
-                    mContext.startActivity(intent);
+
             }
         });
         Picasso.with(mContext).load(mData.get(position)).into(iv);

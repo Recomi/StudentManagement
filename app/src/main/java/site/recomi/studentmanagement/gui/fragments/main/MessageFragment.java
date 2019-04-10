@@ -54,28 +54,22 @@ public class MessageFragment extends Fragment {
 
     private void initView() {
         messages = new ArrayList<>();
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
-        messages.add(new Message("林海志",R.drawable.headicon1,"今天有空吗？",new Date()));
+        messages.add(new Message("温柔",R.drawable.headicon1,"今天有空吗","5/3 9:50"));
+        messages.add(new Message("牵强的小草",R.drawable.bg10,"今天一起去图书馆学习","5/3 8:10"));
+        messages.add(new Message("团长",R.drawable.test13,"明天过来社团这边组织一下活动","5/2 1:00"));
+        messages.add(new Message("古兄",R.drawable.testbook2,"你可真是个小机灵鬼","5/1 2:00"));
         BaseRecycleViewAdapter<Message> adapter = new BaseRecycleViewAdapter<Message>(mContext,messages,R.layout.list_message_list) {
             @Override
             public void convert(ViewHolder holder, Message message,int position) {
-                Calendar calendar = GregorianCalendar.getInstance();
-                calendar.setTime(message.getReceivingTime());
-                String time = calendar.get(Calendar.HOUR_OF_DAY) + ":"
-                        + calendar.get(Calendar.MINUTE);
+//                Calendar calendar = GregorianCalendar.getInstance();
+//                calendar.setTime(message.getReceivingTime());
+//                String time = calendar.get(Calendar.HOUR_OF_DAY) + ":"
+//                        + calendar.get(Calendar.MINUTE);
+
                 holder.setText(R.id.tv_sender,message.getSender());
                 holder.setText(R.id.tv_content,message.getContent());
                 holder.setImageResource(R.id.img_headicon,message.getHeadiconRes());
-                holder.setText(R.id.tv_time,time);
+                holder.setText(R.id.tv_time,message.getReceivingTime());
             }
         };
         LinearLayoutManager manager = new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false);

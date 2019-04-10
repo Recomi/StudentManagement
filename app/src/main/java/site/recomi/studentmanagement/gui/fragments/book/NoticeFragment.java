@@ -135,12 +135,15 @@ public class NoticeFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+                if (getActivity() != null){
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+
                 Log.d("data", "服务器返回的数据: " + responseData);
             }
         });

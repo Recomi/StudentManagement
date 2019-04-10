@@ -8,9 +8,9 @@ public class Message extends LitePalSupport {
     private String sender;
     private int headiconRes;
     private String content;
-    private Date receivingTime;
+    private String receivingTime;
 
-    public Message(String sender, int headiconRes, String content, Date receivingTime) {
+    public Message(String sender, int headiconRes, String content, String receivingTime) {
         this.sender = sender;
         this.headiconRes = headiconRes;
         this.content = content;
@@ -41,11 +41,11 @@ public class Message extends LitePalSupport {
         this.content = content;
     }
 
-    public Date getReceivingTime() {
+    public String getReceivingTime() {
         return receivingTime;
     }
 
-    public void setReceivingTime(Date receivingTime) {
+    public void setReceivingTime(String receivingTime) {
         this.receivingTime = receivingTime;
     }
 }

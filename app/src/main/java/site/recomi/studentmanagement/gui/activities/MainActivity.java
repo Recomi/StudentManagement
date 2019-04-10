@@ -55,6 +55,7 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
+        toolbar.setTitle("首页");
         setSupportActionBar(toolbar);
 
         //初始化UI控件
@@ -115,16 +116,16 @@ public class MainActivity extends BaseActivity
                 //设置一些参数
                 switch (position){
                     case 0:
-                        setTitle("首页");
+                        toolbar.setTitle("首页");
                         break;
                     case 1:
-                        setTitle("笔记");
+                        toolbar.setTitle("笔记");
                         break;
                     case 2:
-                        setTitle("消息");
+                        toolbar.setTitle("消息");
                         break;
                     case 3:
-                        setTitle("我");
+                        toolbar.setTitle("我");
                         break;
                 }
             }

@@ -33,6 +33,7 @@ import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.BookActivity;
 import site.recomi.studentmanagement.gui.activities.BrowserActivity;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
+import site.recomi.studentmanagement.gui.activities.CircleActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseMultiItemTypeRecyclerViewAdapter;
@@ -113,8 +114,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         startActivity(new Intent(getContext() , CampusAssociationActivity.class));
                         break;
                     case 4:
-//                        startActivity(new Intent(getContext() , BookActivity.class));
-                        Toast.makeText(getContext(),"444",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getContext() , CircleActivity.class));
                         break;
 
                 }
@@ -189,9 +189,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         MarqueeView marqueeView = view.findViewById(R.id.marqueeView);
         List<String> info = new ArrayList<>();
         info.add("2019年五年一贯制大专招生简章");
-        info.add("电类职业技能鉴定报考通知");
-        info.add("2019自主招生简章");
-        info.add("计算机水平考试报名通知");
+        info.add("关于电类职业技能鉴定报考通知");
+        info.add("关于2019年自主招生简章的通知");
+        info.add("关于计算机水平考试报名的通知");
 
         marqueeView.startWithList(info);
         marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
@@ -218,7 +218,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         break;
                     case 3:
                         intent = new Intent(getActivity() , BrowserActivity.class);
-                        intent.putExtra("site", "                        http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1768\n");
+                        intent.putExtra("site", "http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1768\n");
                         getActivity().startActivity(intent);
                         break;
                 }

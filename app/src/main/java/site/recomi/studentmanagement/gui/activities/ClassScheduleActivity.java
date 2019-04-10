@@ -67,10 +67,13 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
         smartTable.getConfig().setFixedCountRow(true);
         //统计行
         smartTable.getConfig().setFixedTitle(true);
+
     }
 
     public void initChart(){
         picChart = (PieChart)findViewById(R.id.pic_chart);
+        picChart.getDescription().setEnabled(false);    //设置是否开启描述
+
         List<PieEntry> strings = new ArrayList<>();
         strings.add(new PieEntry(30f,"数据结构和算法分析"));
         strings.add(new PieEntry(20f,"JAVA高级设计"));
@@ -82,12 +85,12 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
         PieDataSet dataSet = new PieDataSet(strings,"");
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
-        colors.add(Color.parseColor("#00ff00"));
-        colors.add(Color.parseColor("#22cc00"));
-        colors.add(Color.parseColor("#cc2200"));
-        colors.add(Color.parseColor("#aa33aa"));
-        colors.add(Color.parseColor("#33aa33"));
-        colors.add(Color.parseColor("#ccaa22"));
+        colors.add(Color.parseColor("#778899"));
+        colors.add(Color.parseColor("#F08080"));
+        colors.add(Color.parseColor("#90ee90"));
+        colors.add(Color.parseColor("#FF7F50"));
+        colors.add(Color.parseColor("#DAA520"));
+        colors.add(Color.parseColor("#FFA500"));
 
         dataSet.setColors(colors);
         dataSet.setValueLinePart1OffsetPercentage(80f);

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class GuideActivity extends AppCompatActivity {
     List<Integer> bitmaps = new ArrayList<>();
     ViewPager vp;
     Button start;
+    TextView one ,two ,three;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,16 @@ public class GuideActivity extends AppCompatActivity {
             }
         });
 
+        one = findViewById(R.id.textOne);
+        two = findViewById(R.id.textTwo);
+        three = findViewById(R.id.textThree);
+
+
         vp = findViewById(R.id.vp);
-        bitmaps.add(R.drawable.one);
-        bitmaps.add(R.drawable.two);
-        bitmaps.add(R.drawable.three);
+        bitmaps.add(R.drawable.start1);
+        bitmaps.add(R.drawable.start2);
+        bitmaps.add(R.drawable.start3);
+        one.setVisibility(View.VISIBLE);
         vp.setAdapter(new WelcomePagerViewAdapter(this ,bitmaps));
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -51,10 +59,24 @@ public class GuideActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+                if (position == 0){
+                    one.setVisibility(View.VISIBLE);
+                }else {
+                    one.setVisibility(View.GONE);
+                }
+
+                if (position == 1){
+                    two.setVisibility(View.VISIBLE);
+                }else {
+                    two.setVisibility(View.GONE);
+                }
+
                 if (position == 2){
                     start.setVisibility(View.VISIBLE);
+                    three.setVisibility(View.VISIBLE);
                 }else {
                     start.setVisibility(View.GONE);
+                    three.setVisibility(View.GONE);
                 }
             }
 

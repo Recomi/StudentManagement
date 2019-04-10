@@ -76,7 +76,7 @@
             <ImageButton
                 android:tooltipText="132"
                 android:id="@+id/bt_sharing_1"
-                app:srcCompat="@drawable/ic_comment"
+                app:srcCompat="@drawable/ic_like_small"
                 android:background="@android:color/white"
                 android:foreground="?selectableItemBackground"
                 android:paddingTop="8dp"
@@ -96,7 +96,7 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                app:srcCompat="@drawable/ic_comment"
+                app:srcCompat="@drawable/ic_share_small"
                 android:background="@android:color/white"
                 android:foreground="?selectableItemBackground"
                 android:paddingTop="8dp"
