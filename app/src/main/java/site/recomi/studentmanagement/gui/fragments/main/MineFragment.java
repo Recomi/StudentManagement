@@ -107,7 +107,10 @@ public class MineFragment extends BaseFragment {
     public void getUserInfo(LoginEvent loginEvent) {
         //更新个人主页信息
         tv_mine_name.setText(loginEvent.getName());
-        Picasso.with(mContext).load(loginEvent.getHeadphoto()).into(circleImageView);
+        if (loginEvent.getHeadphoto().equals("")){
+            circleImageView.setImageResource(R.drawable.headicon_default);
+        }else
+            Picasso.with(mContext).load(loginEvent.getHeadphoto()).into(circleImageView);
 
         if (getContext() != null){
 
@@ -186,14 +189,21 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("account",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("account",MODE_PRIVATE);
         String name = sharedPreferences.getString("name","未登录");
         String headphoto = sharedPreferences.getString("headphoto","");
         tv_mine_name.setText(name);
 
-        if (headphoto == null){
-            circleImageView.setImageResource(R.drawable.ic_nologin);
+        /**
+         * 当未登录时，显示默认图片，如果已有登录信息则显示网图
+         * */
+        if (headphoto != null && headphoto.equals("")){
+            circleImageView.setImageResource(R.drawable.headicon_default);
+        }else if ( !(headphoto != null && headphoto.equals(""))){
+            Picasso.with(mContext).load(headphoto).into(circleImageView);
         }
+        checkIsLoggedIn(mContext);
+
     }
 
     @Override

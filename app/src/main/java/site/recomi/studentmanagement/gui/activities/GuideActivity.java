@@ -55,13 +55,10 @@ public class GuideActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guide);
 
         start = findViewById(R.id.startButton);
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activeEngine(view);
-                startActivity(new Intent(GuideActivity.this , MainActivity.class));
-                GuideActivity.this.finish();
-            }
+        start.setOnClickListener(view -> {
+            activeEngine(view);
+            startActivity(new Intent(GuideActivity.this , MainActivity.class));
+            GuideActivity.this.finish();
         });
 
         one = findViewById(R.id.textOne);

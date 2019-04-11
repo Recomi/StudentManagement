@@ -1,6 +1,7 @@
 package site.recomi.studentmanagement.gui.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -214,6 +216,12 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
         int spanCount = (int) (dm.widthPixels / (getResources().getDisplayMetrics().density * 100 + 0.5f));
         recyclerShowFaceInfo.setLayoutManager(new GridLayoutManager(this, spanCount));
         recyclerShowFaceInfo.setItemAnimator(new DefaultItemAnimator());
+
+
+        //获取学号
+        SharedPreferences sharedPreferences = getSharedPreferences("UserBaseInfo",MODE_PRIVATE);
+        id = sharedPreferences.getString("id","");
+        Log.e("id","注册活动启动时拿到的学号id" + id);
     }
 
     /**
@@ -297,40 +305,24 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
                 //FR成功
                 if (faceFeature != null) {
 //                    Log.i(TAG, "onPreview: fr end = " + System.currentTimeMillis() + " trackId = " + requestId);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(RegisterFaceActivity.this, "fr成功", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    runOnUiThread(() -> Toast.makeText(RegisterFaceActivity.this, "fr成功", Toast.LENGTH_SHORT).show());
 
                     //不做活体检测的情况，直接搜索
                     if (!livenessDetect) {
                         searchFace(faceFeature, requestId);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(RegisterFaceActivity.this, "直接搜索", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        runOnUiThread(() -> Toast.makeText(RegisterFaceActivity.this, "直接搜索", Toast.LENGTH_SHORT).show());
                     }
                     //活体检测通过，搜索特征
                     else if (livenessMap.get(requestId) != null && livenessMap.get(requestId) == LivenessInfo.ALIVE) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(RegisterFaceActivity.this, "活体检测通过", Toast.LENGTH_SHORT).show();
-                            }
+                        runOnUiThread(() -> {
+//                                Toast.makeText(RegisterFaceActivity.this, "活体检测通过", Toast.LENGTH_SHORT).show();
                         });
                         searchFace(faceFeature, requestId);
                     }
                     //活体检测未出结果，延迟100ms再执行该函数
                     else if (livenessMap.get(requestId) != null && livenessMap.get(requestId) == LivenessInfo.UNKNOWN) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(RegisterFaceActivity.this, "活体检测未出结果", Toast.LENGTH_SHORT).show();
-                            }
+                        runOnUiThread(() -> {
+//                                Toast.makeText(RegisterFaceActivity.this, "活体检测未出结果", Toast.LENGTH_SHORT).show();
                         });
                         getFeatureDelayedDisposables.add(Observable.timer(WAIT_LIVENESS_INTERVAL, TimeUnit.MILLISECONDS)
                                 .subscribe(new Consumer<Long>() {
@@ -397,12 +389,17 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
                     Observable.create(new ObservableOnSubscribe<Boolean>() {
                         @Override
                         public void subscribe(ObservableEmitter<Boolean> emitter) {
+
+                            //获取学号
+                            SharedPreferences sharedPreferences = getSharedPreferences("UserBaseInfo",MODE_PRIVATE);
+                            String id = sharedPreferences.getString("id","");
+
                             boolean success = FaceServer.getInstance()
-                                    .register(RegisterFaceActivity.this, nv21.clone(), previewSize.width, previewSize.height, "已注册 " + faceHelper.getCurrentTrackId());
+//                                    .register(RegisterFaceActivity.this, nv21.clone(), previewSize.width, previewSize.height, "已注册 " + faceHelper.getCurrentTrackId());
+                                    .register(RegisterFaceActivity.this, nv21.clone(), previewSize.width, previewSize.height, id);
+                            //id
                             emitter.onNext(success);
 
-                            TextView tv_show_info = findViewById(R.id.tv_show_info);
-                            tv_show_info.setText("注册用户：" + faceHelper.getCurrentTrackId());
                         }
                     })
                             .subscribeOn(Schedulers.computation())
@@ -418,6 +415,13 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
                                     String result = success ? "注册成功！" : "注册失败！";
                                     Toast.makeText(RegisterFaceActivity.this, result, Toast.LENGTH_SHORT).show();
 
+                                    TextView tv_show_info = findViewById(R.id.tv_show_info);
+                                    tv_show_info.setText(result);
+
+                                    if (success) {
+                                        dialog_register_success(RegisterFaceActivity.this,"人脸信息录入成功","");
+                                    }
+
                                     //保存faceid
                                     if (success) {
                                         String faceid = faceHelper.getCurrentTrackId() + "";
@@ -425,6 +429,7 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
                                         editor.putString("faceid", faceid);
                                         editor.apply();
                                         Log.e("faceid", faceid);
+
                                         onBackPressed();
                                     }
                                     registerStatus = REGISTER_STATUS_DONE;
@@ -706,5 +711,23 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
                 }
             });
         }
+    }
+
+
+    public void dialog_register_success(Context context, String title, String message){
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(context);
+        normalDialog.setTitle(title);
+        normalDialog.setMessage(message);
+        normalDialog.setPositiveButton("确定",
+                (dialog, which) -> {
+                    finish();
+                });
+//        normalDialog.setNegativeButton(R.string.exit_cancel,
+//                (dialog, which) -> {
+//
+//                });
+        // 显示
+        normalDialog.show();
     }
 }

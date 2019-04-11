@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,10 +79,7 @@ public class SignUpFragment extends BaseFragment {
             public void onClick(View v) {
                 saveLocalUserBaseInfo();
                 getOnlineData();
-                if (getActivity() != null)
 
-                    getActivity().startActivity(new Intent(getActivity() , RegisterFaceActivity.class));
-                    getActivity().onBackPressed();
             }
         });
     }
@@ -124,23 +122,16 @@ public class SignUpFragment extends BaseFragment {
                     if (status != null){
                         switch (status) {
                             case "succeed":
-
+                                toastShortMessage("注册成功，请录入人脸信息");
+                                if (getActivity() != null) {
+                                    getActivity().startActivity(new Intent(getActivity(), RegisterFaceActivity.class));
+                                }
                                 break;
                             case "error":
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getContext(), "注册失败", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                toastShortMessage("注册失败，请重试");
                                 break;
                             case "repeat":
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getContext(), "账号重复", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                toastShortMessage("帐号重复，请更换学号");
                                 break;
                         }
                     }
@@ -149,6 +140,12 @@ public class SignUpFragment extends BaseFragment {
                     e.printStackTrace();
                 }
             }
+        });
+    }
+
+    private void toastShortMessage(String message) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
         });
     }
 }

@@ -55,7 +55,7 @@ public class MessageFragment extends Fragment {
     private void initView() {
         messages = new ArrayList<>();
         messages.add(new Message("温柔",R.drawable.headicon1,"今天有空吗","5/3 9:50"));
-        messages.add(new Message("牵强的小草",R.drawable.bg10,"今天一起去图书馆学习","5/3 8:10"));
+        messages.add(new Message("牵强的小草",R.drawable.headicon_default,"今天一起去图书馆学习","5/3 8:10"));
         messages.add(new Message("团长",R.drawable.test13,"明天来社团这边组织一下活动","5/2 1:00"));
         messages.add(new Message("古兄",R.drawable.testbook2,"你可真是个小机灵鬼","5/1 2:00"));
         BaseRecycleViewAdapter<Message> adapter = new BaseRecycleViewAdapter<Message>(mContext,messages,R.layout.list_message_list) {
