@@ -429,8 +429,7 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
                                         editor.putString("faceid", faceid);
                                         editor.apply();
                                         Log.e("faceid", faceid);
-
-                                        onBackPressed();
+//                                        onBackPressed();
                                     }
                                     registerStatus = REGISTER_STATUS_DONE;
                                 }

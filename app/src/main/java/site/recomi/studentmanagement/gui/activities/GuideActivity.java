@@ -56,7 +56,11 @@ public class GuideActivity extends AppCompatActivity {
 
         start = findViewById(R.id.startButton);
         start.setOnClickListener(view -> {
-            activeEngine(view);
+
+            if (!checkPermissions(NEEDED_PERMISSIONS)) {
+                ActivityCompat.requestPermissions(this, NEEDED_PERMISSIONS, ACTION_REQUEST_PERMISSIONS);
+                return;
+            }
             startActivity(new Intent(GuideActivity.this , MainActivity.class));
             GuideActivity.this.finish();
         });
