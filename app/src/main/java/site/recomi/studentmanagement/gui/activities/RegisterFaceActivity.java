@@ -305,12 +305,12 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
                 //FR成功
                 if (faceFeature != null) {
 //                    Log.i(TAG, "onPreview: fr end = " + System.currentTimeMillis() + " trackId = " + requestId);
-                    runOnUiThread(() -> Toast.makeText(RegisterFaceActivity.this, "fr成功", Toast.LENGTH_SHORT).show());
+//                    runOnUiThread(() -> Toast.makeText(RegisterFaceActivity.this, "fr成功", Toast.LENGTH_SHORT).show());
 
                     //不做活体检测的情况，直接搜索
                     if (!livenessDetect) {
                         searchFace(faceFeature, requestId);
-                        runOnUiThread(() -> Toast.makeText(RegisterFaceActivity.this, "直接搜索", Toast.LENGTH_SHORT).show());
+//                        runOnUiThread(() -> Toast.makeText(RegisterFaceActivity.this, "直接搜索", Toast.LENGTH_SHORT).show());
                     }
                     //活体检测通过，搜索特征
                     else if (livenessMap.get(requestId) != null && livenessMap.get(requestId) == LivenessInfo.ALIVE) {
@@ -436,7 +436,7 @@ public class RegisterFaceActivity extends AppCompatActivity implements ViewTreeO
 
                                 @Override
                                 public void onError(Throwable e) {
-                                    Toast.makeText(RegisterFaceActivity.this, "register failed!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterFaceActivity.this, "注册失败！", Toast.LENGTH_SHORT).show();
                                     registerStatus = REGISTER_STATUS_DONE;
                                 }
 

@@ -80,22 +80,22 @@
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/btn_register_facePic"
-        android:textColor="#000794"
-        android:text="录入人脸信息"
-        android:textAlignment="center"
-        android:textStyle="normal"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:layout_gravity="end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="#00ffffff"
-        android:foreground="?android:attr/selectableItemBackground"/>
+    <!--<Button-->
+        <!--android:id="@+id/btn_register_facePic"-->
+        <!--android:textColor="#000794"-->
+        <!--android:text="录入人脸信息"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textStyle="normal"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textSize="16sp"-->
+        <!--android:layout_gravity="end"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="10dp"-->
+        <!--android:clickable="true"-->
+        <!--android:focusable="true"-->
+        <!--android:background="#00ffffff"-->
+        <!--android:foreground="?android:attr/selectableItemBackground"/>-->
 
     <Button
         android:id="@+id/btn_signup"
