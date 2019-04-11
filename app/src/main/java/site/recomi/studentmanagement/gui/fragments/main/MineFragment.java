@@ -24,13 +24,19 @@ import com.squareup.picasso.Picasso;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.TitleAndIconEntity;
 import site.recomi.studentmanagement.gui.activities.AccountActivity;
@@ -46,6 +52,7 @@ import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
+import site.recomi.studentmanagement.model.UserAllInfo;
 import site.recomi.studentmanagement.other.LoginEvent;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -73,6 +80,7 @@ public class MineFragment extends BaseFragment {
     int testData = 0;
     int testDataTop = 0;
     String userName;
+    String headphoto;
     boolean is_loggedIn = false;
 
     @Nullable
@@ -127,6 +135,8 @@ public class MineFragment extends BaseFragment {
             public void onRefresh() {
                 checkIsLoggedIn(mContext);
                 tv_mine_name.setText(userName);
+
+                Picasso.with(mContext).load(headphoto).into(circleImageView);
                 pull_refresh.setRefreshing(false);
             }
         });
@@ -178,9 +188,12 @@ public class MineFragment extends BaseFragment {
         super.onStart();
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("account",MODE_PRIVATE);
         String name = sharedPreferences.getString("name","未登录");
-        String headphoto = sharedPreferences.getString("headphoto","未登录");
+        String headphoto = sharedPreferences.getString("headphoto","");
         tv_mine_name.setText(name);
-        Picasso.with(mContext).load(headphoto).into(circleImageView);
+
+        if (headphoto == null){
+            circleImageView.setImageResource(R.drawable.ic_nologin);
+        }
     }
 
     @Override
@@ -202,14 +215,18 @@ public class MineFragment extends BaseFragment {
      * */
     private void checkIsLoggedIn(Context context) {
         //获取当前登录的账户名，未登录则显示未登录
-        SharedPreferences sharedPreferences = context.getSharedPreferences("UserBaseInfo", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("account", MODE_PRIVATE);
         String getUserName = sharedPreferences.getString("name","");
+        String getHadphoto = sharedPreferences.getString("headphoto","");
         if (getUserName != null && ! getUserName.equals("")) {
             userName = getUserName;
+            headphoto = getHadphoto;
             is_loggedIn = true;
         }else {
             userName = "未登录";
             is_loggedIn = false;
         }
     }
+
+
 }

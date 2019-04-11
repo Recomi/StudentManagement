@@ -47,8 +47,9 @@ public class AccountActivity extends MySwipeBackActivity {
 
     private void log_out() {
         //获取当前登录的账户名，未登录则显示未登录
-        SharedPreferences.Editor editor =getSharedPreferences("UserBaseInfo", Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor =getSharedPreferences("account", Context.MODE_PRIVATE).edit();
         editor.clear();
         editor.apply();
+
     }
 }
