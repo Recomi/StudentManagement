@@ -2,11 +2,14 @@ package site.recomi.studentmanagement.gui.activities.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -69,5 +72,26 @@ public class MySwipeBackActivity extends SwipeBackActivity {
     private void startActivityOnly(Class c) {
         Intent intent = new Intent(mContext, c);
         startActivity(intent);
+    }
+
+    /**
+     * 设置标题居中显示
+     * */
+    public void setTitleCenter(Toolbar toolbar) {
+        int childCount = toolbar.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child = toolbar.getChildAt(i);
+            if (child instanceof TextView) {
+                TextView childTitle = (TextView) child;
+                if (childTitle.getText().equals(toolbar.getTitle())) {
+                    int deviceWidth = getWindowManager().getDefaultDisplay().getWidth();
+                    Paint p = childTitle.getPaint();
+                    float textWidth = p.measureText(childTitle.getText().toString());
+                    float tx = (deviceWidth - textWidth) / 2.0f - toolbar.getContentInsetLeft();
+                    childTitle.setTranslationX(tx);
+                    break;
+                }
+            }
+        }
     }
 }

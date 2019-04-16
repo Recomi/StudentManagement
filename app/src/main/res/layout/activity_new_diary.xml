@@ -15,7 +15,7 @@
         android:padding="15dp">
         <EditText
             android:id="@+id/text_new_title"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:hint="@string/new_title"
             android:layout_width="match_parent"
@@ -24,9 +24,10 @@
             android:background="#00000000"/>
         <EditText
                 android:id="@+id/text_new_content"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:hint="@string/new_content"
                 android:minLines="10"
+                android:maxLines="20"
                 android:gravity="top"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/text_new_address"
+            android:layout_marginBottom="50dp"
             android:hint="@string/new_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

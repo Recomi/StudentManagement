@@ -56,6 +56,7 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
         toolbar.setTitle("首页");
+        setTitleCenter(toolbar);
         setSupportActionBar(toolbar);
 
         //初始化UI控件
@@ -200,7 +201,7 @@ public class MainActivity extends BaseActivity
                 getMenuInflater().inflate(R.menu.main_message, menu);
                 break;
             case 3:
-                getMenuInflater().inflate(R.menu.main_message, menu);
+                getMenuInflater().inflate(R.menu.main_mine, menu);
                 break;
         }
         return super.onPrepareOptionsMenu(menu);

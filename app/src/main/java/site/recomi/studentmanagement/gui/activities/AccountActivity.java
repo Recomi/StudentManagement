@@ -36,12 +36,9 @@ public class AccountActivity extends MySwipeBackActivity {
     }
 
     private void initView() {
-        btn_logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                log_out();
-                onBackPressed();
-            }
+        btn_logOut.setOnClickListener(v -> {
+            log_out();
+            onBackPressed();
         });
     }
 

@@ -45,6 +45,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.common.Constants;
 import site.recomi.studentmanagement.gui.activities.GuideActivity;
@@ -120,7 +121,7 @@ public class SignUpFragment extends BaseFragment {
                 .add("password" , tv_password.getText().toString())
                 .build();
         Request request = new Request.Builder()
-                .url("http://recomi.site/CampusManagementSystem.php")
+                .url(Constant.MAIN_PHP)
                 .post(requestBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {

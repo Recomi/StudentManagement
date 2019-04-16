@@ -2,17 +2,22 @@ package site.recomi.studentmanagement.gui.activities.base;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import site.recomi.studentmanagement.R;
 
 import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+import static android.view.View.TEXT_ALIGNMENT_CENTER;
 
 public class BaseActivity extends AppCompatActivity {
     protected Context mContext;
@@ -89,4 +94,24 @@ public class BaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 设置标题居中显示
+     * */
+    public void setTitleCenter(Toolbar toolbar) {
+        int childCount = toolbar.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child = toolbar.getChildAt(i);
+            if (child instanceof TextView) {
+                TextView childTitle = (TextView) child;
+                if (childTitle.getText().equals(toolbar.getTitle())) {
+                    int deviceWidth = getWindowManager().getDefaultDisplay().getWidth();
+                    Paint p = childTitle.getPaint();
+                    float textWidth = p.measureText(childTitle.getText().toString());
+                    float tx = (deviceWidth - textWidth) / 2.0f - toolbar.getContentInsetLeft();
+                    childTitle.setTranslationX(tx);
+                    break;
+                }
+            }
+        }
+    }
 }

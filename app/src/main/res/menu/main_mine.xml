@@ -2,15 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_contact_list"
-        android:icon="@drawable/ic_contact_list"
-        android:orderInCategory="101"
-        android:title="联系人列表"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="清空"
+        android:title="设置"
         app:showAsAction="never" />
 </menu>

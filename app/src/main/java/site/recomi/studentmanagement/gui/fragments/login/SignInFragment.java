@@ -126,35 +126,25 @@ public class SignInFragment extends BaseFragment {
                 Log.e("123456", "onResponse: " + responseData );
                 try {
                     JSONObject jsonObject = new JSONObject(responseData);
-                    if (jsonObject.getString("result").equals("1")){
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                    switch (jsonObject.getString("result")) {
+                        case "1":
+                            Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
                                 Toast.makeText(getContext(), "登陆成功", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(mContext, MainActivity.class);
                                 try {
-                                    EventBus.getDefault().post(new LoginEvent(input_account.getText().toString(),jsonObject.getString("name") , jsonObject.getString("headphoto")));
+                                    EventBus.getDefault().post(new LoginEvent(input_account.getText().toString(), jsonObject.getString("name"), jsonObject.getString("headphoto")));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                                 startActivity(intent);
-
-                            }
-                        });
-                    }else if (jsonObject.getString("result").equals("0")){
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getContext(), "检查账号密码", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }else {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getContext(), "未知错误,检查网络", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            });
+                            break;
+                        case "0":
+                            Objects.requireNonNull(getActivity()).runOnUiThread(() -> Toast.makeText(getContext(), "检查账号密码", Toast.LENGTH_SHORT).show());
+                            break;
+                        default:
+                            Objects.requireNonNull(getActivity()).runOnUiThread(() -> Toast.makeText(getContext(), "未知错误,检查网络", Toast.LENGTH_SHORT).show());
+                            break;
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

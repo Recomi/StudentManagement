@@ -62,6 +62,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.faceserver.CompareResult;
 import site.recomi.studentmanagement.faceserver.FaceServer;
@@ -199,12 +200,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
         faceRectView = findViewById(R.id.face_rect_view);
         switchLivenessDetect = findViewById(R.id.switch_liveness_detect);
         switchLivenessDetect.setChecked(livenessDetect);
-        switchLivenessDetect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                livenessDetect = isChecked;
-            }
-        });
+        switchLivenessDetect.setOnCheckedChangeListener((buttonView, isChecked) -> livenessDetect = isChecked);
         RecyclerView recyclerShowFaceInfo = findViewById(R.id.recycler_view_person);
         compareResultList = new ArrayList<>();
         adapter = new ShowFaceInfoAdapter(compareResultList, this);
@@ -296,11 +292,8 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                 //FR成功
                 if (faceFeature != null) {
 //                    Log.i(TAG, "onPreview: fr end = " + System.currentTimeMillis() + " trackId = " + requestId);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(FaceLoginActivity.this, "fr成功", Toast.LENGTH_SHORT).show();
-                        }
+                    runOnUiThread(() -> {
+//                            Toast.makeText(FaceLoginActivity.this, "fr成功", Toast.LENGTH_SHORT).show();
                     });
 
                     //不做活体检测的情况，直接搜索
@@ -309,7 +302,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(FaceLoginActivity.this, "直接搜索", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(FaceLoginActivity.this, "直接搜索", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -318,7 +311,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(FaceLoginActivity.this, "活体检测通过", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(FaceLoginActivity.this, "活体检测通过", Toast.LENGTH_SHORT).show();
                             }
                         });
                         searchFace(faceFeature, requestId);
@@ -328,7 +321,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(FaceLoginActivity.this, "活体检测未出结果", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(FaceLoginActivity.this, "活体检测未出结果", Toast.LENGTH_SHORT).show();
                             }
                         });
                         getFeatureDelayedDisposables.add(Observable.timer(WAIT_LIVENESS_INTERVAL, TimeUnit.MILLISECONDS)
@@ -663,7 +656,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
                     .add("studentid" , id+"")
                     .build();
             Request request = new Request.Builder()
-                    .url("http://recomi.site/CampusManagementSystem.php")
+                    .url(Constant.MAIN_PHP)
                     .post(requestBody)
                     .build();
             client.newCall(request).enqueue(new Callback() {
