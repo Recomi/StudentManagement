@@ -2,6 +2,10 @@ package site.recomi.studentmanagement.gui.fragments.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,6 +28,7 @@ import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +41,7 @@ import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.CircleActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
 import site.recomi.studentmanagement.gui.activities.GradeActivity;
+import site.recomi.studentmanagement.gui.activities.JobWantedActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseMultiItemTypeRecyclerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseNestedSVOnScrollChangeListener;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
@@ -45,7 +51,9 @@ import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+import static android.content.Context.SENSOR_SERVICE;
+
+public class HomeFragment extends Fragment implements View.OnClickListener, SensorEventListener {
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
     /*@BindView(R.id.recy_main_newest)
@@ -54,6 +62,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     RecyclerView recy_girdBtn;
     @BindView(R.id.nestedSV_home)
     NestedScrollView nestedSV;
+    @BindView(R.id.sensor)
+    TextView sensor;
 
     View mView;
     Context mContext;
@@ -64,6 +74,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     List<String> bitmaps = new ArrayList<>();
     List<UserSharingPost> posts = new ArrayList<>();
     List<GirdButtonEntity> list_girdButtons ;
+    SensorManager mSensorManager;
 
     int testData = 0;
     int testDataTop = 0;
@@ -79,6 +90,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         initGirdButtons();     //加载网格按钮布局
 //        initNewestData();     //初始化最新的数据
         initMarqueeView(mView); //初始化滚动公告栏数据
+        initSensor();
         return mView;
     }
 
@@ -87,7 +99,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         list_girdButtons = new ArrayList<GirdButtonEntity>();
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.library), R.drawable.ic_library));
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.curriculum), R.drawable.ic_curriculum));
-        list_girdButtons.add(new GirdButtonEntity(getString(R.string.grade), R.drawable.ic_grade));
+        list_girdButtons.add(new GirdButtonEntity(getString(R.string.job), R.drawable.job));
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.society_associations), R.drawable.ic_associations));
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.circle), R.drawable.ic_cricle));
         adapter_girdBtn = new BaseRecycleViewAdapter<GirdButtonEntity>(getContext(),list_girdButtons,R.layout.item_gird_btn) {
@@ -108,7 +120,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         startActivity(new Intent(getContext() , ClassScheduleActivity.class));
                         break;
                     case 2:
-                        startActivity(new Intent(getContext() , GradeActivity.class));
+                        startActivity(new Intent(getContext() , JobWantedActivity.class));
                         break;
                     case 3:
                         startActivity(new Intent(getContext() , CampusAssociationActivity.class));
@@ -245,6 +257,38 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
     }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        int mDetector = 0;
+        if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+            sensor.setText(String.valueOf(event.values[0]));
+
+        }
+        if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
+            if (event.values[0] == 1.0) {
+                mDetector++;
+                //event.values[0]一次有效计步数据
+                Toast.makeText(getContext(), String.valueOf(mDetector), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    private void initSensor(){
+        mSensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(SENSOR_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            Sensor  mStepCount = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+            Sensor  mStepDetector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+            mSensorManager.registerListener(this, mStepDetector, SensorManager.SENSOR_DELAY_FASTEST);
+            mSensorManager.registerListener(this, mStepCount, SensorManager.SENSOR_DELAY_FASTEST);
+        }
+    }
+
     class RefreshMoreData extends Thread {
         @Override
         public void run() {
@@ -256,4 +300,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             });
         }
     }
+
+
 }

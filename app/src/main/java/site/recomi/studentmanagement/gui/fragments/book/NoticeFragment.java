@@ -107,6 +107,7 @@ public class NoticeFragment extends BaseFragment {
     * 发起网络请求,获取服务器数据
     * */
     private void getOnlineData(){
+        System.setProperty("https.protocols", "TLSv1.2,TLSv1.1,SSLv3");
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()
                 .add("type" , "bookNotice")
@@ -119,6 +120,7 @@ public class NoticeFragment extends BaseFragment {
             @Override
             public void onFailure(Call call, IOException e) {
                 //针对异常情况处理
+                Log.d("xxxxx", "onFailure: "+ e);
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -138,7 +140,7 @@ public class NoticeFragment extends BaseFragment {
                 }
                 if (getActivity() != null)
                     getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
-                Log.d("data", "服务器返回的数据: " + responseData);
+                Log.d("xxxxxxx", "服务器返回的数据: " + responseData);
             }
         });
     }
