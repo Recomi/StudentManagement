@@ -154,11 +154,12 @@ public class GradeActivity extends MySwipeBackActivity {
                 try {
 
                     finalData = new ArrayList<>();
-                    String data =  response.body().string().replace("\\", "");
-                    Log.d("xxxxxx", "服务器返回的数据: " + data);
+                    String data =  response.body().string().replace("\\", "");      //接受并处理掉转义符\
+                    String data2 = data.substring(1,data.length() - 1);    //处理掉前后"符号
+                    Log.d("xxxxxx", "服务器返回的数据: " + data2);
 
-                    JSONArray dataArray = new JSONArray(data);
-                    for (int i=0;i <= dataArray.length(); i++){
+                    JSONArray dataArray = new JSONArray(data2);
+                    for (int i=0;i < dataArray.length(); i++){
                         finalData.add(dataArray.getJSONObject(i));
                     }
                 } catch (JSONException e) {
