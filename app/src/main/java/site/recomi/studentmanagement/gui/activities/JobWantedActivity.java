@@ -328,7 +328,7 @@ public class JobWantedActivity extends MySwipeBackActivity {
     /*
     *
     * */
-    private int getStatusBarHeight(){
+    public int getStatusBarHeight(){
         int statusBarHeight1 = -1;
         //获取status_bar_height资源的ID
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
