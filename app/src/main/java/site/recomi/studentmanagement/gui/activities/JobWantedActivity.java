@@ -218,7 +218,8 @@ public class JobWantedActivity extends MySwipeBackActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 //针对异常情况处理
-                Log.d("Okhttp-onFailure", e.getMessage());
+                runOnUiThread(() ->
+                        toastLongMessage(mContext,"获取信息失败，请检查网络是否通畅"));
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -239,7 +240,7 @@ public class JobWantedActivity extends MySwipeBackActivity {
                 } catch (JSONException e) {
                     swipeRefreshLayout.setRefreshing(false);
                     runOnUiThread(() ->
-                            toastLongMessage(mContext,"获取信息失败，请检查网络是否通畅"));
+                            toastLongMessage(mContext,"当前暂无该类别的职位"));
                 }
                 runOnUiThread(() -> {
                     adapter.notifyDataSetChanged(); //刷新界面数据
