@@ -83,25 +83,24 @@ public class CircleActivity extends MySwipeBackActivity implements View.OnClickL
 
         //首次进入时自动刷新数据
         layout.setRefreshing(true);
-        layout.postDelayed(new Runnable() {
+        layout.post(new Runnable() {
             @Override
             public void run() {
                 getOnlineData();
-                layout.setRefreshing(false);
+
             }
-        } , 1500);
+        });
 
         //监听
         layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                layout.postDelayed(new Runnable() {
+                layout.post(new Runnable() {
                     @Override
                     public void run() {
                         getOnlineData();
-                        layout.setRefreshing(false);
                     }
-                } , 3000);
+                });
             }
         });
     }
@@ -146,6 +145,7 @@ public class CircleActivity extends MySwipeBackActivity implements View.OnClickL
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        layout.setRefreshing(false);
                         adapter.notifyDataSetChanged();
                     }
                 });

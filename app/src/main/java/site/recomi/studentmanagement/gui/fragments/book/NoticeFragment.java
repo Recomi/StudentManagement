@@ -59,27 +59,23 @@ public class NoticeFragment extends BaseFragment {
     private void initPullRefreshLayout(){
         layout = (PullRefreshLayout)mView.findViewById(R.id.pullRefreshLayout);
         layout.setRefreshing(true);
-        layout.postDelayed(new Runnable() {
+        layout.post(new Runnable() {
             @Override
             public void run() {
                 getOnlineData();
-                // 刷新3秒完成
-                layout.setRefreshing(false);
             }
-        }, 3000);
+        });
 
         //监听
         layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                layout.postDelayed(new Runnable() {
+                layout.post(new Runnable() {
                     @Override
                     public void run() {
                         getOnlineData();
-                        // 刷新3秒完成
-                        layout.setRefreshing(false);
                     }
-                }, 3000);
+                });
             }
         });
     }
@@ -138,8 +134,16 @@ public class NoticeFragment extends BaseFragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                if (getActivity() != null)
-                    getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+                if (getActivity() != null){
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            layout.setRefreshing(false);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+
                 Log.d("xxxxxxx", "服务器返回的数据: " + responseData);
             }
         });

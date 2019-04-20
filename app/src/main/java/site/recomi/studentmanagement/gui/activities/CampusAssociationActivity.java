@@ -82,16 +82,10 @@ public class CampusAssociationActivity extends MySwipeBackActivity implements Vi
 
         //首次进入时自动刷新数据
         layout.setRefreshing(true);
-        layout.postDelayed(() -> {
-            getOnlineData();
-            layout.setRefreshing(false);
-        }, 1500);
+        layout.post(this::getOnlineData);
 
         //监听
-        layout.setOnRefreshListener(() -> layout.postDelayed(() -> {
-            getOnlineData();
-            layout.setRefreshing(false);
-        }, 3000));
+        layout.setOnRefreshListener(() -> layout.post(this::getOnlineData));
     }
 
     /*
@@ -131,7 +125,13 @@ public class CampusAssociationActivity extends MySwipeBackActivity implements Vi
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                runOnUiThread(() -> adapter.notifyDataSetChanged());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        layout.setRefreshing(false);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
                 Log.d("data", "服务器返回的数据: " + responseData);
             }
         });
