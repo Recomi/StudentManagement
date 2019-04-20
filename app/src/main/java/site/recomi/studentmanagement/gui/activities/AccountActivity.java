@@ -26,6 +26,8 @@ public class AccountActivity extends MySwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         ButterKnife.bind(AccountActivity.this);
+        mContext = AccountActivity.this;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
         setToolbarPaddingTop(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_back_dark_medium);
