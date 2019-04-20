@@ -21,7 +21,7 @@
     <string name="associations">Associations</string>
     <string name="library">Library</string>
     <string name="curriculum">Curriculum</string>
-    <string name="grade">Grade</string>
+    <string name="job">Job</string>
     <string name="announcement">Announcement</string>
     <string name="circle">Circle</string>
 
@@ -163,4 +163,38 @@
     <string name="ft_op_270">only detect 270 degree in video mode</string>
     <string name="ft_op_all">detect all degrees in video mode</string>
 
+    <!--招聘城市列表-->
+    <string-array name="recruit_city">
+        <item>位置:全部</item>
+        <item>北京</item>
+        <item>上海</item>
+        <item>广州</item>
+        <item>深圳</item>
+        <item>杭州</item>
+        <item>佛山</item>
+        <item>惠州</item>
+        <item>厦门</item>
+        <item>其他</item>
+    </string-array>
+
+    <!--招聘岗位列表-->
+    <string-array name="job_position">
+        <item>岗位:全部</item>
+        <item>经营管理类</item>
+        <item>销售类</item>
+        <item>客户服务类</item>
+        <item>项目管理类</item>
+        <item>质量管理类</item>
+        <item>市场/公关/媒介类</item>
+        <item>人力资源类</item>
+        <item>行政/后勤类</item>
+        <item>财务/审计/统计类</item>
+        <item>计算机/网络/技术类</item>
+        <item>电子/电器/通信技术类</item>
+        <item>电气/能源/动力类</item>
+        <item>咨询/顾问类</item>
+        <item>金融/保险类</item>
+        <item>贸易/运输/建筑类</item>
+        <item>其他类</item>
+    </string-array>
 </resources>

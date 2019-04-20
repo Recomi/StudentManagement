@@ -53,6 +53,9 @@ public class GradeActivity extends MySwipeBackActivity {
     SmartTable<StudentGrade> smartTable;
     List<JSONObject> finalData;         //包含全部学期的数据(课程名/成绩)
     List<StudentGrade> show = new ArrayList<>();        //要显示的数据
+    private static final String TAG = "GradeActivity";
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,21 +153,14 @@ public class GradeActivity extends MySwipeBackActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    finalData = new ArrayList<>();
-                    String data =  new String(response.body().bytes(),"UTF-8");
 
-                    if (data != null && data.startsWith("\ufeff")) {
-                        data = data.substring(1);
-                        Log.d("xxxxxx", "onResponse: " + "123");
-                    }
-                    Log.d("xxxxxx", "服务器返回的数据: " + data);
-                    String xx = "[{\"职业规划\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"数据库基础\":\"89\",\"计算机与科学\":\"85\",\"毛概\":\"68\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA中级设计\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"48\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA高级设计\":\"25\",\"计算机原理\":\"80\",\"毛概\":\"88\",\"安卓实训\":\"25\",\"计算机与设计\":\"85\"},{\"高数\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"高英\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"微信小程序实训\":\"75\",\"计算机与设计\":\"85\"}]";
-                    String x = "[{\"职业规划\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"数据库基础\":\"89\",\"计算机与科学\":\"85\",\"毛概\":\"68\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA中级设计\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"48\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"JAVA高级设计\":\"25\",\"计算机原理\":\"80\",\"毛概\":\"88\",\"安卓实训\":\"25\",\"计算机与设计\":\"85\"},{\"高数\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"安卓实训\":\"75\",\"计算机与设计\":\"85\"},{\"高英\":\"25\",\"计算机与科学\":\"85\",\"毛概\":\"88\",\"微信小程序实训\":\"75\",\"计算机与设计\":\"85\"}]";
-                    if (data.equals(x)){
-                        Log.d("xxxx", "onResponse:ok ");
-                    }
-                    JSONArray dataArray = new JSONArray(xx);
-                    for (int i=0;i <= dataArray.length(); i++){
+                    finalData = new ArrayList<>();
+                    String data =  response.body().string().replace("\\", "");      //接受并处理掉转义符\
+                    String data2 = data.substring(1,data.length() - 1);    //处理掉前后"符号
+                    Log.d("xxxxxx", "服务器返回的数据: " + data2);
+
+                    JSONArray dataArray = new JSONArray(data2);
+                    for (int i=0;i < dataArray.length(); i++){
                         finalData.add(dataArray.getJSONObject(i));
                     }
                 } catch (JSONException e) {
@@ -173,7 +169,6 @@ public class GradeActivity extends MySwipeBackActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
                         if (finalData != null) {
                             JSONObject data = finalData.get(0);
                             Iterator<String> it = data.keys();
@@ -189,7 +184,6 @@ public class GradeActivity extends MySwipeBackActivity {
                             smartTable.setData(show);
                             show.clear();
                         }
-
                     }
                 });
             }

@@ -20,7 +20,7 @@
     <string name="associations">协会</string>
     <string name="library">图书馆</string>
     <string name="curriculum">课表</string>
-    <string name="grade">成绩</string>
+    <string name="job">求职</string>
     <string name="announcement">公告</string>
     <string name="circle">圈子</string>
 
@@ -146,4 +146,7 @@
     <string name="ft_op_180">视频模式仅检测180度</string>
     <string name="ft_op_270">视频模式仅检测270度</string>
     <string name="ft_op_all">视频模式全方向人脸检测</string>
+
+
+
 </resources>
