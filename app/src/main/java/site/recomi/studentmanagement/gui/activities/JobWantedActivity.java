@@ -64,14 +64,10 @@ public class JobWantedActivity extends MySwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_wanted);
         ButterKnife.bind(this);
+        mContext = JobWantedActivity.this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        //设置top外边距为状态栏高度
-        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) toolbar.getLayoutParams();
-        lp.topMargin = getStatusBarHeight();
-        toolbar.setLayoutParams(lp);
-
+        setToolbarPaddingTop(toolbar);//设置top外边距为状态栏高度
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setTitle("校园求职");
         setSupportActionBar(toolbar);
@@ -89,10 +85,10 @@ public class JobWantedActivity extends MySwipeBackActivity {
                                        int position, long id) {
                 if (position == 0){
                     jobLocation = "all";
-                    refreshData();
+                    refreshOnlineData();
                 }else {
                     jobLocation = String.valueOf(parent.getItemAtPosition(position).toString());
-                    refreshData();
+                    refreshOnlineData();
                 }
             }
             @Override
@@ -107,10 +103,10 @@ public class JobWantedActivity extends MySwipeBackActivity {
                                        int position, long id) {
                 if (position == 0){
                     jobCategory = "all";
-                    refreshData();
+                    refreshOnlineData();
                 }else {
                     jobCategory = String.valueOf(parent.getItemAtPosition(position).toString());
-                    refreshData();
+                    refreshOnlineData();
                 }
 
             }
@@ -169,49 +165,15 @@ public class JobWantedActivity extends MySwipeBackActivity {
     }
 
     /*
-     * 初始化刷新按钮
+     * 初始化下拉刷新
      * */
     private void initSwipeRefreshLayout(){
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setRefreshing(true);
-        swipeRefreshLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getOnlineData();
-                // 刷新3秒完成
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, 3000);
+        refreshOnlineData();       //获取网络数据，并显示
 
-        //监听
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getOnlineData();
-                        // 刷新3秒完成
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 3000);
-            }
-        });
-    }
-
-    /*
-    * 刷新数据
-    * */
-    private void refreshData(){
-        swipeRefreshLayout.setRefreshing(true);
-        swipeRefreshLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getOnlineData();
-                // 刷新3秒完成
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, 3000);
+        //监听，更新数据
+        swipeRefreshLayout.setOnRefreshListener(this::refreshOnlineData);
     }
 
     /*
@@ -223,6 +185,8 @@ public class JobWantedActivity extends MySwipeBackActivity {
         adapter = new BaseRecycleViewAdapter<RecruitmentInformationEntitiy>(getContext() ,lists , R.layout.recycler_view_item_3) {
             @Override
             public void convert(ViewHolder holder, RecruitmentInformationEntitiy recruitmentInformationEntitiy, int position) {
+                if (mList.size() == 0)
+                    return;
                 holder.setText(R.id.jobName , recruitmentInformationEntitiy.getJobName());
                 holder.setText(R.id.company , recruitmentInformationEntitiy.getCompany());
                 holder.setText(R.id.location , recruitmentInformationEntitiy.getLocation());
@@ -238,7 +202,8 @@ public class JobWantedActivity extends MySwipeBackActivity {
     /*
      * 发起网络请求,获取服务器数据
      * */
-    private void getOnlineData(){
+    private void refreshOnlineData(){
+        swipeRefreshLayout.setRefreshing(true);
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()
                 .add("type" , "recruitmentInformation")
@@ -253,7 +218,7 @@ public class JobWantedActivity extends MySwipeBackActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 //针对异常情况处理
-                Log.d("xxxxx", "onFailure: "+ e);
+                Log.d("Okhttp-onFailure", e.getMessage());
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -272,10 +237,14 @@ public class JobWantedActivity extends MySwipeBackActivity {
                         lists.add(new RecruitmentInformationEntitiy(jobName,company,location,sum,date,salary,category));
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    swipeRefreshLayout.setRefreshing(false);
+                    runOnUiThread(() ->
+                            toastLongMessage(mContext,"获取信息失败，请检查网络是否通畅"));
                 }
-                runOnUiThread(() -> adapter.notifyDataSetChanged());
-                Log.d("xxxxxxx", "服务器返回的数据: " + responseData);
+                runOnUiThread(() -> {
+                    adapter.notifyDataSetChanged(); //刷新界面数据
+                    swipeRefreshLayout.setRefreshing(false); //停止下拉刷新
+                });
             }
         });
     }
@@ -325,17 +294,4 @@ public class JobWantedActivity extends MySwipeBackActivity {
         });
     }
 
-    /*
-    *
-    * */
-    public int getStatusBarHeight(){
-        int statusBarHeight1 = -1;
-        //获取status_bar_height资源的ID
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            //根据资源ID获取响应的尺寸值
-            statusBarHeight1 = getResources().getDimensionPixelSize(resourceId);
-        }
-        return statusBarHeight1;
-    }
 }
