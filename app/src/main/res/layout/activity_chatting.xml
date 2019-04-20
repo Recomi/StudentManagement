@@ -12,6 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.v7.widget.RecyclerView
@@ -21,27 +22,40 @@
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:id="@+id/rela_botton"
             android:background="@color/colorBackgroundInterval"
             android:layout_alignParentBottom="true"
-            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/input_send"
-                android:maxLines="20"
-                android:text="kmmksdkmsmkls"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:hint="Message"
+                android:maxLines="10"
+                android:text="kmmksdk
+
+            msmkls"
+                app:layout_constraintEnd_toStartOf="@+id/btn_chat_send"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
                 android:id="@+id/btn_chat_send"
-                android:text="发送"
-                android:layout_toRightOf="@+id/input_send"
-                android:layout_toEndOf="@+id/input_send"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:background="@color/colorTransparent"
+                android:foreground="?android:selectableItemBackground"
+                android:padding="10dp"
+                android:text="发送"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_send" />
+        </android.support.constraint.ConstraintLayout>
 
     </RelativeLayout>
 
