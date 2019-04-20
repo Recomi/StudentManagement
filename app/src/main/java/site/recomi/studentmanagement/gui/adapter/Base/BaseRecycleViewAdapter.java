@@ -26,8 +26,11 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Vie
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.updatePosition(position);
-        convert(holder, mList.get(position),position);
+        //防止数组越界
+        if (position >= 0 && position < mList.size()) {
+            holder.updatePosition(position);
+            convert(holder, mList.get(position),position);
+        }
     }
 
     public abstract void convert(ViewHolder holder, T t, int position);
