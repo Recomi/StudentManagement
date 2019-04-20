@@ -15,7 +15,7 @@ public class ChatMessageDelegete implements MultiItemTypeSupport<ChattingMessage
             case ChattingMessage.MINE_TEXT:
                 return R.layout.item_chat_mine_text;
             case ChattingMessage.OTHER_TEXT:
-                return R.layout.item_chat_mine_text;
+                return R.layout.item_chat_other_text;
         }
     }
 
