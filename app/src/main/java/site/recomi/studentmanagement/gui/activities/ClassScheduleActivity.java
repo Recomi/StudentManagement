@@ -98,7 +98,7 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
 
         PieDataSet dataSet = new PieDataSet(strings,"");
 
-        ArrayList<Integer> colors = new ArrayList<Integer>();
+        ArrayList<Integer> colors = new ArrayList<>();
         colors.add(Color.parseColor("#778899"));
         colors.add(Color.parseColor("#F08080"));
         colors.add(Color.parseColor("#90ee90"));
