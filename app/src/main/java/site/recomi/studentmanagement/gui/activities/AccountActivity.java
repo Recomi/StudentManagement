@@ -48,6 +48,6 @@ public class AccountActivity extends MySwipeBackActivity {
         SharedPreferences.Editor editor =getSharedPreferences("account", Context.MODE_PRIVATE).edit();
         editor.clear();
         editor.apply();
-
+        toastLongMessage(mContext,"成功退出当前账号");
     }
 }

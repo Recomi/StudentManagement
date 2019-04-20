@@ -133,15 +133,11 @@ public class MineFragment extends BaseFragment {
      */
     private void initView() {
         pull_refresh.setRefreshStyle(PullRefreshLayout.STYLE_SMARTISAN);
-        pull_refresh.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                checkIsLoggedIn(mContext);
-                tv_mine_name.setText(userName);
-
-                Picasso.with(mContext).load(headphoto).into(circleImageView);
-                pull_refresh.setRefreshing(false);
-            }
+        pull_refresh.setOnRefreshListener(() -> {
+            checkIsLoggedIn(mContext);
+            tv_mine_name.setText(userName);
+            showHeadIcon();
+            pull_refresh.setRefreshing(false);
         });
         //用户卡片的点击事件
         card_mine.setOnClickListener(v -> {
@@ -189,21 +185,9 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences("account",MODE_PRIVATE);
-        String name = sharedPreferences.getString("name","未登录");
-        String headphoto = sharedPreferences.getString("headphoto","");
-        tv_mine_name.setText(name);
-
-        /**
-         * 当未登录时，显示默认图片，如果已有登录信息则显示网图
-         * */
-        if (headphoto != null && headphoto.equals("")){
-            circleImageView.setImageResource(R.drawable.headicon_default);
-        }else if ( !(headphoto != null && headphoto.equals(""))){
-            Picasso.with(mContext).load(headphoto).into(circleImageView);
-        }
         checkIsLoggedIn(mContext);
-
+        tv_mine_name.setText(userName);
+        showHeadIcon();
     }
 
     @Override
@@ -234,9 +218,22 @@ public class MineFragment extends BaseFragment {
             is_loggedIn = true;
         }else {
             userName = "未登录";
+            headphoto = "";
             is_loggedIn = false;
         }
     }
 
-
+    //显示用户头像，若未登录则显示默认头像
+    private void showHeadIcon() {
+        /**
+         * 当未登录时，显示默认图片，如果已有登录信息则显示网图
+         * */
+        if (headphoto != null && headphoto.equals("")){
+            circleImageView.setImageResource(R.drawable.headicon_default);
+        }else if ( headphoto != null && (! headphoto.equals("")) ){
+            Picasso.with(mContext).load(headphoto).into(circleImageView);
+        }else {
+            circleImageView.setImageResource(R.drawable.headicon_default);
+        }
+    }
 }

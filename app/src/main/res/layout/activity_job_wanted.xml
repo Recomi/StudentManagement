@@ -6,13 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".gui.activities.JobWantedActivity"
     android:orientation="vertical">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
 
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/app_bar_base"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"

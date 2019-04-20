@@ -66,7 +66,7 @@ public class JobWantedActivity extends MySwipeBackActivity {
         ButterKnife.bind(this);
         mContext = JobWantedActivity.this;
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
         setToolbarPaddingTop(toolbar);//设置top外边距为状态栏高度
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setTitle("校园求职");
@@ -121,18 +121,14 @@ public class JobWantedActivity extends MySwipeBackActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_book , menu);
-
         //获取SearchView对象
         MenuItem searchItem = menu.findItem(R.id.search);
         searchView = (SearchView) searchItem.getActionView();
-
-
         //开启提交按钮
         searchView.setSubmitButtonEnabled(true);
         //设置文字提示
         searchView.setQueryHint("查找图书");
         searchView.setMaxWidth(1000);
-
         //监听
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             //提交按钮的点击事件
@@ -156,7 +152,6 @@ public class JobWantedActivity extends MySwipeBackActivity {
                 return true;
             }
         });
-
         //设置输入框提示文字样式
         mSearchAutoComplete = searchView.findViewById(R.id.search_src_text);
         mSearchAutoComplete.setHintTextColor(getResources().getColor(android.R.color.darker_gray));             //设置提示文字颜色
@@ -171,7 +166,6 @@ public class JobWantedActivity extends MySwipeBackActivity {
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setRefreshing(true);
         refreshOnlineData();       //获取网络数据，并显示
-
         //监听，更新数据
         swipeRefreshLayout.setOnRefreshListener(this::refreshOnlineData);
     }
