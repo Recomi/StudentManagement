@@ -17,6 +17,7 @@ public class MyCollectionsActivity extends MySwipeBackActivity {
         setContentView(R.layout.activity_my_collections);
         ButterKnife.bind(MyCollectionsActivity.this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        setToolbarPaddingTop(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);
         setTitle("我的收藏");

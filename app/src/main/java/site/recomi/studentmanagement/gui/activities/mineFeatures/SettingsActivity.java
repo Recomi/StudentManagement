@@ -16,6 +16,7 @@ public class SettingsActivity extends MySwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        setToolbarPaddingTop(toolbar);
         // 左边的小箭头
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         // 菜单点击事件

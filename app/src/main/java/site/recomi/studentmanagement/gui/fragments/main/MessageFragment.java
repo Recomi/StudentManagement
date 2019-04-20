@@ -22,10 +22,13 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.Message;
+import site.recomi.studentmanagement.gui.activities.ChattingActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
+import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
+import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 
-public class MessageFragment extends Fragment {
+public class MessageFragment extends BaseFragment {
     //
     Context mContext;
     @BindView(R.id.recy_messageList)
@@ -67,13 +70,24 @@ public class MessageFragment extends Fragment {
 
 //                String time = calendar.get(Calendar.HOUR_OF_DAY) + ":"
 //                        + calendar.get(Calendar.MINUTE);
-
+                
                 holder.setText(R.id.tv_sender,message.getSender());
                 holder.setText(R.id.tv_content,message.getContent());
                 holder.setImageResource(R.id.img_headicon,message.getHeadiconRes());
                 holder.setText(R.id.tv_time,message.getReceivingTime());
             }
         };
+        recycler.addOnItemTouchListener(new BaseRecyclerItemTouchListener(mContext,new BaseRecyclerItemTouchListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                startActivityOnly(mContext, ChattingActivity.class);
+            }
+
+            @Override
+            public void onLongClick(View view, int posotion) {
+
+            }
+        }));
         LinearLayoutManager manager = new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false);
         recycler.setLayoutManager(manager);
         recycler.setAdapter(adapter);

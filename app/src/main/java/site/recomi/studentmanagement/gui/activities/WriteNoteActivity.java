@@ -24,9 +24,10 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.gui.activities.base.BaseActivity;
 import site.recomi.studentmanagement.utils.MyDatabaseHelper;
 
-public class WriteNoteActivity extends AppCompatActivity {
+public class WriteNoteActivity extends BaseActivity {
     private EditText titleEditText,contentEditText;
     private int lastId;
     private MyDatabaseHelper myDatabaseHelper;
@@ -42,6 +43,7 @@ public class WriteNoteActivity extends AppCompatActivity {
         setDarkStatusIcon(true);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        setToolbarPaddingTop(toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         //显示Toolbar返回按钮

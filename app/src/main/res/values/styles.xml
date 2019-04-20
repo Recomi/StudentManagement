@@ -20,7 +20,6 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="RippleWhite">
-        <item name="android:colorControlHighlight">#FAFAFA</item>
         <item name="android:radius">25dp</item>
     </style>
 

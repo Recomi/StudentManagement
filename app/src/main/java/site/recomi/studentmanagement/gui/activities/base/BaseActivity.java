@@ -114,4 +114,20 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
     }
+
+    //沉浸式状态栏下，设置Toolbar的paddingTop
+    public void setToolbarPaddingTop(Toolbar toolbar) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+            toolbar.setPaddingRelative(0,getStatusBarHeight(),0,0);
+    }
+
+    //获取statusbar高度
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 }
