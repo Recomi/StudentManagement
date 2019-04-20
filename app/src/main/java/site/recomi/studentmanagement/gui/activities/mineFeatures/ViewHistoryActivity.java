@@ -17,6 +17,7 @@ public class ViewHistoryActivity extends MySwipeBackActivity {
         setContentView(R.layout.activity_view_history);
         ButterKnife.bind(ViewHistoryActivity.this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        setToolbarPaddingTop(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);
         setTitle("浏览历史");

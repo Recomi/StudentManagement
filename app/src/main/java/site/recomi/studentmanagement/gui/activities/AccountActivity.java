@@ -27,6 +27,7 @@ public class AccountActivity extends MySwipeBackActivity {
         setContentView(R.layout.activity_account);
         ButterKnife.bind(AccountActivity.this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        setToolbarPaddingTop(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_back_dark_medium);
         setTitle("我的个人信息");
         setSupportActionBar(toolbar);

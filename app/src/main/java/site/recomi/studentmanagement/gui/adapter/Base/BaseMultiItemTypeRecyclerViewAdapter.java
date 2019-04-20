@@ -28,4 +28,8 @@ public abstract class BaseMultiItemTypeRecyclerViewAdapter<T> extends BaseRecycl
         int layoutId = mMultiItemTypeSupport.getLayoutId(viewType);
         return ViewHolder.get(mContext,parent,layoutId);
     }
+
+    private void setMultiItemTypeSupport(MultiItemTypeSupport<T> mMultiItemTypeSupport) {
+        this.mMultiItemTypeSupport = mMultiItemTypeSupport;
+    }
 }

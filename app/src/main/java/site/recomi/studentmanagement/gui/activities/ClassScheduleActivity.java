@@ -28,6 +28,7 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
         setContentView(R.layout.activity_class_schedule);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        setToolbarPaddingTop(toolbar);
         toolbar.setTitle("课表查询");
 //        toolbar.setTitleTextColor(Color.parseColor("#000000"));
 //        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));

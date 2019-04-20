@@ -3,7 +3,6 @@ package site.recomi.studentmanagement.gui.adapter.Delegetes;
 import java.util.List;
 
 import site.recomi.studentmanagement.R;
-import site.recomi.studentmanagement.entity.LoadMoreItem;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 

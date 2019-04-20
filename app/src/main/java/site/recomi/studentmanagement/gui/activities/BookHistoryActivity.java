@@ -27,6 +27,7 @@ public class BookHistoryActivity extends MySwipeBackActivity {
         setContentView(R.layout.activity_book_history);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        setToolbarPaddingTop(toolbar);
         toolbar.setTitle("借阅历史");
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);

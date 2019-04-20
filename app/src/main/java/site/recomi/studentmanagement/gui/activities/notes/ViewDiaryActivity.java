@@ -46,23 +46,15 @@ public class ViewDiaryActivity extends MySwipeBackActivity implements Toolbar.On
         normalDialog.setTitle(R.string.remove_title);
         normalDialog.setMessage(R.string.remove_content);
         normalDialog.setPositiveButton(R.string.exit_yes,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // 删除本界面管理的Diary信息
-                        diary.delete();
-                        Toast.makeText(mContext, R.string.remove_successful, Toast.LENGTH_SHORT).show();
-                        finish();
-                        ifRemove = true;
-                    }
+                (dialog, which) -> {
+                    // 删除本界面管理的Diary信息
+                    diary.delete();
+                    Toast.makeText(mContext, R.string.remove_successful, Toast.LENGTH_SHORT).show();
+                    finish();
+                    ifRemove = true;
                 });
         normalDialog.setNegativeButton(R.string.exit_cancel,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ifRemove = false;
-                    }
-                });
+                (dialog, which) -> ifRemove = false);
         // 显示
         normalDialog.show();
         return ifRemove;
@@ -136,6 +128,7 @@ public class ViewDiaryActivity extends MySwipeBackActivity implements Toolbar.On
         location = (TextView) findViewById(R.id.text_view_address);
         // Toolbat
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        setToolbarPaddingTop(toolbar);
         setSupportActionBar(toolbar);
         // 主标题
 //        toolbar.setTitle("");

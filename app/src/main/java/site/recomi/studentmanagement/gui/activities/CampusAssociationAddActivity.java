@@ -44,6 +44,7 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
         ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        setToolbarPaddingTop(toolbar);
         toolbar.setTitle("编辑");
         toolbar.setTitleTextColor(Color.parseColor("#000000"));
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
