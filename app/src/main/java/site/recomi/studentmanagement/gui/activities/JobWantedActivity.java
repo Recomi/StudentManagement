@@ -232,9 +232,14 @@ public class JobWantedActivity extends MySwipeBackActivity {
                         lists.add(new RecruitmentInformationEntitiy(jobName,company,location,sum,date,salary,category));
                     }
                 } catch (JSONException e) {
-                    swipeRefreshLayout.setRefreshing(false);
-                    runOnUiThread(() ->
-                            toastLongMessage(mContext,"当前暂无该类别的职位"));
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            swipeRefreshLayout.setRefreshing(false);
+                            toastLongMessage(mContext,"当前暂无该类别的职位");
+                        }
+                    });
+
                 }
                 runOnUiThread(() -> {
                     adapter.notifyDataSetChanged(); //刷新界面数据
