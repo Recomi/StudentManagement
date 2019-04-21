@@ -137,17 +137,19 @@
                             android:textSize="22dp" />
 
                         <TextView
+                            android:id="@+id/km"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
-                            android:layout_marginLeft="202dp"
 
+                            android:layout_marginLeft="202dp"
                             android:layout_marginTop="61dp"
                             android:layout_toRightOf="@id/bigIcon"
                             android:text="6.0公里"
                             android:textSize="13dp" />
 
                         <TextView
+                            android:id="@+id/kilocalorie"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
