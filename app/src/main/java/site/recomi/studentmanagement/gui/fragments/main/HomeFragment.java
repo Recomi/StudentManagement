@@ -1,5 +1,6 @@
 package site.recomi.studentmanagement.gui.fragments.main;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -53,21 +54,25 @@ import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener
 
 import static android.content.Context.SENSOR_SERVICE;
 
-public class HomeFragment extends Fragment implements View.OnClickListener, SensorEventListener {
+public class HomeFragment extends Fragment implements SensorEventListener {
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
-    /*@BindView(R.id.recy_main_newest)
-    RecyclerView recy;*/
     @BindView(R.id.recy_girdBtn_home)
     RecyclerView recy_girdBtn;
     @BindView(R.id.nestedSV_home)
     NestedScrollView nestedSV;
     @BindView(R.id.sensor)
     TextView sensor;
+    @BindView(R.id.vp)
+    ViewPager vp;
+    @BindView(R.id.km)
+    TextView km;
+    @BindView(R.id.kilocalorie)
+    TextView kilocalorie;
 
     View mView;
     Context mContext;
-    ViewPager vp;
+
     MultiItemTypeSupport multiItemTypeSupport ;
     BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter;
     BaseRecycleViewAdapter<GirdButtonEntity> adapter_girdBtn;
@@ -84,17 +89,74 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Sens
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_home, container , false);
         mContext = mView.getContext();
-        ButterKnife.bind(this, mView);   //绑定ButterKnife
+        ButterKnife.bind(this, mView);
 
-//        initView();                 //加载视图布局
-        initGirdButtons();     //加载网格按钮布局
-//        initNewestData();     //初始化最新的数据
-        initMarqueeView(mView); //初始化滚动公告栏数据
+        initPagerView();
+        initGirdButtons();
+        initMarqueeView(mView);
         initSensor();
+
         return mView;
     }
 
-    //加载网格按钮布局
+
+    /*
+    * 初始化滚动界面数据
+    * */
+    private void initPagerView(){
+        bitmaps.add("http://img0.imgtn.bdimg.com/it/u=1899561195,3106332361&fm=26&gp=0.jpg");
+        bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner1.jpg");
+        bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner3.jpg");
+        vp.setAdapter(new PagerViewAdapter(getContext() ,bitmaps));
+    }
+
+    /*
+     * 初始化滚动信息栏
+     * */
+    private void initMarqueeView(View view){
+        MarqueeView marqueeView = view.findViewById(R.id.marqueeView);
+        List<String> info = new ArrayList<>();
+        info.add("2019年五年一贯制大专招生简章");
+        info.add("关于电类职业技能鉴定报考通知");
+        info.add("关于2019年自主招生简章的通知");
+        info.add("关于计算机水平考试报名的通知");
+
+        marqueeView.startWithList(info);
+        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, TextView textView) {
+                Intent intent;
+                switch (position){
+                    case 0:
+                        intent = new Intent(getActivity() , BrowserActivity.class);
+                        intent.putExtra("site", "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/wunianyiguanzhizhaoshengkuaixun/118.html");
+                        getActivity().startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(getActivity() , BrowserActivity.class);
+                        intent.putExtra("site", "http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1771");
+                        getActivity().startActivity(intent);
+
+                        break;
+                    case 2:
+                        intent = new Intent(getActivity() , BrowserActivity.class);
+                        intent.putExtra("site", "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/zizhuzhaoshengkuaixun/112.html");
+                        getActivity().startActivity(intent);
+
+                        break;
+                    case 3:
+                        intent = new Intent(getActivity() , BrowserActivity.class);
+                        intent.putExtra("site", "http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1768\n");
+                        getActivity().startActivity(intent);
+                        break;
+                }
+            }
+        });
+    }
+
+    /*
+    * 加载首页五个按钮网格按钮布局
+    * */
     private void initGirdButtons() {
         list_girdButtons = new ArrayList<GirdButtonEntity>();
         list_girdButtons.add(new GirdButtonEntity(getString(R.string.library), R.drawable.ic_library));
@@ -142,127 +204,31 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Sens
         recy_girdBtn.setLayoutManager(gridLayoutManager);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    /*
+    * 初始化计步传感器
+    * */
+    private void initSensor(){
+        mSensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(SENSOR_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            Sensor  mStepCount = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+            Sensor  mStepDetector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+            mSensorManager.registerListener(this, mStepDetector, SensorManager.SENSOR_DELAY_FASTEST);
+            mSensorManager.registerListener(this, mStepCount, SensorManager.SENSOR_DELAY_FASTEST);
+        }
     }
 
-    /**
-     * 初始化最近信息的数据
-     * */
-    private void initNewestData() {
-        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg" , 1 , 1 ,1 ));
-        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg" , 1 , 1 ,1 ));
-        posts.add(new UserSharingPost("白上吹血","12点22分","今天天气不错啊","http://recomi.site/license_pic/jpg" , 1 , 1 ,1 ));
-        adapter = new BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost>(getContext(), posts, new SharingPostDelegete()) {
-            @Override
-            public void convert(ViewHolder holder, UserSharingPost userSharingPost,int position) {
-                if (position == getItemCount() -1) {
-                    holder.setText(R.id.tv_loadmore,"加载中...");
-                }
-                else {
-                    holder.setText(R.id.tv_name,userSharingPost.getName());
-                    holder.setText(R.id.tv_post_time,userSharingPost.getTime());
-                    holder.setText(R.id.tv_sharing_content,userSharingPost.getContent());
-//                holder.setText(R.id.tv_name,userSharingPost.getHeadIconUrl());
-                }
-            }
-        };
-        nestedSV.setOnScrollChangeListener(
-                new BaseNestedSVOnScrollChangeListener() {
-                    @Override
-                    public void onScrolledBotton() {
-                        Log.e("到底了", "" + ++testData);
-                    }
-
-                    @Override
-                    public void onScrolledTop() {
-                        Log.e("顶部", "" + ++testDataTop);
-                    }
-                }
-        );
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        /*recy.setLayoutManager(manager);
-        recy.setAdapter(adapter);
-        recy.setNestedScrollingEnabled(false);*/
-    }
-
-
-    //模拟加载更多数据
-    private void refreshMoreData() {
-        testData++;
-        adapter.getList().add(new UserSharingPost("白上吹血" + testData,"12点22分","今天天气不错啊" + testData ,"http://recomi.site/license_pic/jpg",1,1,1));
-        adapter.notifyDataSetChanged();
-        Log.e("Data","Refresh:" + testData);
-    }
-
-    //初始化滚动信息栏
-    private void initMarqueeView(View view){
-        MarqueeView marqueeView = view.findViewById(R.id.marqueeView);
-        List<String> info = new ArrayList<>();
-        info.add("2019年五年一贯制大专招生简章");
-        info.add("关于电类职业技能鉴定报考通知");
-        info.add("关于2019年自主招生简章的通知");
-        info.add("关于计算机水平考试报名的通知");
-
-        marqueeView.startWithList(info);
-        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, TextView textView) {
-                Intent intent;
-                switch (position){
-                    case 0:
-                            intent = new Intent(getActivity() , BrowserActivity.class);
-                            intent.putExtra("site", "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/wunianyiguanzhizhaoshengkuaixun/118.html");
-                            getActivity().startActivity(intent);
-                        break;
-                    case 1:
-                        intent = new Intent(getActivity() , BrowserActivity.class);
-                        intent.putExtra("site", "http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1771");
-                        getActivity().startActivity(intent);
-
-                        break;
-                    case 2:
-                        intent = new Intent(getActivity() , BrowserActivity.class);
-                        intent.putExtra("site", "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/zizhuzhaoshengkuaixun/112.html");
-                        getActivity().startActivity(intent);
-
-                        break;
-                    case 3:
-                        intent = new Intent(getActivity() , BrowserActivity.class);
-                        intent.putExtra("site", "http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1768\n");
-                        getActivity().startActivity(intent);
-                        break;
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        vp = mView.findViewById(R.id.vp);
-        bitmaps.add("http://img0.imgtn.bdimg.com/it/u=1899561195,3106332361&fm=26&gp=0.jpg");
-        bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner1.jpg");
-        bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner3.jpg");
-        vp.setAdapter(new PagerViewAdapter(getContext() ,bitmaps));
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-
+    /*
+    * implements SensorEventListener
+    * 读取系统计步传感器的数据
+    * */
+    @SuppressLint("SetTextI18n")
     @Override
     public void onSensorChanged(SensorEvent event) {
         int mDetector = 0;
         if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-            sensor.setText(String.valueOf(event.values[0]));
+            sensor.setText(String.valueOf((int)(event.values[0])));
+            kilocalorie.setText(String.valueOf(((int)(event.values[0] * 0.027)) + "千卡"));
+            km.setText(String.valueOf(((int)(event.values[0] * 0.75*0.001))) + "公里");
 
         }
         if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
@@ -274,32 +240,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Sens
         }
     }
 
+    /*
+    * implements SensorEventListener
+    * 传感器的精度变化时调用
+    * */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-
-    private void initSensor(){
-        mSensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(SENSOR_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            Sensor  mStepCount = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-            Sensor  mStepDetector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-            mSensorManager.registerListener(this, mStepDetector, SensorManager.SENSOR_DELAY_FASTEST);
-            mSensorManager.registerListener(this, mStepCount, SensorManager.SENSOR_DELAY_FASTEST);
-        }
-    }
-
-    class RefreshMoreData extends Thread {
-        @Override
-        public void run() {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    refreshMoreData();
-                }
-            });
-        }
-    }
-
-
 }
