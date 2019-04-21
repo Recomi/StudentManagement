@@ -94,12 +94,10 @@ public class NewDiaryActivity extends BaseActivity implements Toolbar.OnMenuItem
         setContentView(R.layout.activity_new_diary);
         mContext = NewDiaryActivity.this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         setSupportActionBar(toolbar);
         // 主标题
         toolbar.setTitle("Title");
-        // 左边的小箭头
-        toolbar.setNavigationIcon(R.drawable.ic_back_dark_medium);
         // 菜单点击事件
         toolbar.setOnMenuItemClickListener(this);
         initView();

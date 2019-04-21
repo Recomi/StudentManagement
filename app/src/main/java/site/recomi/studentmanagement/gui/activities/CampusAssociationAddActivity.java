@@ -1,24 +1,15 @@
 package site.recomi.studentmanagement.gui.activities;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
-
-import com.gyf.barlibrary.ImmersionBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +35,9 @@ public class CampusAssociationAddActivity extends MySwipeBackActivity {
         ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         toolbar.setTitle("编辑");
         toolbar.setTitleTextColor(Color.parseColor("#000000"));
-        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 

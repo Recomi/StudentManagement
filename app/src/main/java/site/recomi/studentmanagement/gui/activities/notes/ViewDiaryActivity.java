@@ -128,12 +128,8 @@ public class ViewDiaryActivity extends MySwipeBackActivity implements Toolbar.On
         location = (TextView) findViewById(R.id.text_view_address);
         // Toolbat
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         setSupportActionBar(toolbar);
-        // 主标题
-//        toolbar.setTitle("");
-        // 左边的小箭头
-        toolbar.setNavigationIcon(R.drawable.ic_back_dark_medium);
         // 菜单点击事件
         toolbar.setOnMenuItemClickListener(this);
         // 获取Diary的id

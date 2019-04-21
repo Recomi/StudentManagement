@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 
 import com.bin.david.form.core.SmartTable;
@@ -23,7 +20,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +33,6 @@ import okhttp3.Response;
 import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
-import site.recomi.studentmanagement.other.StudentGrade;
 import site.recomi.studentmanagement.other.entitiy.UserClasssCheduleInfo;
 
 public class ClassScheduleActivity extends MySwipeBackActivity {
@@ -58,9 +53,8 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         toolbar.setTitle("课表查询");
-        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
 

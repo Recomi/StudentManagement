@@ -1,7 +1,6 @@
 package site.recomi.studentmanagement.gui.activities;
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,11 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
-
-import com.baoyz.widget.PullRefreshLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -40,7 +34,6 @@ import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
-import site.recomi.studentmanagement.other.BookNoticeEntitiy;
 import site.recomi.studentmanagement.other.RecruitmentInformationEntitiy;
 
 import static org.litepal.LitePalApplication.getContext;
@@ -67,8 +60,7 @@ public class JobWantedActivity extends MySwipeBackActivity {
         mContext = JobWantedActivity.this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        setToolbarPaddingTop(toolbar);//设置top外边距为状态栏高度
-        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
+        initToolbarDefaultStyle(toolbar);
         setTitle("校园求职");
         setSupportActionBar(toolbar);
 
@@ -135,13 +127,10 @@ public class JobWantedActivity extends MySwipeBackActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 swipeRefreshLayout.setRefreshing(true);
-                swipeRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getOnlineDataSearch(query);
-                        // 刷新3秒完成
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
+                swipeRefreshLayout.postDelayed(() -> {
+                    getOnlineDataSearch(query);
+                    // 刷新3秒完成
+                    swipeRefreshLayout.setRefreshing(false);
                 }, 3000);
                 return true;
             }

@@ -50,12 +50,10 @@ public class CountAllBookLikeActivity extends MySwipeBackActivity {
         ButterKnife.bind(this);   //绑定ButterKnife
         mContext = CountAllBookLikeActivity.this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         // 主标题
         toolbar.setTitle("校内读书喜好分析");
         setTitle("校内读书喜好分析");
-        // 左边的小箭头
-        toolbar.setNavigationIcon(R.drawable.ic_back_dark_medium);
         setSupportActionBar(toolbar);
         initView();
         count();

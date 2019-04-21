@@ -1,30 +1,20 @@
 package site.recomi.studentmanagement.gui.activities;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bin.david.form.core.SmartTable;
 import com.bin.david.form.core.TableConfig;
 import com.bin.david.form.data.CellInfo;
-import com.bin.david.form.data.format.bg.BaseBackgroundFormat;
 import com.bin.david.form.data.format.bg.BaseCellBackgroundFormat;
 import com.bin.david.form.data.style.FontStyle;
-import com.bin.david.form.data.style.LineStyle;
-import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,10 +34,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
-import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 import site.recomi.studentmanagement.other.StudentGrade;
-import site.recomi.studentmanagement.other.entitiy.UserClasssCheduleInfo;
 
 public class GradeActivity extends MySwipeBackActivity {
     SmartTable<StudentGrade> smartTable;
@@ -70,9 +58,8 @@ public class GradeActivity extends MySwipeBackActivity {
 
     private void initView(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         toolbar.setTitle("成绩查询");
-        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 

@@ -23,7 +23,7 @@ public class MyClassActivity extends MySwipeBackActivity {
         setContentView(R.layout.activity_my_class);
         ButterKnife.bind(MyClassActivity.this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        toolbar.setNavigationIcon(R.drawable.ic_back_dark_medium);
+        setDefaultNavigationIcon(toolbar);
         setTitle("我的班级");
         setSupportActionBar(toolbar);
         //使用CollapsingToolbarLayout必须把title设置到CollapsingToolbarLayout上，设置到Toolbar上则不会显示

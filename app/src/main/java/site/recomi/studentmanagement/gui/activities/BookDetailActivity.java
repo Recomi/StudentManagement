@@ -33,9 +33,8 @@ public class BookDetailActivity extends MySwipeBackActivity {
     private void initView(){
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         toolbar.setTitle("图书详细");
-        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);

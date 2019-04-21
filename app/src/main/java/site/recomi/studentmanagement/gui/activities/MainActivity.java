@@ -56,7 +56,8 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
         toolbar.setTitle("首页");
-        setTitleCenter(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.ic_check_in); //签到按钮
+//        setTitleCenter(toolbar);
         setSupportActionBar(toolbar);
 
         //初始化UI控件

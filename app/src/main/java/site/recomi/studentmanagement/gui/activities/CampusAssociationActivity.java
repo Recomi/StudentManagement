@@ -60,7 +60,6 @@ public class CampusAssociationActivity extends MySwipeBackActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_association);
         ButterKnife.bind(this);
-//        ImmersionBar.with(this).init();     //沉浸状态栏
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setStatusBarTextColor(LIGHT_STATUS_FONT);  //状态栏文字颜色，白色

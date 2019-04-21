@@ -39,8 +39,7 @@ public class BookActivity extends MySwipeBackActivity {
         //状态栏
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
         toolbar.setTitle("图书馆");
-        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);

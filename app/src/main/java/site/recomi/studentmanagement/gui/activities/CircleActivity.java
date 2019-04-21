@@ -60,7 +60,6 @@ public class CircleActivity extends MySwipeBackActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle);
         ButterKnife.bind(this);
-//        ImmersionBar.with(this).init();     //沉浸状态栏
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);

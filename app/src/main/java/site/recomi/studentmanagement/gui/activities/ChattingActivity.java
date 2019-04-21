@@ -1,6 +1,5 @@
 package site.recomi.studentmanagement.gui.activities;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +16,6 @@ import site.recomi.studentmanagement.entity.ChattingMessage;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseMultiItemTypeRecyclerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.Delegetes.ChatMessageDelegete;
-import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 
 public class ChattingActivity extends MySwipeBackActivity {
@@ -34,8 +32,7 @@ public class ChattingActivity extends MySwipeBackActivity {
         ButterKnife.bind(this);
         mContext = ChattingActivity.this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_black_24dp);
-        setToolbarPaddingTop(toolbar);
+        initToolbarDefaultStyle(toolbar);
         setTitle("Chartting");
         setSupportActionBar(toolbar);
         initView();

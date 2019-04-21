@@ -115,6 +115,17 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    //默认Toolbar样式
+    public void initToolbarDefaultStyle(Toolbar toolbar) {
+        toolbar.setNavigationIcon(R.drawable.ic_back_black);
+        setToolbarPaddingTop(toolbar);
+    }
+
+    //默认Toolbar的Navigation按钮样式
+    public void setDefaultNavigationIcon(Toolbar toolbar) {
+        toolbar.setNavigationIcon(R.drawable.ic_back_black);
+    }
+
     //沉浸式状态栏下，设置Toolbar的paddingTop
     public void setToolbarPaddingTop(Toolbar toolbar) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)

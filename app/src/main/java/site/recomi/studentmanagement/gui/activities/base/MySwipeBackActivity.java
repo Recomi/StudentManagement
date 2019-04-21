@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+import site.recomi.studentmanagement.R;
 
 import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
 
@@ -94,6 +95,17 @@ public class MySwipeBackActivity extends SwipeBackActivity {
                 }
             }
         }
+    }
+
+    //默认Toolbar样式
+    public void initToolbarDefaultStyle(Toolbar toolbar) {
+        toolbar.setNavigationIcon(R.drawable.ic_back_black);
+        setToolbarPaddingTop(toolbar);
+    }
+
+    //默认Toolbar的Navigation按钮样式
+    public void setDefaultNavigationIcon(Toolbar toolbar) {
+        toolbar.setNavigationIcon(R.drawable.ic_back_black);
     }
 
     //沉浸式状态栏下，设置Toolbar的paddingTop

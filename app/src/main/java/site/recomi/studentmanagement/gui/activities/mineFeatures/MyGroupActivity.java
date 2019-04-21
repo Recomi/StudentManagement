@@ -21,7 +21,7 @@ public class MyGroupActivity extends MySwipeBackActivity {
         setContentView(R.layout.activity_my_group);
         ButterKnife.bind(MyGroupActivity.this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        toolbar.setNavigationIcon(R.drawable.ic_back_dark_medium);
+        setDefaultNavigationIcon(toolbar);
         setSupportActionBar(toolbar);
         setTitle("我的小组");
         mCollapsingToolbarLayout.setTitleEnabled(false);
