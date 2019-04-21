@@ -146,8 +146,9 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
                     String data2 = data.substring(1,data.length() - 1);    //处理掉前后"符号
                     Log.d("xxxxxx", "服务器返回的数据: " + data2);
 
-                    //将获取到的数据存入
 
+
+                    //将获取到的数据存入
                     JSONArray dataArray = new JSONArray(data2);
                     for (int i=0;i < dataArray.length(); i++){
                         finalData.add(dataArray.getJSONObject(i));
@@ -156,7 +157,7 @@ public class ClassScheduleActivity extends MySwipeBackActivity {
                     e.printStackTrace();
                 }
 
-                //数据获取完后，更新界面，显示数据
+//                数据获取完后，更新界面，显示数据
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

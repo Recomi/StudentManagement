@@ -79,14 +79,14 @@ public class MainActivity extends BaseActivity
         initBottomNavigationView();
 
         // click to start LoginActivity
-//        LinearLayout account = navigationView.getHeaderView(0).findViewById(R.id.click_account);
-//        account.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+////        LinearLayout account = navigationView.getHeaderView(0).findViewById(R.id.click_account);
+////        account.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+////                startActivity(intent);
+////            }
+////        });
 
         //ViewPager的初始化
         fragments.add(new HomeFragment());

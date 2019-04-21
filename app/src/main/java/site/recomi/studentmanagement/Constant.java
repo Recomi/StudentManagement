@@ -7,4 +7,6 @@ public class Constant {
     public final static String ADDR = PROTOCOL + DOMAIN+":" +PORT;
     public final static String MAIN_PHP = PROTOCOL+DOMAIN+":" +PORT+"/CampusManagementSystem.php";
 
+
+
 }

@@ -10,8 +10,11 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.BrowserActivity;
 
@@ -54,10 +57,11 @@ public class PagerViewAdapter extends android.support.v4.view.PagerAdapter {
                         mContext.startActivity(intent);
                         break;
                 }
-//                "http://113.107.212.69:81/hdsbzt/19da/shownews.asp?id=1458"   "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/yixuekaozhaoshengkuaixun/113.html"  "http://www.luodingpoly.cn/"
 
             }
         });
+
+
         Picasso.with(mContext).load(mData.get(position)).into(iv);
         container.addView(view);
         return view;

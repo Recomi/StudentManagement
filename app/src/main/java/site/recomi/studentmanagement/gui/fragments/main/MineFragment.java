@@ -113,7 +113,6 @@ public class MineFragment extends BaseFragment {
             Picasso.with(mContext).load(loginEvent.getHeadphoto()).into(circleImageView);
 
         if (getContext() != null){
-
             SharedPreferences.Editor editor = getContext().getSharedPreferences("account",MODE_PRIVATE).edit();
             editor.putString("name",loginEvent.getName());
             editor.putString("headphoto",loginEvent.getHeadphoto());

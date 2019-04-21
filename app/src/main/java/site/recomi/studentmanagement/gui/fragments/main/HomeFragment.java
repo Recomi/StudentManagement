@@ -27,12 +27,25 @@ import android.widget.Toast;
 import com.baoyz.widget.PullRefreshLayout;
 import com.sunfusheng.marqueeview.MarqueeView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.GirdButtonEntity;
 import site.recomi.studentmanagement.entity.UserSharingPost;
@@ -73,6 +86,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     View mView;
     Context mContext;
 
+    MarqueeView marqueeView;
     MultiItemTypeSupport multiItemTypeSupport ;
     BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter;
     BaseRecycleViewAdapter<GirdButtonEntity> adapter_girdBtn;
@@ -80,6 +94,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     List<UserSharingPost> posts = new ArrayList<>();
     List<GirdButtonEntity> list_girdButtons ;
     SensorManager mSensorManager;
+    List<String> info;
 
     int testData = 0;
     int testDataTop = 0;
@@ -91,7 +106,8 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         mContext = mView.getContext();
         ButterKnife.bind(this, mView);
 
-        initPagerView();
+//        initPagerView();
+        getOnlineData();
         initGirdButtons();
         initMarqueeView(mView);
         initSensor();
@@ -100,28 +116,28 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     }
 
 
-    /*
+/*    *//*
     * 初始化滚动界面数据
-    * */
+    * *//*
     private void initPagerView(){
-        bitmaps.add("http://img0.imgtn.bdimg.com/it/u=1899561195,3106332361&fm=26&gp=0.jpg");
-        bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner1.jpg");
-        bitmaps.add("http://www.luodingpoly.cn/zs/themes/zs/images/banner3.jpg");
+        bitmaps.add("https://recomi.site/campus_management_system_pic/home_page/one.jpg");
+        bitmaps.add("https://recomi.site/campus_management_system_pic/home_page/two.jpg");
+        bitmaps.add("https://recomi.site/campus_management_system_pic/home_page/three.jpg");
         vp.setAdapter(new PagerViewAdapter(getContext() ,bitmaps));
-    }
+    }*/
 
     /*
      * 初始化滚动信息栏
      * */
     private void initMarqueeView(View view){
-        MarqueeView marqueeView = view.findViewById(R.id.marqueeView);
-        List<String> info = new ArrayList<>();
-        info.add("2019年五年一贯制大专招生简章");
-        info.add("关于电类职业技能鉴定报考通知");
-        info.add("关于2019年自主招生简章的通知");
-        info.add("关于计算机水平考试报名的通知");
+        marqueeView = view.findViewById(R.id.marqueeView);
+        info = new ArrayList<>();
+//        info.add("2019年五年一贯制大专招生简章");
+//        info.add("关于电类职业技能鉴定报考通知");
+//        info.add("关于2019年自主招生简章的通知");
+//        info.add("关于计算机水平考试报名的通知");
 
-        marqueeView.startWithList(info);
+//        marqueeView.startWithList(info);
         marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
             @Override
             public void onItemClick(int position, TextView textView) {
@@ -235,7 +251,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             if (event.values[0] == 1.0) {
                 mDetector++;
                 //event.values[0]一次有效计步数据
-                Toast.makeText(getContext(), String.valueOf(mDetector), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), String.valueOf(mDetector), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -247,5 +263,60 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    /*
+     * 发起网络请求,获取服务器数据
+     * */
+    private void getOnlineData(){
+        OkHttpClient client = new OkHttpClient();
+        RequestBody requestBody = new FormBody.Builder()
+                .add("type" , "homePageArticle")
+                .build();
+        Request request = new Request.Builder()
+                .url(Constant.MAIN_PHP)
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //针对异常情况处理
+                Log.d("failure", "onFailure: "+ e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String data =  response.body().string();
+                    JSONArray jsonArray = new JSONArray(data);
+
+                    //对应数据库7条数据,前3条为主,后四条为副
+                    for (int i = 0; i < 7; i++){
+
+                        //大于2说明数据是副滚动栏的,0-2共3条为主滚动栏的
+                        if (i > 2 ){
+                            info.add(jsonArray.getJSONObject(i).getString("title"));
+                            continue;
+                        }
+
+                        String temp = jsonArray.getJSONObject(i).getString("imgSrcSet").replace("\\", "");
+                        Log.d("xxxxx", "onResponse: " + temp);
+                        JSONObject jsonObject = new JSONObject(temp);
+                        bitmaps.add(jsonObject.getString("surfacePlot"));
+                    }
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(mContext,String.valueOf( info.size()), Toast.LENGTH_SHORT).show();
+                            marqueeView.startWithList(info);
+                            vp.setAdapter(new PagerViewAdapter(getContext() ,bitmaps));
+                        }
+                    });
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

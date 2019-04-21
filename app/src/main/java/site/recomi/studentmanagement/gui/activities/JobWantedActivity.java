@@ -119,7 +119,7 @@ public class JobWantedActivity extends MySwipeBackActivity {
         //开启提交按钮
         searchView.setSubmitButtonEnabled(true);
         //设置文字提示
-        searchView.setQueryHint("查找图书");
+        searchView.setQueryHint("搜索职位");
         searchView.setMaxWidth(1000);
         //监听
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

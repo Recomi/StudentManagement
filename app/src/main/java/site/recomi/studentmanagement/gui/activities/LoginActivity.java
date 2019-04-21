@@ -64,7 +64,6 @@ public class LoginActivity extends MySwipeBackActivity {
         pager.setAdapter(new LoginPagerAdapter(mContext,getSupportFragmentManager(),fragments,titles));
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setupWithViewPager(pager,false);
-
     }
 
 

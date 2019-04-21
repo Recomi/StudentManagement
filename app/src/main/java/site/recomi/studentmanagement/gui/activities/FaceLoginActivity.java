@@ -121,6 +121,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
     private FaceHelper faceHelper;
     private List<CompareResult> compareResultList;
     private ShowFaceInfoAdapter adapter;
+
     /**
      * 活体检测的开关
      */
@@ -130,10 +131,12 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
      * 注册人脸状态码，准备注册
      */
     private static final int REGISTER_STATUS_READY = 0;
+
     /**
      * 注册人脸状态码，注册中
      */
     private static final int REGISTER_STATUS_PROCESSING = 1;
+
     /**
      * 注册人脸状态码，注册结束（无论成功失败）
      */
@@ -145,10 +148,12 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
     private ConcurrentHashMap<Integer, Integer> requestFeatureStatusMap = new ConcurrentHashMap<>();
     private ConcurrentHashMap<Integer, Integer> livenessMap = new ConcurrentHashMap<>();
     private CompositeDisposable getFeatureDelayedDisposables = new CompositeDisposable();
+
     /**
      * 相机预览显示的控件，可为SurfaceView或TextureView
      */
     private View previewView;
+
     /**
      * 绘制人脸框的控件
      */
@@ -158,6 +163,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
 
     private static final int ACTION_REQUEST_PERMISSIONS = 0x001;
     private static final float SIMILAR_THRESHOLD = 0.8F;
+
     /**
      * 所需的所有权限信息
      */
@@ -170,6 +176,7 @@ public class FaceLoginActivity extends AppCompatActivity implements ViewTreeObse
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_and_recognize);
+
         //保持亮屏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 

@@ -48,12 +48,13 @@ public class MessageFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_message, container , false);
         mContext = view.getContext();
         unbinder = ButterKnife.bind(this,view);
         initView();
-        return view;
 
+        return view;
     }
 
     private void initView() {
@@ -78,6 +79,7 @@ public class MessageFragment extends BaseFragment {
             }
         };
         recycler.addOnItemTouchListener(new BaseRecyclerItemTouchListener(mContext,new BaseRecyclerItemTouchListener.OnItemClickListener() {
+
             @Override
             public void onItemClick(View view, int position) {
                 startActivityOnly(mContext, ChattingActivity.class);
