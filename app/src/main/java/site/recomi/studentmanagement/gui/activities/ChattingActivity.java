@@ -32,7 +32,7 @@ public class ChattingActivity extends MySwipeBackActivity {
         ButterKnife.bind(this);
         mContext = ChattingActivity.this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
-        initToolbarDefaultStyle(toolbar);
+        setDefaultNavigationIcon(toolbar);
         setTitle("Chartting");
         setSupportActionBar(toolbar);
         initView();

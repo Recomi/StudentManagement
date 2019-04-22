@@ -10,11 +10,26 @@
         android:id="@+id/refresh_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recy_diary_list"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                android:id="@+id/rela_text_emptyNote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:textSize="18sp"
+                    android:text="添加你的第一笔记录"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recy_diary_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
+        </FrameLayout>
     </com.baoyz.widget.PullRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton

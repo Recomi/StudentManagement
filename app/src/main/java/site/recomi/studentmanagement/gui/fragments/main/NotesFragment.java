@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.baoyz.widget.PullRefreshLayout;
 
@@ -21,7 +22,10 @@ import org.litepal.LitePal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.entity.Diary;
 import site.recomi.studentmanagement.gui.activities.MainActivity;
@@ -32,6 +36,9 @@ import site.recomi.studentmanagement.gui.adapter.ViewHolder;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 
 public class NotesFragment extends Fragment {
+    @BindView(R.id.rela_text_emptyNote)
+    RelativeLayout rela_text_emptyNote;
+
     ArrayList<Diary> diaryArrayList;             // Diary集合
     private View view;
     private Context mContext;
@@ -45,6 +52,7 @@ public class NotesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_diary_list,container,false);
         mContext = view.getContext();
+        ButterKnife.bind(this,view);
         initView();
         return view;
     }
@@ -52,13 +60,10 @@ public class NotesFragment extends Fragment {
     private void initView(){
         //浮动按钮
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_main);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // NewDiaryActivity
-                Intent intent = new Intent(getActivity(), NewDiaryActivity.class);
-                startActivityForResult(intent,233);
-            }
+        fab.setOnClickListener(view -> {
+            // NewDiaryActivity
+            Intent intent = new Intent(getActivity(), NewDiaryActivity.class);
+            startActivityForResult(intent,233);
         });
 
         diaryArrayList = new ArrayList<>();
@@ -103,12 +108,7 @@ public class NotesFragment extends Fragment {
             }
         }));
         refreshLayout = (PullRefreshLayout) view.findViewById(R.id.refresh_main);
-        refreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new UpdateRecy().start();
-            }
-        });
+        refreshLayout.setOnRefreshListener(() -> new UpdateRecy().start());
         refreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_WATER_DROP);
         updateDiaries();
     }
@@ -117,6 +117,9 @@ public class NotesFragment extends Fragment {
      * */
     public void updateDiaries(){
         List<Diary> diaries = LitePal.findAll(Diary.class);
+        if (diaries.size() > 0)
+            //当有数据时，屏蔽掉无数据时的提示文字
+            rela_text_emptyNote.setVisibility(View.GONE);
         Collections.reverse(diaries);
         diaryArrayList.clear();
         diaryArrayList.addAll(diaries);
@@ -138,19 +141,22 @@ public class NotesFragment extends Fragment {
     class UpdateRecy extends Thread {
         @Override
         public void run() {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    List<Diary> diaries = LitePal.findAll(Diary.class);
-                    Collections.reverse(diaries);
-                    diaryArrayList.clear();
-                    diaryArrayList.addAll(diaries);
-                    // 停止刷新
-                    refreshLayout.setRefreshing(false);
-                    // 刷新recycleView
-                    adapter.notifyDataSetChanged();
-                    adapter.notifyDataSetChanged();
-                }
+            Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+                List<Diary> diaries = LitePal.findAll(Diary.class);
+                if (diaries.size() > 0)
+                    //当有数据时，屏蔽掉无数据时的提示文字
+                    rela_text_emptyNote.setVisibility(View.GONE);
+                else
+                    //当无数据时，显示无数据时的提示文字
+                    rela_text_emptyNote.setVisibility(View.VISIBLE);
+                Collections.reverse(diaries);
+                diaryArrayList.clear();
+                diaryArrayList.addAll(diaries);
+                // 停止刷新
+                refreshLayout.setRefreshing(false);
+                // 刷新recycleView
+                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             });
         }
     }

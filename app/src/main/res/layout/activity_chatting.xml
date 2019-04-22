@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorToolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".gui.activities.ChattingActivity">
 
     <include layout="@layout/app_bar_base"/>
@@ -12,11 +14,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recy_chatting"
+            android:background="@color/colorBackground"
             android:layout_above="@+id/rela_botton"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

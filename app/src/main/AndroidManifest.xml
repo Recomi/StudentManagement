@@ -21,7 +21,8 @@
         <activity
             android:name=".gui.activities.CircleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".gui.activities.ChattingActivity" />
+        <activity android:name=".gui.activities.ChattingActivity"
+            android:theme="@style/editActivity"/>
         <activity android:name=".gui.activities.library.CountAllBookLikeActivity" />
         <activity android:name=".gui.activities.mineFeatures.ViewHistoryActivity" />
         <activity android:name=".gui.activities.mineFeatures.MyGroupActivity" />

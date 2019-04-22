@@ -44,7 +44,7 @@ public class BrowserActivity extends MySwipeBackActivity {
         settings.setJavaScriptEnabled(true);
         settings.setAppCacheEnabled(true);
         //设置 缓存模式
-        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         // 开启 DOM storage API 功能
         settings.setDomStorageEnabled(true);
     }
