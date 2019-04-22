@@ -16,13 +16,14 @@ import java.util.List;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.entity.CarouselMap;
 import site.recomi.studentmanagement.gui.activities.BrowserActivity;
 
-public class PagerViewAdapter extends android.support.v4.view.PagerAdapter {
+public class CarouselMapPagerViewAdapter extends android.support.v4.view.PagerAdapter {
     private Context mContext;
-    private List<String> mData;
+    private List<CarouselMap> mData;
 
-    public PagerViewAdapter(Context context , List<String> list) {
+    public CarouselMapPagerViewAdapter(Context context , List<CarouselMap> list) {
         mContext = context;
         mData = list;
     }
@@ -36,33 +37,14 @@ public class PagerViewAdapter extends android.support.v4.view.PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = View.inflate(mContext, R.layout.pager_item_base,null);
         ImageView iv = view.findViewById(R.id.iv);
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                switch (position){
-                    case 0:
-                        intent = new Intent(mContext , BrowserActivity.class);
-                        intent.putExtra("site" , "http://113.107.212.69:81/hdsbzt/19da/shownews.asp?id=1458");
-                        mContext.startActivity(intent);
-                        break;
-                    case 1:
-                        intent = new Intent(mContext , BrowserActivity.class);
-                        intent.putExtra("site" , "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/yixuekaozhaoshengkuaixun/113.html");
-                        mContext.startActivity(intent);
-                        break;
-                    case 2:
-                        intent = new Intent(mContext , BrowserActivity.class);
-                        intent.putExtra("site" , "http://www.luodingpoly.cn/");
-                        mContext.startActivity(intent);
-                        break;
-                }
-
-            }
+        iv.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext , BrowserActivity.class);
+            //启动页面传入文章地址
+            intent.putExtra("site" , mData.get(position).getArticle_url());
+            mContext.startActivity(intent);
         });
-
-
-        Picasso.with(mContext).load(mData.get(position)).into(iv);
+        //轮播图片地址
+        Picasso.with(mContext).load(mData.get(position).getImg_url()).into(iv);
         container.addView(view);
         return view;
     }

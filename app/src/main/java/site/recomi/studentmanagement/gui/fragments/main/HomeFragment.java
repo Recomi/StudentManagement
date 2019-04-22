@@ -1,7 +1,6 @@
 package site.recomi.studentmanagement.gui.fragments.main;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,26 +9,21 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.sunfusheng.marqueeview.MarqueeView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,6 +41,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import site.recomi.studentmanagement.Constant;
 import site.recomi.studentmanagement.R;
+import site.recomi.studentmanagement.entity.CarouselMap;
 import site.recomi.studentmanagement.entity.GirdButtonEntity;
 import site.recomi.studentmanagement.entity.UserSharingPost;
 import site.recomi.studentmanagement.gui.activities.BookActivity;
@@ -54,20 +49,18 @@ import site.recomi.studentmanagement.gui.activities.BrowserActivity;
 import site.recomi.studentmanagement.gui.activities.CampusAssociationActivity;
 import site.recomi.studentmanagement.gui.activities.CircleActivity;
 import site.recomi.studentmanagement.gui.activities.ClassScheduleActivity;
-import site.recomi.studentmanagement.gui.activities.GradeActivity;
 import site.recomi.studentmanagement.gui.activities.JobWantedActivity;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseMultiItemTypeRecyclerViewAdapter;
-import site.recomi.studentmanagement.gui.adapter.Base.BaseNestedSVOnScrollChangeListener;
 import site.recomi.studentmanagement.gui.adapter.Base.BaseRecycleViewAdapter;
-import site.recomi.studentmanagement.gui.adapter.Delegetes.SharingPostDelegete;
+import site.recomi.studentmanagement.gui.adapter.CarouselMapPagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.MultiItemTypeSupport;
-import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.gui.adapter.ViewHolder;
+import site.recomi.studentmanagement.gui.fragments.Base.BaseFragment;
 import site.recomi.studentmanagement.gui.listenner.BaseRecyclerItemTouchListener;
 
 import static android.content.Context.SENSOR_SERVICE;
 
-public class HomeFragment extends Fragment implements SensorEventListener {
+public class HomeFragment extends BaseFragment implements SensorEventListener {
     @BindView(R.id.refresh_home)
     PullRefreshLayout refresh_home;
     @BindView(R.id.recy_girdBtn_home)
@@ -83,21 +76,14 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     @BindView(R.id.kilocalorie)
     TextView kilocalorie;
 
-    View mView;
-    Context mContext;
-
     MarqueeView marqueeView;
-    MultiItemTypeSupport multiItemTypeSupport ;
     BaseMultiItemTypeRecyclerViewAdapter<UserSharingPost> adapter;
     BaseRecycleViewAdapter<GirdButtonEntity> adapter_girdBtn;
-    List<String> bitmaps = new ArrayList<>();
-    List<UserSharingPost> posts = new ArrayList<>();
+    List<CarouselMap> carouselMaps = new ArrayList<>();         //轮播图的实例列表
     List<GirdButtonEntity> list_girdButtons ;
     SensorManager mSensorManager;
     List<String> info;
-
-    int testData = 0;
-    int testDataTop = 0;
+    ArrayList<String> list_articleSrc = new ArrayList<>();
 
     @Nullable
     @Override
@@ -123,7 +109,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         bitmaps.add("https://recomi.site/campus_management_system_pic/home_page/one.jpg");
         bitmaps.add("https://recomi.site/campus_management_system_pic/home_page/two.jpg");
         bitmaps.add("https://recomi.site/campus_management_system_pic/home_page/three.jpg");
-        vp.setAdapter(new PagerViewAdapter(getContext() ,bitmaps));
+        vp.setAdapter(new CarouselMapPagerViewAdapter(getContext() ,bitmaps));
     }*/
 
     /*
@@ -132,41 +118,17 @@ public class HomeFragment extends Fragment implements SensorEventListener {
     private void initMarqueeView(View view){
         marqueeView = view.findViewById(R.id.marqueeView);
         info = new ArrayList<>();
-//        info.add("2019年五年一贯制大专招生简章");
-//        info.add("关于电类职业技能鉴定报考通知");
-//        info.add("关于2019年自主招生简章的通知");
-//        info.add("关于计算机水平考试报名的通知");
+        info.add("2019年五年一贯制大专招生简章");
+        info.add("关于电类职业技能鉴定报考通知");
+        info.add("关于2019年自主招生简章的通知");
+        info.add("关于计算机水平考试报名的通知");
 
 //        marqueeView.startWithList(info);
-        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, TextView textView) {
-                Intent intent;
-                switch (position){
-                    case 0:
-                        intent = new Intent(getActivity() , BrowserActivity.class);
-                        intent.putExtra("site", "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/wunianyiguanzhizhaoshengkuaixun/118.html");
-                        getActivity().startActivity(intent);
-                        break;
-                    case 1:
-                        intent = new Intent(getActivity() , BrowserActivity.class);
-                        intent.putExtra("site", "http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1771");
-                        getActivity().startActivity(intent);
-
-                        break;
-                    case 2:
-                        intent = new Intent(getActivity() , BrowserActivity.class);
-                        intent.putExtra("site", "http://www.luodingpoly.cn/zs/zhaoshengkuaixun/zizhuzhaoshengkuaixun/112.html");
-                        getActivity().startActivity(intent);
-
-                        break;
-                    case 3:
-                        intent = new Intent(getActivity() , BrowserActivity.class);
-                        intent.putExtra("site", "http://113.107.212.68:81/xnbm/jnjxb/Article/Show.asp?id=1768\n");
-                        getActivity().startActivity(intent);
-                        break;
-                }
-            }
+        marqueeView.setOnItemClickListener((position, textView) -> {
+            Intent intent = new Intent(mContext , BrowserActivity.class);
+            String articleSrc = list_articleSrc.get(position);
+            intent.putExtra("site", Constant.ARTICLES_URL+ "/" + articleSrc);
+            mContext.startActivity(intent);
         });
     }
 
@@ -280,8 +242,9 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                //针对异常情况处理
-                Log.d("failure", "onFailure: "+ e);
+                Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+                    toastLongMessage(mContext, "读取封面数据异常，请检查网络是否通畅");
+                });
             }
 
             @Override
@@ -290,31 +253,26 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                     String data =  response.body().string();
                     JSONArray jsonArray = new JSONArray(data);
 
-                    //对应数据库7条数据,前3条为主,后四条为副
-                    for (int i = 0; i < 7; i++){
-
-                        //大于2说明数据是副滚动栏的,0-2共3条为主滚动栏的
-                        if (i > 2 ){
-                            info.add(jsonArray.getJSONObject(i).getString("title"));
-                            continue;
-                        }
-
-                        String temp = jsonArray.getJSONObject(i).getString("imgSrcSet").replace("\\", "");
-                        Log.d("xxxxx", "onResponse: " + temp);
-                        JSONObject jsonObject = new JSONObject(temp);
-                        bitmaps.add(jsonObject.getString("surfacePlot"));
+                    //封面数量由获取的JSONArray控制，每张封面图片的文件名对应其文章的文件名
+                    for (int i = 0; i < jsonArray.length(); i++){
+                        String imgSrc = jsonArray.getJSONObject(i).getString("imgSrc");
+                        String articleSrc = jsonArray.getJSONObject(i).getString("articleSrc");
+                        list_articleSrc.add(articleSrc);
+                        String img_url = Constant.IMG_URL + "/home_page/" + imgSrc;
+                        String article_url = Constant.ARTICLES_URL + "/" + articleSrc;
+//                        Log.e("首页封面图片",Constant.IMG_URL + "/home_page/" + imgSrc);
+                        //加入到轮播实例列表
+                        carouselMaps.add(new CarouselMap(img_url,article_url));
                     }
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(mContext,String.valueOf( info.size()), Toast.LENGTH_SHORT).show();
-                            marqueeView.startWithList(info);
-                            vp.setAdapter(new PagerViewAdapter(getContext() ,bitmaps));
-                        }
+                    Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+//                        Toast.makeText(mContext,String.valueOf( info.size()), Toast.LENGTH_SHORT).show();
+                        marqueeView.startWithList(info);
+                        vp.setAdapter(new CarouselMapPagerViewAdapter(getContext() , carouselMaps));
                     });
-
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+                        toastLongMessage(mContext, "读取封面json异常，请检查网络是否通畅");
+                    });
                 }
             }
         });

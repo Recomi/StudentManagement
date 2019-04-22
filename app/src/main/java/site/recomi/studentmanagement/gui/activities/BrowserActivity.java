@@ -1,12 +1,13 @@
 package site.recomi.studentmanagement.gui.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.activities.base.MySwipeBackActivity;
 
@@ -16,17 +17,21 @@ public class BrowserActivity extends MySwipeBackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
+        ButterKnife.bind(this);
+        mContext = BrowserActivity.this;
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_base);
+        initToolbarDefaultStyle(toolbar);
+        setTitle("正文");
+        setSupportActionBar(toolbar);
+
         webView = (WebView) findViewById(R.id.webView);
+        WebSettings settings = webView.getSettings();
+        settings.setSupportZoom(false);           //关闭缩放
+        settings.setBuiltInZoomControls(false);   //关闭内建缩放控制
+        settings.setUseWideViewPort(true);//不显示webview缩放按钮
 
-
-        webView.getSettings().setSupportZoom(true);
-
-        webView.getSettings().setBuiltInZoomControls(true);
-
-        webView.getSettings().setUseWideViewPort(true);
-
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webView.getSettings().setLoadWithOverviewMode(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setLoadWithOverviewMode(true);
         webView.setWebViewClient(new WebViewClient() {
             //覆盖shouldOverrideUrlLoading 方法
             @Override
@@ -35,13 +40,13 @@ public class BrowserActivity extends MySwipeBackActivity {
                 return true;
             }
         });
-
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAppCacheEnabled(true);
+        //开启JavaScrip
+        settings.setJavaScriptEnabled(true);
+        settings.setAppCacheEnabled(true);
         //设置 缓存模式
-        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         // 开启 DOM storage API 功能
-        webView.getSettings().setDomStorageEnabled(true);
+        settings.setDomStorageEnabled(true);
     }
 
     @Override
@@ -50,7 +55,5 @@ public class BrowserActivity extends MySwipeBackActivity {
         Intent intent = getIntent();
         String site = intent.getStringExtra("site");
         webView.loadUrl(site);
-
-
     }
 }

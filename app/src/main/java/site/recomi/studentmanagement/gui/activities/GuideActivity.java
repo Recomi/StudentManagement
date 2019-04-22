@@ -29,7 +29,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import site.recomi.studentmanagement.common.Constants;
-import site.recomi.studentmanagement.gui.adapter.PagerViewAdapter;
 import site.recomi.studentmanagement.R;
 import site.recomi.studentmanagement.gui.adapter.WelcomePagerViewAdapter;
 

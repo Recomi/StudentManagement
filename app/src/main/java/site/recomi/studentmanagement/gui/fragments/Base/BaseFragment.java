@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import site.recomi.studentmanagement.R;
@@ -33,5 +34,16 @@ public class BaseFragment extends Fragment {
     public void startActivityOnly(Context context, Class c) {
         Intent intent = new Intent(context, c);
         startActivity(intent);
+    }
+
+
+    //弹出短时间的提示文字
+    public void toastShortMessage(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
+    //弹出长时间的提示文字
+    public void toastLongMessage(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 }
