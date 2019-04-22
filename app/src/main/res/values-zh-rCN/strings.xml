@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">学生管理</string>
+    <string name="app_name">轻云校园</string>
     <string name="action_search">搜索</string>
     <string name="action_import">导入</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

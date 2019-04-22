@@ -125,13 +125,10 @@ public class GuideActivity extends AppCompatActivity {
         if (view != null) {
             view.setClickable(false);
         }
-        Observable.create(new ObservableOnSubscribe<Integer>() {
-            @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-                FaceEngine faceEngine = new FaceEngine();
-                int activeCode = faceEngine.active(GuideActivity.this, Constants.APP_ID, Constants.SDK_KEY);
-                emitter.onNext(activeCode);
-            }
+        Observable.create((ObservableOnSubscribe<Integer>) emitter -> {
+            FaceEngine faceEngine = new FaceEngine();
+            int activeCode = faceEngine.active(GuideActivity.this, Constants.APP_ID, Constants.SDK_KEY);
+            emitter.onNext(activeCode);
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
