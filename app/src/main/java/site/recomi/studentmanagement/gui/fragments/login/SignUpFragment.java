@@ -96,6 +96,21 @@ public class SignUpFragment extends BaseFragment {
 //        btn_register_facePic.setOnClickListener(v ->
 //                startActivityOnly(mContext, RegisterFaceActivity.class));
         btn_signup.setOnClickListener(v -> {
+            boolean is_empty = tv_id.getText().toString().equals("")
+                    || tv_name.getText().toString().equals("")
+                    || tv_phone.getText().toString().equals("")
+                    || tv_password.getText().toString().equals("")
+                    || tv_password_again.getText().toString().equals("");
+            boolean is_same_pass = tv_password.getText().toString()
+                    .equals(tv_password_again.getText().toString());
+            if (is_empty) {
+                toastShortMessage(mContext,"全部必填，请勿留空");
+                return;
+            }
+            if (!is_same_pass) {
+                toastShortMessage(mContext,"两次密码不一致");
+                return;
+            }
             activeEngine(v);
             saveLocalUserBaseInfo();
             getOnlineData();

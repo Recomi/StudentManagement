@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:textCursorDrawable="@drawable/color_cursor"
             android:hint="输入密码"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:textSize="18sp"
             android:singleLine="true"/>
@@ -74,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="再次输入密码"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true"
             android:textCursorDrawable="@drawable/color_cursor"
